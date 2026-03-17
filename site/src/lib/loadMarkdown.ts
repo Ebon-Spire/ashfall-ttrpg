@@ -182,6 +182,20 @@ function postProcessHtml(html: string): string {
     });
   });
 
+  // 4. Ability card wrapping: wrap <p> with action badge + following <ul>/<ol> into a card div
+  // Detects: <p><strong>Name <badge>...</strong> description</p> optionally followed by <ul>...</ul>
+  html = html.replace(
+    /(<p><strong>(?:(?!<\/p>).)*?action-badge(?:(?!<\/p>).)*?<\/p>)\s*(<ul>[\s\S]*?<\/ul>)?/g,
+    (match, paragraph, list) => {
+      if (!list) {
+        // Just a paragraph with a badge, no following list
+        return `<div class="ability-card">${paragraph}</div>`;
+      }
+      // Paragraph + list wrapped together
+      return `<div class="ability-card">${paragraph}${list}</div>`;
+    }
+  );
+
   return html;
 }
 

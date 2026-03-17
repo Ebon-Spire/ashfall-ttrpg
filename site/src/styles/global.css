@@ -338,11 +338,35 @@ blockquote.callout-warning > p:first-child strong:first-child {
   box-shadow: var(--shadow-sm);
 }
 
-/* Paragraphs with action badges get subtle heading treatment (no card box) */
-.prose p:has(.action-badge) > strong:first-child {
+/* Ability card wrapper (build-time generated from p + badge + optional ul) */
+.ability-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-md);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.ability-card:hover {
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-sm);
+}
+.ability-card > p:first-child {
+  margin-bottom: var(--space-sm);
+}
+.ability-card > p:first-child > strong:first-child {
   font-family: var(--font-heading);
   font-size: 0.95rem;
   letter-spacing: 0.02em;
+  color: var(--text-primary);
+}
+.ability-card > p:last-child {
+  margin-bottom: 0;
+}
+.ability-card ul, .ability-card ol {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /* Ability name + badge in headings */
