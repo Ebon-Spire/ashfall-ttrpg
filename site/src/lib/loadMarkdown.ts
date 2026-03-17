@@ -18,15 +18,124 @@ function splitFrontmatter(raw: string): { frontmatter: string | null; body: stri
   return { frontmatter: null, body: raw };
 }
 
+/** Game terms that should auto-link to their definition pages. */
+const TERM_LINKS: Record<string, string> = {
+  // Conditions
+  'Blinded': '/rules/conditions/',
+  'Charmed': '/rules/conditions/',
+  'Confused': '/rules/conditions/',
+  'Dazed': '/rules/conditions/',
+  'Deafened': '/rules/conditions/',
+  'Exhaustion': '/rules/conditions/',
+  'Frightened': '/rules/conditions/',
+  'Grappled': '/rules/conditions/',
+  'Incapacitated': '/rules/conditions/',
+  'Invisible': '/rules/conditions/',
+  'Paralyzed': '/rules/conditions/',
+  'Petrified': '/rules/conditions/',
+  'Poisoned': '/rules/conditions/',
+  'Prone': '/rules/conditions/',
+  'Restrained': '/rules/conditions/',
+  'Slowed': '/rules/conditions/',
+  'Stunned': '/rules/conditions/',
+  'Unconscious': '/rules/conditions/',
+  // Core mechanics
+  'Burnout': '/rules/magic/#burnout-mechanics',
+  'Twilight Event': '/rules/magic/#twilight-events-critical-overcasting-failures',
+  'Sigil System': '/rules/magic/#the-sigil-system--modular-spell-crafting',
+  'Bounded Accuracy': '/rules/introduction/',
+  'Defense Value': '/rules/combat/',
+  // Rest economy
+  'Short Rest': '/rules/exploration/',
+  'Long Rest': '/rules/exploration/',
+  // Equipment
+  'Augmentation': '/rules/equipment/#augmentations',
+  'Humanity': '/rules/equipment/#humanity-threshold-effects',
+};
+
+/** Build a regex that matches any game term (longest first to avoid partial matches). */
+const termPattern = Object.keys(TERM_LINKS)
+  .sort((a, b) => b.length - a.length)
+  .map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+  .join('|');
+const termRegex = new RegExp(`\\b(${termPattern})\\b`, 'g');
+
+/**
+ * Post-process rendered HTML:
+ * 1. Add callout classes to blockquotes based on content
+ * 2. Convert action cost text to styled badges
+ * 3. Auto-link game terms to their definition pages
+ */
+function postProcessHtml(html: string): string {
+  // 1. Callout boxes: detect blockquotes starting with bold keywords
+  html = html.replace(
+    /<blockquote>\s*<p><strong>(Example|GM Note|Rule|Advanced|Warning|Important)[:.]?<\/strong>/gi,
+    (match, type) => {
+      const cls = type.toLowerCase().replace(/\s+/g, '-');
+      const mapped = cls === 'important' ? 'rule' : cls === 'gm-note' ? 'gm' : cls;
+      return `<blockquote class="callout-${mapped}"><p><strong>${type}:</strong>`;
+    }
+  );
+
+  // 2. Action cost badges: convert patterns like (1 Action), (2 Actions), (Reaction), (Passive), (Free)
+  html = html.replace(
+    /\(1 Action\)/gi,
+    '<span class="action-badge action-badge-1">1 Action</span>'
+  );
+  html = html.replace(
+    /\(2 Actions?\)/gi,
+    '<span class="action-badge action-badge-2">2 Actions</span>'
+  );
+  html = html.replace(
+    /\(3 Actions?\)/gi,
+    '<span class="action-badge action-badge-3">3 Actions</span>'
+  );
+  html = html.replace(
+    /\(Reaction\)/gi,
+    '<span class="action-badge action-badge-reaction">Reaction</span>'
+  );
+  html = html.replace(
+    /\(Free(?: Action)?\)/gi,
+    '<span class="action-badge action-badge-free">Free</span>'
+  );
+  html = html.replace(
+    /\(Passive\)/gi,
+    '<span class="action-badge action-badge-passive">Passive</span>'
+  );
+  html = html.replace(
+    /\(At-Will\)/gi,
+    '<span class="action-badge action-badge-free">At-Will</span>'
+  );
+
+  // 3. Auto-link game terms (only in paragraph text, not in headings or links)
+  // Split on HTML tags to avoid modifying tag attributes or existing links
+  html = html.replace(/(<[^>]+>)|([^<]+)/g, (match, tag, text) => {
+    if (tag) return tag; // Don't modify HTML tags
+    if (!text) return match;
+    // Don't link inside headings (already processed) or if surrounded by link tags
+    return text.replace(termRegex, (term: string) => {
+      const href = TERM_LINKS[term];
+      if (href) {
+        return `<a href="${href}" class="term-link">${term}</a>`;
+      }
+      return term;
+    });
+  });
+
+  return html;
+}
+
 /**
  * Load and render a markdown file from the repo root.
  * Returns HTML string (strips frontmatter before rendering).
+ * Applies post-processing: callout boxes, action badges, and term auto-linking.
  */
 export function loadRule(relativePath: string): string {
   const filePath = repoPath(relativePath);
   const raw = readFileSync(filePath, 'utf-8');
   const { body } = splitFrontmatter(raw);
-  return marked.parse(body) as string;
+  const html = marked.parse(body) as string;
+  return postProcessHtml(html);
 }
 
 /**
@@ -89,6 +198,6 @@ export function loadRuleData<T = Record<string, unknown>>(relativePath: string):
   const raw = readFileSync(filePath, 'utf-8');
   const { frontmatter, body } = splitFrontmatter(raw);
   const data = frontmatter ? (parseYaml(frontmatter) as T) : ({} as T);
-  const html = marked.parse(body) as string;
+  const html = postProcessHtml(marked.parse(body) as string);
   return { data, html };
 }

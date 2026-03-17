@@ -30,7 +30,7 @@
   --space-3xl: 4rem;
 
   /* Layout */
-  --content-width: 52rem;
+  --content-width: 44rem;
   --sidebar-width: 16rem;
   --toc-width: 14rem;
   --header-height: 3.75rem;
@@ -152,7 +152,7 @@ h4 { font-size: 1.1rem; margin-top: var(--space-lg); margin-bottom: var(--space-
 
 p {
   margin-bottom: var(--space-md);
-  color: var(--text-secondary);
+  color: var(--text-primary);
 }
 
 a {
@@ -198,6 +198,119 @@ blockquote {
   border-radius: 0 6px 6px 0;
   color: var(--text-secondary);
   font-style: italic;
+}
+
+/* ---- Callout Boxes (via blockquote content detection) ---- */
+/* Applied via JS in MarkdownContent.astro to blockquotes starting with bold keywords */
+blockquote.callout-example {
+  border-left-color: var(--plasma-blue);
+  background: rgba(58, 155, 255, 0.06);
+  font-style: normal;
+}
+blockquote.callout-example > p:first-child strong:first-child {
+  color: var(--plasma-blue);
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.85rem;
+}
+
+blockquote.callout-gm {
+  border-left-color: var(--amber);
+  background: rgba(245, 166, 35, 0.06);
+  font-style: normal;
+}
+blockquote.callout-gm > p:first-child strong:first-child {
+  color: var(--amber);
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.85rem;
+}
+
+blockquote.callout-rule {
+  border-left-color: var(--accent);
+  background: rgba(232, 99, 27, 0.06);
+  font-style: normal;
+}
+blockquote.callout-rule > p:first-child strong:first-child {
+  color: var(--accent);
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.85rem;
+}
+
+blockquote.callout-advanced {
+  border-left-color: var(--text-muted);
+  background: rgba(138, 138, 143, 0.06);
+  font-style: normal;
+}
+blockquote.callout-advanced > p:first-child strong:first-child {
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.85rem;
+}
+
+blockquote.callout-warning {
+  border-left-color: #e74c3c;
+  background: rgba(231, 76, 60, 0.06);
+  font-style: normal;
+}
+blockquote.callout-warning > p:first-child strong:first-child {
+  color: #e74c3c;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.85rem;
+}
+
+/* ---- Action Cost Badges ---- */
+.action-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.15em 0.5em;
+  border-radius: 3px;
+  vertical-align: middle;
+  margin-right: 0.3em;
+  line-height: 1;
+}
+.action-badge-1 {
+  background: rgba(232, 99, 27, 0.15);
+  color: var(--accent);
+  border: 1px solid rgba(232, 99, 27, 0.3);
+}
+.action-badge-2 {
+  background: rgba(245, 166, 35, 0.15);
+  color: var(--amber);
+  border: 1px solid rgba(245, 166, 35, 0.3);
+}
+.action-badge-3 {
+  background: rgba(196, 81, 26, 0.15);
+  color: var(--rust);
+  border: 1px solid rgba(196, 81, 26, 0.3);
+}
+.action-badge-reaction {
+  background: rgba(58, 155, 255, 0.15);
+  color: var(--plasma-blue);
+  border: 1px solid rgba(58, 155, 255, 0.3);
+}
+.action-badge-free {
+  background: rgba(74, 255, 130, 0.15);
+  color: var(--toxic-green);
+  border: 1px solid rgba(74, 255, 130, 0.3);
+}
+.action-badge-passive {
+  background: rgba(138, 138, 143, 0.1);
+  color: var(--text-muted);
+  border: 1px solid rgba(138, 138, 143, 0.2);
 }
 
 hr {
@@ -268,6 +381,18 @@ li {
 
 li::marker {
   color: var(--accent-dim);
+}
+
+/* ---- Term Auto-Links ---- */
+a.term-link {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-dim);
+  transition: color 0.2s, border-color 0.2s;
+}
+a.term-link:hover {
+  color: var(--accent-hover);
+  border-bottom-style: solid;
 }
 
 /* ---- Selection ---- */
