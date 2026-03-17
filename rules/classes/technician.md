@@ -199,11 +199,13 @@ starting_equipment:
 > **Humanity Cost:** Your neural interface costs -1 Humanity at creation (Starting Humanity: 9). Further augmentations (Subdermal Plating, Reflex Boosters) cost additional Humanity. Track your total on your character sheet.
 >
 > **Humanity Thresholds (Summary):**
-> - **8-10:** Normal. No penalties.
-> - **5-7:** Detached. -2 to Persuasion/Insight checks (social disconnect).
-> - **3-4:** Cold. Disadvantage on all PRE-based checks. NPCs sense something "wrong."
-> - **1-2:** Machine. Risk of losing control (GM may impose behavior constraints).
-> - **0:** Lost. Character becomes an NPC (fully cybernetic, no humanity left).
+> - **10:** No penalties. Fully human.
+> - **8-9:** No mechanical penalties. Minor visible augmentation.
+> - **6-7:** -1 to Persuasion, Deception, and Insight checks against non-augmented creatures.
+> - **4-5:** -2 to all PRE-based checks against non-augmented creatures.
+> - **2-3:** -3 to all PRE-based checks. Advantage on Intimidation. Disadvantage on checks to appear trustworthy or harmless.
+> - **1:** -4 to all PRE-based checks. Cannot benefit from the Diplomat's Inspire ability.
+> - **0:** No spellcasting. -5 to all PRE-based checks. Cannot be healed by Vitae magic. Advantage on Intimidation and Fortitude saves vs. poison/disease.
 
 #### Level 3: Overclock
 

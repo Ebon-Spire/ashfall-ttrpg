@@ -32,7 +32,7 @@ skill_trees:
   - name: Arcane Defense
     focus: Defense
     abilities:
-      - {name: Mage Armor, ap_cost: 5, tier: 1, effect: "+4 DV when unarmored"}
+      - {name: Mage Armor, ap_cost: 5, tier: 1, effect: "Base DV becomes 13 + AGI modifier (doesn't stack with worn armor)"}
       - {name: Arcane Shield, ap_cost: 10, tier: 2, effect: "+5 DV as reaction spell (uses spell slot)"}
       - {name: Spell Reflection, ap_cost: 15, tier: 3, effect: "Redirect spell back at caster"}
 features:
@@ -217,7 +217,7 @@ starting_equipment:
 #### Level 4: Attribute Improvement & Counterspell
 
 - **Attribute Improvement:** Increase one attribute by +2, or two attributes by +1 each (maximum 20 before modifiers).
-- **Counterspell (Baseline Feature):** As a **reaction (1/Short Rest)**, when you see a creature cast a spell within 60 feet, you can attempt to counter it. Make an INT check (DC = 10 + spell level). On success, the spell fails.
+- **Counterspell (Baseline Feature):** As a **reaction (1/Short Rest)**, when you see a creature cast a spell within 60 feet, you can attempt to counter it. Make an INT check (DC = 10 + spell level). On success, the spell fails. *Note: This class feature replaces the legacy Counterspell spell (3rd-level, Magic chapter). Mystics who have this feature do not need to prepare or use the legacy spell version — the class feature supersedes it.*
 
 #### Level 5 Capstone: Signature Spell
 
@@ -253,7 +253,7 @@ Mystics have access to three skill trees:
 
 #### Arcane Defense (Survival & Protection)
 
-- **Mage Armor (5 AP, At-Will):** As a 1-action activity, grant yourself **+4 DV** for 8 hours. Ends if you don armor.
+- **Mage Armor (5 AP, At-Will):** As a 1-action activity, your base DV becomes **13 + AGI modifier** for 8 hours. Doesn't stack with worn armor.
 - **Arcane Shield (10 AP, Learned Spell):** You learn the *Arcane Shield* spell and can add it to your spellbook. *Arcane Shield* is a 1st-level spell that you can cast as a **reaction** when you are hit by an attack or spell, granting you **+5 DV** until the start of your next turn. (Distinct from the Ward cantrip, which grants +3 DV at no slot cost.)
 - **Spell Reflection (15 AP, Requires Arcane Shield):** When you successfully use *Arcane Shield* to cause an attack to miss you (the attack roll + your boosted DV fails to hit), you can redirect the attack to a target of your choice within 30 feet using the same attack roll.
 

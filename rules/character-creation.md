@@ -163,7 +163,7 @@ Reasoning, memory, technical knowledge, analytical thinking.
 ### Wisdom (WIS)
 Awareness, intuition, willpower, perception.
 - **Skills:** Perception, Insight, Survival, Medicine, Navigation
-- **Derived Stats:** Reflex saves, Will saves, Burnout resistance
+- **Derived Stats:** Will saves, Burnout resistance
 
 ### Presence (PRE)
 Charisma, force of personality, leadership, manipulation.
@@ -220,7 +220,7 @@ Your capacity to absorb damage before falling unconscious or dying.
 | **Gunslinger** | d8 | 10 + END modifier | 1d8 (or 5) + END modifier |
 | **Mystic** | d6 | 8 + END modifier | 1d6 (or 4) + END modifier |
 | **Technician** | d6 | 8 + END modifier | 1d6 (or 4) + END modifier |
-| **Medic** | d6 | 8 + END modifier | 1d6 (or 4) + END modifier |
+| **Medic** | d8 | 10 + END modifier | 1d8 (or 5) + END modifier |
 | **Operative** | d6 | 8 + END modifier | 1d6 (or 4) + END modifier |
 | **Diplomat** | d8 | 10 + END modifier | 1d8 (or 5) + END modifier |
 | **Channeler** | d8 | 10 + END modifier | 1d8 (or 5) + END modifier |
@@ -238,10 +238,10 @@ Your difficulty to hit in combat. Replaces Armor Class (AC).
 **Formula:** `10 + AGI modifier + armor bonus + shield bonus + miscellaneous modifiers`
 
 ### Saving Throws
-Three categories of saves, each tied to two attributes (use the higher modifier):
+Three categories of saves, each tied to one or two attributes (use the higher modifier when two apply):
 
 - **Fortitude (FORT):** END or MIG — resist physical effects (poison, disease, fatigue)
-- **Reflex (REF):** AGI or WIS — dodge area effects (explosions, traps)
+- **Reflex (REF):** AGI — dodge area effects (explosions, traps)
 - **Will (WILL):** WIS or PRE — resist mental effects (fear, compulsion, illusion)
 
 **Save Formula:** `d20 + higher attribute modifier + proficiency bonus (if trained)`
@@ -285,7 +285,7 @@ For full details on each archetype's features, skill trees, and specializations,
 | **Gunslinger** | d8 | AGI/WIS | Ranged DPS | Reflex, Will | None (15 AP/cantrip) |
 | **Mystic** | d6 | INT/WIS | AOE mage, battlefield control | Will, Reflex | Full caster (7th-level cap) |
 | **Technician** | d6 | INT/AGI | Pet/support, tech | Reflex, Will | None (tech replicates magic) |
-| **Medic** | d6 | WIS/INT | Healer, support | Will, Fortitude | Half-caster (healing/support) |
+| **Medic** | d8 | WIS/INT | Healer, support | Will, Fortitude | Half-caster (healing/support) |
 | **Operative** | d6 | AGI/PRE | Stealth, burst damage | Reflex, Will | None (15 AP/cantrip) |
 | **Diplomat** | d8 | PRE/WIS | Social, command, buffs | Will, Reflex | None (12 AP/cantrip) |
 | **Channeler** | d8 | WIS/END | Hybrid warrior/mage | Fortitude, Will | Half-caster (all schools) |
@@ -347,8 +347,8 @@ Technicians command drones, hack systems, and build gadgets that replicate magic
 *Keeping people alive is the hardest job there is.*
 
 **Primary Attributes:** Wisdom (WIS), Intellect (INT)
-**Hit Die:** d6 | **HP at Level 1:** 8 + END modifier
-**Armor Proficiency:** Light armor
+**Hit Die:** d8 | **HP at Level 1:** 10 + END modifier
+**Armor Proficiency:** Light, Medium armor
 **Weapon Proficiency:** Simple weapons, sidearms
 **Save Proficiencies:** Will, Fortitude
 **Skill Bonuses:** Medicine +2, Science +2, plus 2 of your choice
@@ -516,7 +516,7 @@ Each archetype receives a **starting equipment package** for free, representing 
 
 ### Medic Starting Package
 - Simple weapon of choice (scalpel, baton, or sidearm)
-- Light armor (scavenged surgical scrubs + padding)
+- Medium armor (reinforced surgical gear)
 - Medical kit (20 uses)
 - Field bag: 3 stims (heal 1d8+2 HP), 10 bandages, 1 vial of antiseptic
 - Surgical tools (advantage on Medicine checks for surgery)

@@ -415,7 +415,7 @@ Unspent AP carries over between levels.
 | **2** | Gain Weapon Specialization (Heavy Melee). Choose **Talent: Tough** (+2 HP/level). Spend 10 AP: Rally Cry (5) + save 5. |
 | **3** | Gain Extra Attack. Spend 10 AP: Shield Wall (10). |
 | **4** | Gain Attribute Improvement (+2 MIG → 17). Choose **Talent: Weapon Bond** (Warrior, +1 attack with Heavy Melee). Spend 10 AP: save for Tier 3. |
-| **5** | Gain Unyielding Resolve (capstone). Spend 10 AP + saved: Devastating Critical (15). |
+| **5** | Gain Unbreakable (capstone). Spend 10 AP + saved: Devastating Critical (15). |
 | **6** | Choose specialization: **Vanguard**. Gain Shield Wall (reaction), Iron Skin. Choose **Sentinel** doctrine (OA stops movement). Spend 10 AP: Tactical Positioning (10). |
 | **7** | Choose **Talent: Durable** (min healing = 2x END mod). Gain **Skill Mastery: Intimidation** (double proficiency). Spend 10 AP: save. |
 | **8** | Gain Vanguard feature: Fortress Stance. Spend 10 AP: save. |

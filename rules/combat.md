@@ -407,12 +407,12 @@ Successes and failures reset when you regain any HP or are stabilized.
 
 Returning the dead requires powerful magic.
 
-**Revive (6th-level spell):**
+**Resurrection (7th-level spell):**
 - Target dead 10 days or fewer
-- 1 hour casting time (ritual)
-- Expensive components (5,000 credits worth)
+- 1 hour casting time (ritual only)
+- Expensive components (5,000 credits worth + 10 Essence)
 - Returns to life with 1 HP
-- **Penalty:** Lose 1 point from random attribute permanently
+- **Penalty:** Gain 3 levels of Exhaustion (removed 1 per long rest)
 
 **True Resurrection (9th-level spell, Mythic Tier only):**
 - Target dead 200 years or fewer
@@ -508,7 +508,7 @@ Returning the dead requires powerful magic.
 - May have additional effects depending on poison type
 
 ### Prone
-- Standing costs half your movement speed (spent as part of a Stride action). Can only crawl while prone (half-speed movement).
+- Standing from prone costs 1 action. Can only crawl while prone (half-speed movement).
 - Disadvantage on attack rolls
 - Melee attacks against you have advantage
 - Ranged attacks against you have disadvantage
@@ -578,7 +578,7 @@ Until start of next turn:
 - Activate device, pull lever, open door, drink potion
 - Simple interactions are free; complex interactions cost 1 action
 
-### Called Shots (Optional Rule)
+### Called Shots (Optional Rule) {#called-shots-optional}
 
 Declare a called shot before rolling. Take a penalty to your attack roll in exchange for a special effect on hit. The target can negate effects with a Fortitude save (DC = damage dealt) unless otherwise noted.
 
@@ -589,6 +589,8 @@ Declare a called shot before rolling. Take a penalty to your attack roll in exch
 - **Vitals:** -4 to hit. On hit, the attack becomes a critical hit (double damage dice) regardless of the die roll
 
 *DM Guidance: Use sparingly. Called shots reward precision but can slow combat if every attack becomes a called shot. Consider limiting to 1 called shot per character per round.*
+
+> **Note:** The Gunslinger's "Called Shot" class feature (see Gunslinger class) is a separate ability that supersedes this optional rule. When a Gunslinger uses their class feature version, use the Gunslinger's Called Shot rules, not this generic optional rule.
 
 ## Two-Weapon Fighting
 

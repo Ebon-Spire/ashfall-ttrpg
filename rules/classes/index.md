@@ -95,7 +95,7 @@ You're not building a character sheet. You're building a survivor, a fighter, a 
 | **Gunslinger** | d8 | AGI/WIS | Ranged DPS | None (15 AP/cantrip) | Steady Aim, Quick Draw, Dead Eye |
 | **Mystic** | d6 | INT/WIS | AOE mage, battlefield control | Full caster (7th-level cap) | Spell Crafting, Arcane Ward, Signature Spell |
 | **Technician** | d6 | INT/AGI | Pet/support, tech | None (tech replicates magic) | Neural Interface, Drone Companion, Masterwork |
-| **Medic** | d6 | WIS/INT | Healer, support | Half-caster (healing/support only) | Field Medic healing, essential in gritty rest |
+| **Medic** | d8 | WIS/INT | Healer, support | Half-caster (healing/support only) | Field Medic healing, essential in gritty rest |
 | **Operative** | d6 | AGI/PRE | Stealth, assassination | None (15 AP/cantrip) | Sneak Attack, Expertise (scaling), most skills, half-price AP skills |
 | **Diplomat** | d8 | PRE/WIS | Social, command | None (12 AP/cantrip) | No dead turns, force multiplier |
 | **Channeler** | d8 | WIS/END | Hybrid warrior/mage | Half-caster (all schools) | Channel Energy, Extra Attack, martial magic |

@@ -114,7 +114,7 @@ specialization_details:
       - {name: Battle Plan, level: 6, action: Passive, description: "All allies who can hear you gain +2 to initiative at combat start."}
       - {name: Coordinated Strike, level: 8, action: Passive, description: "When you hit an enemy in melee, next ally to attack that target gains advantage."}
       - {name: Inspiring Leader, level: 8, action: "1 minute (Short Rest)", description: "Up to 6 creatures gain temp HP equal to your level + PRE modifier."}
-      - {name: Supreme Tactician, level: 10, action: "Start of Turn", description: "1/Long Rest. Up to 3 allies within 60 ft immediately take one free action each."}
+      - {name: Supreme Tactician, level: 10, action: "Start of Turn", description: "1/Long Rest. Up to 2 allies within 30 ft immediately take one weapon attack or move up to their speed as a free action."}
 specializations: [Vanguard, Berserker, Warlord]
 starting_equipment:
   - Heavy melee weapon or martial weapon

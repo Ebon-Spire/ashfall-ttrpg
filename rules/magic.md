@@ -52,9 +52,9 @@ In Ashfall, magic is scarce and costly:
 
 ### Spell Save DC and Attack Modifier
 
-**Spell Save DC:** 8 + proficiency bonus + spellcasting attribute modifier (INT for Mystics, WIS for Channelers and Medics)
+**Spell Save DC:** 8 + proficiency bonus + spellcasting attribute modifier (INT for Mystics, WIS for Channelers and Medics, MIG for Warrior martial cantrips)
 
-**Spell Attack Modifier:** Proficiency bonus + spellcasting attribute modifier
+**Spell Attack Modifier:** Proficiency bonus + spellcasting attribute modifier (MIG for Warriors using martial cantrips)
 
 **Self-Targeting:** Touch-range spells and abilities can target yourself unless the text specifically states "another creature" or "an ally other than yourself."
 
@@ -125,6 +125,8 @@ When a spell says 'Fortitude save,' it means an END-based save. When it says 'Re
 - **Short Rest (8 hours):** Recover 1 spell slot of 3rd level or lower
 - **Long Rest (1 week):** Recover all spell slots
 - **Emergency Recovery:** Spend 1 hour meditating + make WIS check DC 15 to regain 1d3 levels of slots (once per day)
+
+Class features that restore spell slots (such as Arcane Recovery) replace the standard short rest recovery rather than stacking with it.
 
 ---
 
@@ -426,9 +428,9 @@ You can combine **two base cantrips** into a single spell. This costs **+1 spell
 |---|---|---|
 | Pyros + Cryo + Touch | 1st | 2d6 (1d6 fire + 1d6 cold) + mod. Thermal shock — ignites and freezes. |
 | Volta + Kinesis + Ray | 1st | 2d6 (1d6 electric + 1d6 force) + mod. Electrified force bolt — conducts and pushes. |
-| Mentis + Mortis + Cone | 2nd | 4d6 (2d6 psychic + 2d6 necrotic) + mod. Mind rot in a cone. |
-| Pyros + Volta + Burst + Amplify | 4th | 8d6 (4d6 fire + 4d6 electric) + mod. Plasma detonation. |
-| Vitae + Mortis + Small Burst + Selective | 3rd | 6d6. Heals allies for 3d6+mod, damages enemies for 3d6+mod in the same area. |
+| Mentis + Mortis + Cone | 2nd | 3d6 (1d6 psychic + 2d6 necrotic) + mod. Mind rot in a cone. |
+| Pyros + Volta + Burst + Amplify | 4th | 5d6 (2d6 fire + 3d6 electric) + mod. Plasma detonation. |
+| Vitae + Mortis + Small Burst + Selective | 3rd | 4d6. Heals allies for 2d6+mod, damages enemies for 2d6+mod in the same area. |
 
 **Triple fusion** (three cantrips) costs +2 levels. Four or more cantrips cannot be combined — the forces destabilize.
 
@@ -454,16 +456,16 @@ The **total spell level** determines how many damage dice you roll. You do not b
 
 | Total Spell Level | d6 Cantrips | d8 Cantrips | Avg (d6, +3 mod) | Avg (d8, +3 mod) |
 |:------------------:|:-----------:|:-----------:|:-----------------:|:-----------------:|
-| 0 (at-will) | 1d6 + mod | 1d8 + mod | 7 | 8 |
+| 0 (at-will) | 1d6 + mod | 1d8 + mod | 6.5 | 7.5 |
 | 1st | 2d6 + mod | 2d8 + mod | 10 | 12 |
-| 2nd | 4d6 + mod | 3d8 + mod | 17 | 17 |
-| 3rd | 6d6 + mod | 4d8 + mod | 24 | 21 |
-| 4th | 8d6 + mod | 6d8 + mod | 31 | 31 |
-| 5th | 10d6 + mod | 7d8 + mod | 38 | 35 |
-| 6th | 12d6 + mod | 8d8 + mod | 45 | 40 |
-| 7th | 14d6 + mod | 10d8 + mod | 52 | 49 |
+| 2nd | 3d6 + mod | 3d8 + mod | 13.5 | 16.5 |
+| 3rd | 4d6 + mod | 4d8 + mod | 17 | 21 |
+| 4th | 5d6 + mod | 5d8 + mod | 20.5 | 25.5 |
+| 5th | 6d6 + mod | 6d8 + mod | 24 | 30 |
+| 6th | 7d6 + mod | 7d8 + mod | 27.5 | 34.5 |
+| 7th | 8d6 + mod | 8d8 + mod | 31 | 39 |
 
-**Upcasting:** If you spend a higher-level slot than the spell requires, use the **slot level** on the table. A 1st-level Ray spell cast with a 3rd-level slot deals 6d6+mod.
+**Upcasting:** If you spend a higher-level slot than the spell requires, use the **slot level** on the table. A 1st-level Ray spell cast with a 3rd-level slot deals 4d6+mod.
 
 **Healing:** Vitae spells that heal use the same table, rolling dice as healing instead of damage.
 
@@ -531,15 +533,15 @@ Optional enhancements that increase the total spell level.
 
 **Burning Hands (1st):** Pyros (+0) + Cone (+1) = **1st level.** 15-ft cone. Reflex save. 2d6 + mod fire damage.
 
-**Healing Wave (2nd):** Vitae (+0) + Small Burst (+1) + Selective (+1) = **2nd level.** 60 ft range, 10-ft radius. Each chosen ally heals 4d6 + mod HP.
+**Healing Wave (2nd):** Vitae (+0) + Small Burst (+1) + Selective (+1) = **2nd level.** 60 ft range, 10-ft radius. Each chosen ally heals 3d6 + mod HP.
 
-**Lightning Bolt (3rd):** Volta (+0) + Line (+1) + Widen (+1) + Amplify (+1) = **3rd level.** 60-ft line, 10 ft wide. Reflex save. 6d6 + mod electric damage.
+**Lightning Bolt (3rd):** Volta (+0) + Line (+1) + Widen (+1) + Amplify (+1) = **3rd level.** 60-ft line, 10 ft wide. Reflex save. 4d6 + mod electric damage.
 
-**Fireball (3rd):** Pyros (+0) + Burst (+2) + Amplify (+1) = **3rd level.** 120 ft range, 20-ft radius. Reflex save. 6d6 + mod fire damage.
+**Fireball (3rd):** Pyros (+0) + Burst (+2) + Amplify (+1) = **3rd level.** 120 ft range, 20-ft radius. Reflex save. 4d6 + mod fire damage.
 
-**Psychic Scream (5th):** Mentis (+0) + Burst (+2) + Shock (+3) = **5th level.** 120 ft, 20-ft radius. Will save. 7d8 + mod psychic damage + Stunned on fail.
+**Psychic Scream (5th):** Mentis (+0) + Burst (+2) + Shock (+3) = **5th level.** 120 ft, 20-ft radius. Will save. 6d8 + mod psychic damage + Stunned on fail.
 
-**Force Cage (7th):** Kinesis (+0) + Wall (+3) + Persist (+2) + Selective (+1) + Amplify (+1) = **7th level.** 120 ft, force wall enclosure. 10 minutes, no concentration. 10d8 + mod force damage to creatures passing through. Allies pass freely.
+**Force Cage (7th):** Kinesis (+0) + Wall (+3) + Persist (+2) + Selective (+1) + Amplify (+1) = **7th level.** 120 ft, force wall enclosure. 10 minutes, no concentration. 8d8 + mod force damage to creatures passing through. Allies pass freely.
 
 ### Quick-Reference: Spell Level Budget
 
@@ -547,15 +549,14 @@ Optional enhancements that increase the total spell level.
 |:-----------:|---------------|--------|
 | **0** | Cantrip + Touch/Self/Ray | 1 die + mod, at-will |
 | **1st** | Cantrip + Cone or Line | 2 dice + mod, small AoE |
-| **2nd** | Cantrip + Burst | 4 dice + mod, large AoE |
-| **3rd** | Cantrip + Burst + Amplify | 6 dice + mod, Fireball tier |
-| **4th** | Cantrip + Burst + Amplify x2 | 8 dice + mod |
-| **5th** | Cantrip + Burst + condition rider | 10 dice + mod + condition |
-| **6th-7th** | Cantrip + Wall/Burst + Persist + riders | 12-14 dice + mod + lasting effects |
+| **2nd** | Cantrip + Burst | 3 dice + mod, large AoE |
+| **3rd** | Cantrip + Burst + Amplify | 4 dice + mod, Fireball tier |
+| **4th** | Cantrip + Burst + Amplify x2 | 5 dice + mod |
+| **5th** | Cantrip + Burst + condition rider | 6 dice + mod + condition |
 
 ### Legacy Spells vs. Crafted Spells
 
-The Common Spells listed below are **legacy formulas** — famous spell configurations discovered by historic casters and recorded exactly as they were perfected. Some legacy spells are slightly more powerful than what the Sigil System produces at the same level (Fireball deals 8d6 as a legacy formula vs 6d6+mod as a crafted spell). This is intentional — legacy formulas are battle-tested optimizations. The Sigil System trades raw power for **customization**: you choose the exact effect, delivery, and element you need. When a legacy spell fits, use it. When you need something no legacy spell provides, craft your own.
+The Common Spells listed below are **legacy formulas** — famous spell configurations discovered by historic casters and recorded exactly as they were perfected. Some legacy spells are slightly more powerful than what the Sigil System produces at the same level (Fireball deals 8d6 as a legacy formula vs 4d6+mod as a crafted spell). This is intentional — legacy formulas are battle-tested optimizations. The Sigil System trades raw power for **customization**: you choose the exact effect, delivery, and element you need. When a legacy spell fits, use it. When you need something no legacy spell provides, craft your own.
 
 ---
 
@@ -1001,7 +1002,7 @@ When you critically fail an overcasting check, roll 1d10:
 - *Created by comparing to:* Fireball (damage), Dispel Magic (anti-tech effect)
 - *Casting Time:* 1 action
 - *Range:* 60 feet
-- *Effect:* 20-foot radius burst. All electronic devices in area must save (DC = 8 + caster INT + proficiency) or shut down for 1 minute. Deals 6d6 damage to Synthetics and tech-heavy creatures (half on save).
+- *Effect:* 20-foot radius burst. All electronic devices in area must save (DC = 8 + caster INT + proficiency) or shut down for 1 minute. Deals 4d6 damage to Synthetics and tech-heavy creatures (half on save).
 - *Research Cost:* 9,000 credits, 3 weeks
 
 ---

@@ -99,7 +99,7 @@ specialization_details:
       - {name: Ricochet, level: 6, action: "1/Turn", description: "When missing a ranged attack, ricochet to different target within 15 ft. New attack at -2 to hit."}
       - {name: Dual Wield, level: 8, action: Passive, description: "When attacking with one-handed ranged weapon, make additional attack with second one-handed weapon at -2 to hit."}
       - {name: Fan the Hammer, level: 8, action: "2 Actions", description: "Make 3 ranged attacks with a pistol, each at -2 to hit. Can target same or different creatures."}
-      - {name: Bullet Time, level: 10, action: "Start of Turn", description: "1/Short Rest. Gain 2 additional actions (ranged attacks or movement only). All attacks against you have disadvantage."}
+      - {name: Bullet Time, level: 10, action: "Start of Turn", description: "1/Long Rest. Gain 2 additional actions (ranged attacks or movement only). All attacks against you have disadvantage."}
 specializations: [Sharpshooter, Demolitionist, Trick Shot]
 starting_equipment:
   - Rifle or two sidearms

@@ -92,7 +92,7 @@ specialization_details:
     features:
       - {name: War Magic, level: 6, action: Passive, description: "When casting a cantrip, make one weapon attack as part of same action."}
       - {name: Arcane Armor, level: 6, action: Passive, description: "Can wear heavy armor without losing spellcasting. Held weapon counts as spellcasting focus."}
-      - {name: Improved Smite, level: 8, action: "On Melee Hit", description: "Expend spell slot to deal +2d6 radiant or necrotic per slot level (1st=2d6, 2nd=4d6, 3rd=5d6 cap). Replaces Battle Channeling Smite."}
+      - {name: Improved Smite, level: 8, action: "On Melee Hit", description: "Expend spell slot to deal +2d8 radiant or necrotic per slot level (1st=2d8, 2nd=4d8, 3rd=5d8 cap). Replaces Battle Channeling Smite."}
       - {name: Channeled Strikes, level: 8, action: Passive, description: "Weapon attacks count as magical. Melee attacks deal extra 1d4 force damage."}
       - {name: Eldritch Tempest, level: 10, action: "1 Action", description: "1/Long Rest. 1 minute. Melee hits: target and enemies within 10 ft take 2d6 force. Spell casts: free melee attack. +2 DV."}
   - name: Shaman
@@ -373,7 +373,7 @@ At level 6, the Channeler selects one of three Advanced Specializations. These s
 - **Arcane Armor:** You can wear heavy armor without losing access to your Channeler spellcasting. Additionally, you can use any weapon you're holding as a spellcasting focus for your Channeler spells.
 
 **Level 8 Features:**
-- **Improved Smite:** When you hit a creature with a melee weapon attack, you can expend a prepared spell slot to deal additional radiant or necrotic damage (your choice): 1st-level slot = 2d6, 2nd-level = 4d6, 3rd-level = 5d6 (capped). *(Replaces Battle Channeling Tier 1 Smite if you have it.)*
+- **Improved Smite:** When you hit a creature with a melee weapon attack, you can expend a prepared spell slot to deal additional radiant or necrotic damage (your choice): 1st-level slot = 2d8, 2nd-level = 4d8, 3rd-level = 5d8 (capped). *(Replaces Battle Channeling Tier 1 Smite if you have it.)*
 - **Channeled Strikes:** Your weapon attacks count as magical for the purpose of overcoming resistance and immunity to nonmagical damage. Additionally, your melee weapon attacks deal an extra 1d4 force damage.
 
 **Level 10 Capstone:**

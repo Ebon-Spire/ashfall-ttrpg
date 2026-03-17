@@ -2,21 +2,21 @@
 game_data: true
 melee_weapons:
   - {name: Makeshift Club, tier: 1, damage: "1d6", stat: MIG, cost: 50}
-  - {name: Scrap Knife, tier: 1, damage: "1d4", stat: MIG, properties: [concealable], cost: 75}
+  - {name: Scrap Knife, tier: 1, damage: "1d4", stat: MIG, properties: [finesse, concealable], cost: 75}
   - {name: Rebar Spear, tier: 1, damage: "1d8", stat: MIG, properties: [reach], cost: 100}
   - {name: Pipe Wrench, tier: 1, damage: "1d6", stat: MIG, cost: 50}
   - {name: Machete, tier: 2, damage: "1d8", stat: MIG, properties: [versatile], cost: 250}
-  - {name: Combat Knife, tier: 2, damage: "1d6", stat: MIG, properties: ["+1 attack"], cost: 300}
+  - {name: Combat Knife, tier: 2, damage: "1d6", stat: MIG, properties: [finesse, "+1 attack"], cost: 300}
   - {name: Shock Baton, tier: 2, damage: "1d6+1d4 electric", stat: MIG, cost: 400}
   - {name: Salvaged Sword, tier: 2, damage: "1d10", stat: MIG, cost: 350}
-  - {name: Vibro-Blade, tier: 3, damage: "1d8+1d6 energy", stat: MIG, cost: 1200}
+  - {name: Vibro-Blade, tier: 3, damage: "1d8+1d6 energy", stat: MIG, properties: [finesse], cost: 1200}
   - {name: Monofilament Whip, tier: 3, damage: "1d10", stat: AGI, properties: [reach, disarm], cost: 1500}
   - {name: Power Maul, tier: 3, damage: "2d6", stat: MIG, properties: [knockback], cost: 1000}
-  - {name: Hardlight Blade, tier: 4, damage: "2d6 energy", stat: MIG, properties: ["+1 attack"], cost: 3500}
+  - {name: Hardlight Blade, tier: 4, damage: "2d6 energy", stat: MIG, properties: [finesse, "+1 attack"], cost: 3500}
   - {name: Thermal Lance, tier: 4, damage: "1d12+1d4 fire", stat: MIG, properties: [reach], cost: 3000}
   - {name: Powered Warhammer, tier: 4, damage: "2d8", stat: MIG, properties: [knockback, heavy], cost: 4000}
   - {name: Plasma Sword, tier: 5, damage: "2d8 energy", stat: MIG, cost: 10000}
-  - {name: Nano-Edge Katana, tier: 5, damage: "1d10+2d6", stat: MIG, properties: ["crit 18-20"], cost: 12000}
+  - {name: Nano-Edge Katana, tier: 5, damage: "1d10+2d6", stat: MIG, properties: [finesse, "crit 18-20"], cost: 12000}
   - {name: Graviton Hammer, tier: 5, damage: "3d6", stat: MIG, properties: [area slam], cost: 15000}
   - {name: Hatchet, tier: 1, damage: "1d6", stat: MIG, properties: [light], cost: 60}
   - {name: Reinforced Bat, tier: 1, damage: "1d6", stat: MIG, properties: [knockback], cost: 40}
@@ -24,7 +24,7 @@ melee_weapons:
   - {name: Chain Whip, tier: 1, damage: "1d6", stat: MIG, properties: [reach], cost: 75}
   - {name: Crowbar, tier: 1, damage: "1d6", stat: MIG, cost: 40}
   - {name: Sledgehammer, tier: 2, damage: "1d10", stat: MIG, properties: [heavy, knockback], cost: 200}
-  - {name: Stun Gun, tier: 2, damage: "1d4 electric", stat: AGI, properties: [concealable], cost: 250}
+  - {name: Stun Gun, tier: 2, damage: "1d4 electric", stat: AGI, properties: [finesse, concealable], cost: 250}
   - {name: Bayonet, tier: 2, damage: "1d6", stat: MIG, properties: [attaches to rifle], cost: 150}
   - {name: Staff, tier: 1, damage: "1d6", stat: MIG, properties: [versatile, reach], cost: 25}
   - {name: Chainsaw, tier: 2, damage: "2d6", stat: MIG, properties: [heavy, unreliable], cost: 350}
@@ -285,7 +285,7 @@ Items can be sold to merchants at **50% of their listed purchase price**. In rem
 
 **Tier 1 (Salvaged/Basic):**
 - Makeshift Club: 1d6 MIG damage — **50 cr**
-- Scrap Knife: 1d4 MIG damage, concealable — **75 cr**
+- Scrap Knife: 1d4 MIG damage, finesse, concealable — **75 cr**
 - Rebar Spear: 1d8 MIG damage, reach — **100 cr**
 - Pipe Wrench: 1d6 MIG damage, doubles as tool — **50 cr**
 - Hatchet: 1d6 MIG damage, light — **60 cr**
@@ -297,29 +297,29 @@ Items can be sold to merchants at **50% of their listed purchase price**. In rem
 
 **Tier 2 (Refined):**
 - Machete: 1d8 MIG damage, versatile — **250 cr**
-- Combat Knife: 1d6 MIG damage, +1 to attack — **300 cr**
+- Combat Knife: 1d6 MIG damage, finesse, +1 to attack — **300 cr**
 - Shock Baton: 1d6 MIG + 1d4 electric damage, stun chance — **400 cr**
 - Salvaged Sword: 1d10 MIG damage — **350 cr**
 - Sledgehammer: 1d10 MIG damage, heavy, knockback — **200 cr**
-- Stun Gun: 1d4 electric AGI damage, concealable — **250 cr**
+- Stun Gun: 1d4 electric AGI damage, finesse, concealable — **250 cr**
 - Bayonet: 1d6 MIG damage, attaches to rifle — **150 cr**
 - Chainsaw: 2d6 MIG damage, heavy, unreliable — **350 cr**
 - Electrified Net: 1d4 electric AGI damage, entangle — **300 cr**
 
 **Tier 3 (Military):**
-- Vibro-Blade: 1d8 MIG + 1d6 energy damage, ignores 5 points of armor — **1,200 cr**
+- Vibro-Blade: 1d8 MIG + 1d6 energy damage, finesse, ignores 5 points of armor — **1,200 cr**
 - Monofilament Whip: 1d10 AGI damage, reach, can disarm — **1,500 cr**
 - Power Maul: 2d6 MIG damage, knockback 10 feet — **1,000 cr**
 - Power Fist: 1d8+1d6 MIG damage, knockback — **1,400 cr**
 
 **Tier 4 (Advanced Military):**
-- Hardlight Blade: 2d6 energy damage, +1 to attack rolls — **3,500 cr**
+- Hardlight Blade: 2d6 energy damage, finesse, +1 to attack rolls — **3,500 cr**
 - Thermal Lance: 1d12 MIG + 1d4 fire damage, reach — **3,000 cr**
 - Powered Warhammer: 2d8 MIG damage, knockback, heavy — **4,000 cr**
 
 **Tier 5-7 (Experimental):**
 - Plasma Sword: 2d8 energy damage, cauterizes wounds — **10,000 cr**
-- Nano-Edge Katana: 1d10 MIG + 2d6 damage, critical on 18-20 — **12,000 cr**
+- Nano-Edge Katana: 1d10 MIG + 2d6 damage, finesse, critical on 18-20 — **12,000 cr**
 - Graviton Hammer: 3d6 MIG damage, area slam option — **15,000 cr**
 
 ### Ranged Weapons

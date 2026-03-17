@@ -413,7 +413,7 @@ You have advantage on all Persuasion and Deception checks. Creatures you success
 
 ### Demagogue — Iron Grip
 
-Your Inspire ability now grants temporary HP equal to twice your PRE modifier + your level (instead of PRE modifier + level). Your Commanding Presence die increases to +1d8 (instead of +1d4). Allies under your influence cannot be frightened or charmed by other sources — your psychological hold overrides all others. Your aura of domination extends to 30 ft — all allies within this radius have advantage on saves against fear and mind-affecting effects. Once per long rest, you can deliver a Galvanizing Address: all allies within 60 ft gain 20 temporary HP and advantage on all rolls for 1 minute.
+Your Inspire ability now grants temporary HP equal to twice your PRE modifier + your level (instead of PRE modifier + level). Your Commanding Presence die increases to +1d10 (instead of +1d8). Allies under your influence cannot be frightened or charmed by other sources — your psychological hold overrides all others. Your aura of domination extends to 30 ft — all allies within this radius have advantage on saves against fear and mind-affecting effects. Once per long rest, you can deliver a Galvanizing Address: all allies within 60 ft gain 20 temporary HP and advantage on all rolls for 1 minute.
 
 ## Level 20: Mandate of the People (Apex Ability)
 

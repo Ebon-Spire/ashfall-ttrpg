@@ -176,7 +176,7 @@ Exhaustion is a cumulative condition with six levels. Effects of all levels appl
 - **24 hours without sleep:** 1 level, then 1 per additional 24 hours
 - **3 days without food:** 1 level, then 1 per day
 - **1 day without water:** 1 level, then 1 per day (2 per day in heat)
-- **Extreme heat/cold (2+ hours):** Fortitude save DC 15 every hour or gain 1 level
+- **Extreme heat/cold (2+ hours):** Fortitude save DC 16 every hour or gain 1 level
 - **High altitude:** Fortitude save DC 15 per day or gain 1 level
 
 ### Activity Sources
@@ -196,6 +196,8 @@ Exhaustion is a cumulative condition with six levels. Effects of all levels appl
 ---
 
 ## Removing Exhaustion
+
+As a general rule, exhaustion is reduced by 1 level after each long rest (1 week) with adequate food, water, and shelter. The detailed recovery rules below apply for faster or more complete recovery.
 
 ### Normal Recovery
 - Short Rest (8 hours): Remove 1 level of Exhaustion if at level 1-2 only; levels 3+ require a Long Rest
