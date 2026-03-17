@@ -314,10 +314,9 @@ blockquote.callout-warning > p:first-child strong:first-child {
 }
 
 /* ---- Ability Cards (auto-styled from list items with action badges) ---- */
-.prose > ul > li:has(> .action-badge),
-.prose > ul > li:has(> strong > .action-badge),
-.prose > ol > li:has(> .action-badge),
-.prose > ol > li:has(> strong > .action-badge) {
+/* Only top-level list items (not nested sub-lists) */
+.prose ul:not(li ul) > li:has(.action-badge),
+.prose ol:not(li ol) > li:has(.action-badge) {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-left: 3px solid var(--accent);
@@ -326,15 +325,15 @@ blockquote.callout-warning > p:first-child strong:first-child {
   margin-bottom: var(--space-sm);
   list-style: none;
 }
-.prose > ul > li:has(.action-badge) > strong:first-child,
-.prose > ol > li:has(.action-badge) > strong:first-child {
+.prose ul:not(li ul) > li:has(.action-badge) strong:first-of-type,
+.prose ol:not(li ol) > li:has(.action-badge) strong:first-of-type {
   font-family: var(--font-heading);
   font-size: 0.95rem;
   letter-spacing: 0.02em;
   color: var(--text-primary);
 }
-.prose > ul > li:has(.action-badge):hover,
-.prose > ol > li:has(.action-badge):hover {
+.prose ul:not(li ul) > li:has(.action-badge):hover,
+.prose ol:not(li ol) > li:has(.action-badge):hover {
   border-color: var(--border-accent);
   box-shadow: var(--shadow-sm);
 }
