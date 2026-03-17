@@ -391,7 +391,11 @@ li::marker {
   vertical-align: middle;
 }
 
-/* ---- Term Auto-Links ---- */
+/* ---- Term Tooltips & Auto-Links ---- */
+.term-tooltip {
+  position: relative;
+  display: inline;
+}
 a.term-link {
   color: var(--accent);
   text-decoration: none;
@@ -401,6 +405,63 @@ a.term-link {
 a.term-link:hover {
   color: var(--accent-hover);
   border-bottom-style: solid;
+}
+.term-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 320px;
+  min-width: 200px;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-style: normal;
+  line-height: 1.5;
+  border: 1px solid var(--border-accent);
+  border-radius: 6px;
+  box-shadow: var(--shadow-md);
+  white-space: normal;
+  z-index: 50;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s, visibility 0.15s;
+  pointer-events: none;
+}
+.term-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--border-accent);
+  z-index: 51;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s, visibility 0.15s;
+  pointer-events: none;
+}
+.term-tooltip:hover::after,
+.term-tooltip:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+@media (max-width: 640px) {
+  .term-tooltip::after {
+    position: fixed;
+    bottom: auto;
+    top: auto;
+    left: var(--space-md);
+    right: var(--space-md);
+    transform: none;
+    bottom: var(--space-md);
+    max-width: none;
+  }
+  .term-tooltip::before { display: none; }
 }
 
 /* ---- Selection ---- */

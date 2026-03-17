@@ -18,58 +18,58 @@ function splitFrontmatter(raw: string): { frontmatter: string | null; body: stri
   return { frontmatter: null, body: raw };
 }
 
-/** Game terms that should auto-link to their definition pages. */
-const TERM_LINKS: Record<string, string> = {
+/** Game terms with definitions for tooltips and links to full pages. */
+const TERM_DATA: Record<string, { href: string; tip: string }> = {
   // Conditions
-  'Blinded': '/rules/conditions/',
-  'Bleeding': '/rules/conditions/',
-  'Charmed': '/rules/conditions/',
-  'Confused': '/rules/conditions/',
-  'Dazed': '/rules/conditions/',
-  'Deafened': '/rules/conditions/',
-  'Exhaustion': '/rules/conditions/',
-  'Flat-Footed': '/rules/conditions/',
-  'Frightened': '/rules/conditions/',
-  'Grappled': '/rules/conditions/',
-  'Incapacitated': '/rules/conditions/',
-  'Incorporeal': '/rules/conditions/',
-  'Invisible': '/rules/conditions/',
-  'Paralyzed': '/rules/conditions/',
-  'Petrified': '/rules/conditions/',
-  'Poisoned': '/rules/conditions/',
-  'Prone': '/rules/conditions/',
-  'Restrained': '/rules/conditions/',
-  'Slowed': '/rules/conditions/',
-  'Stunned': '/rules/conditions/',
-  'Unconscious': '/rules/conditions/',
-  'Weakened': '/rules/conditions/',
+  'Blinded': { href: '/rules/conditions/', tip: 'Cannot see. Auto-fail sight checks. Attacks have disadvantage, attacks against you have advantage.' },
+  'Bleeding': { href: '/rules/conditions/', tip: 'Take 1d4 damage at the start of each turn. Ends on successful DC 12 Medicine check or magical healing.' },
+  'Charmed': { href: '/rules/conditions/', tip: 'Cannot attack the charmer. Charmer has advantage on social checks against you.' },
+  'Confused': { href: '/rules/conditions/', tip: 'Roll d4 each turn: 1 = do nothing, 2 = move randomly, 3 = attack nearest, 4 = act normally.' },
+  'Dazed': { href: '/rules/conditions/', tip: 'Can take actions OR move (not both). No reactions. Disadvantage on attacks.' },
+  'Deafened': { href: '/rules/conditions/', tip: 'Cannot hear. Auto-fail hearing checks. -10 Passive Perception.' },
+  'Exhaustion': { href: '/rules/conditions/', tip: '6 levels. L1: disadvantage on checks. L3: max HP reduced 25%. L6: death. Short rest removes L1-2 only.' },
+  'Flat-Footed': { href: '/rules/conditions/', tip: '-2 to DV. Cannot use reactions. Ends at the start of your next turn.' },
+  'Frightened': { href: '/rules/conditions/', tip: 'Disadvantage on checks/attacks while source is visible. Cannot willingly move closer to the source.' },
+  'Grappled': { href: '/rules/conditions/', tip: 'Speed is 0. Can escape with MIG or AGI check vs grappler\'s MIG check.' },
+  'Incapacitated': { href: '/rules/conditions/', tip: 'Cannot take actions or reactions. Automatically fail MIG and AGI saves.' },
+  'Incorporeal': { href: '/rules/conditions/', tip: 'Can move through solid objects. Resistance to non-magical physical damage.' },
+  'Invisible': { href: '/rules/conditions/', tip: 'Cannot be seen without special senses. Attacks against you have disadvantage, your attacks have advantage.' },
+  'Paralyzed': { href: '/rules/conditions/', tip: 'Incapacitated. Auto-fail MIG/AGI saves. Attacks have advantage. Melee hits within 5 ft auto-crit.' },
+  'Petrified': { href: '/rules/conditions/', tip: 'Turned to stone. Weight x10. Immune to poison/disease. Resistance to all damage.' },
+  'Poisoned': { href: '/rules/conditions/', tip: 'Disadvantage on attack rolls and ability checks.' },
+  'Prone': { href: '/rules/conditions/', tip: 'Melee attacks against you have advantage. Ranged attacks have disadvantage. Standing costs half your movement.' },
+  'Restrained': { href: '/rules/conditions/', tip: 'Speed is 0. Attacks against you have advantage. Your attacks and AGI saves have disadvantage.' },
+  'Slowed': { href: '/rules/conditions/', tip: 'Speed halved. Disadvantage on AGI saves. No reactions.' },
+  'Stunned': { href: '/rules/conditions/', tip: 'Incapacitated. Cannot move. Can only speak falteringly. Auto-fail MIG/AGI saves.' },
+  'Unconscious': { href: '/rules/conditions/', tip: 'Incapacitated, drop what you\'re holding, fall prone. Auto-fail MIG/AGI saves. Melee auto-crits.' },
+  'Weakened': { href: '/rules/conditions/', tip: 'Deal half damage with weapon attacks. Disadvantage on MIG checks and saves.' },
   // Core mechanics
-  'Burnout': '/rules/magic/#burnout-mechanics',
-  'Twilight Event': '/rules/magic/#twilight-events-critical-overcasting-failures',
-  'Sigil System': '/rules/magic/#the-sigil-system--modular-spell-crafting',
-  'Bounded Accuracy': '/rules/introduction/',
-  'Defense Value': '/rules/combat/',
-  'Multiple Attack Penalty': '/rules/combat/',
-  'Advantage': '/rules/introduction/',
-  'Disadvantage': '/rules/introduction/',
-  'Temporary HP': '/rules/combat/',
-  'Concentration': '/rules/magic/#concentration',
-  'Lingering Injury': '/rules/exploration/',
-  'Overcasting': '/rules/magic/#overcasting-procedure',
+  'Burnout': { href: '/rules/magic/#burnout-mechanics', tip: 'Accumulated magical strain. At 9+ BP: Exhaustion. At 12+: unconscious + reset. At 20+: permanent consequences.' },
+  'Twilight Event': { href: '/rules/magic/#twilight-events-critical-overcasting-failures', tip: 'Catastrophic magical failure. Reality warps. Roll d10: wild surge, backlash, reality tear, or worse.' },
+  'Sigil System': { href: '/rules/magic/#the-sigil-system--modular-spell-crafting', tip: 'Modular spell crafting: Cantrip + Form + Metamagic = Spell Level. Build any spell from components.' },
+  'Bounded Accuracy': { href: '/rules/introduction/', tip: 'Max bonus cap of +18. Threats remain dangerous at every level.' },
+  'Defense Value': { href: '/rules/combat/', tip: 'DV = 10 + AGI mod + armor bonus + shield bonus. The target number to hit a creature.' },
+  'Multiple Attack Penalty': { href: '/rules/combat/', tip: 'Each additional Strike in a turn: -3 cumulative. 1st +0, 2nd -3, 3rd -6.' },
+  'Advantage': { href: '/rules/introduction/', tip: 'Roll d20 twice, take the higher result. Worth roughly +3.33 on average.' },
+  'Disadvantage': { href: '/rules/introduction/', tip: 'Roll d20 twice, take the lower result. Worth roughly -3.33 on average.' },
+  'Temporary HP': { href: '/rules/combat/', tip: 'Absorbs damage before real HP. Doesn\'t stack — take the higher value. Lost first, then real HP.' },
+  'Concentration': { href: '/rules/magic/#concentration', tip: 'Only one concentration spell at a time. Taking damage requires Will save (DC 10 or half damage).' },
+  'Lingering Injury': { href: '/rules/exploration/', tip: 'Permanent wound from dropping to 0 HP. Roll d100 with severity modifier. Half-recovery at half time.' },
+  'Overcasting': { href: '/rules/magic/#overcasting-procedure', tip: 'Casting without a spell slot. Gain Burnout = spell level, then make a casting check or face consequences.' },
   // Resources
-  'Spell Slots': '/rules/magic/',
-  'Hit Dice': '/rules/exploration/',
-  'Advancement Points': '/rules/progression/',
+  'Spell Slots': { href: '/rules/magic/', tip: 'Limited magical energy. Recovered on long rest (1 week). Power cantrips or cast leveled spells.' },
+  'Hit Dice': { href: '/rules/exploration/', tip: 'Recover half your level in HD on a short rest. Roll to heal during rest.' },
+  'Advancement Points': { href: '/rules/progression/', tip: 'AP spent on skill tree features. 15 at L1, +10 per level. Cross-training costs 1.5x.' },
   // Rest economy
-  'Short Rest': '/rules/exploration/',
-  'Long Rest': '/rules/exploration/',
+  'Short Rest': { href: '/rules/exploration/', tip: '8 hours. Recover half-level Hit Dice, per-short-rest abilities, remove Exhaustion 1-2.' },
+  'Long Rest': { href: '/rules/exploration/', tip: '1 week in a safe settlement. Full recovery. 5 downtime activity days included.' },
   // Equipment
-  'Augmentation': '/rules/equipment/#augmentations',
-  'Humanity': '/rules/equipment/#humanity-threshold-effects',
+  'Augmentation': { href: '/rules/equipment/#augmentations', tip: 'Cybernetic enhancement. Costs Humanity (reduces magic potential). Synthetics install free.' },
+  'Humanity': { href: '/rules/equipment/#humanity-threshold-effects', tip: 'Starts at 10. Each augmentation reduces it. Low Humanity = social penalties + reduced magic. Synthetics = 0.' },
 };
 
 /** Build a regex that matches any game term (longest first to avoid partial matches). */
-const termPattern = Object.keys(TERM_LINKS)
+const termPattern = Object.keys(TERM_DATA)
   .sort((a, b) => b.length - a.length)
   .map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
   .join('|');
@@ -173,9 +173,10 @@ function postProcessHtml(html: string): string {
     if (!text) return match;
     // Don't link inside headings (already processed) or if surrounded by link tags
     return text.replace(termRegex, (term: string) => {
-      const href = TERM_LINKS[term];
-      if (href) {
-        return `<a href="${href}" class="term-link">${term}</a>`;
+      const data = TERM_DATA[term];
+      if (data) {
+        const escapedTip = data.tip.replace(/"/g, '&quot;');
+        return `<span class="term-tooltip" data-tooltip="${escapedTip}"><a href="${data.href}" class="term-link">${term}</a></span>`;
       }
       return term;
     });
