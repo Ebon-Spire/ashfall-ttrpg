@@ -39,6 +39,20 @@ const fullTitle = title === 'Home' ? 'Ashfall RPG' : `${title} — Ashfall RPG`;
     <meta name="theme-color" content="#e8631b" />
     <link rel="canonical" href={`https://ashfallrpg.com${Astro.url.pathname}`} />
 
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Ashfall RPG",
+      "url": "https://ashfallrpg.com",
+      "description": "A post-apocalyptic tabletop roleplaying game with 8 archetypes, modular spell crafting, and gritty survival mechanics.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://ashfallrpg.com/rules/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    })} />
+
     <title>{fullTitle}</title>
     <link rel="icon" type="image/png" href="/images/ashfall-logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
