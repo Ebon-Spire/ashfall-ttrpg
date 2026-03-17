@@ -7,6 +7,7 @@
  */
 import RulesLayout from '../../layouts/RulesLayout.astro';
 import { loadRule, discoverRulePages } from '../../lib/loadMarkdown';
+import { allRuleSlugs, rulesNav } from '../../data/rules-nav';
 
 export function getStaticPaths() {
   return discoverRulePages().map(page => ({
@@ -22,7 +23,40 @@ interface Props {
 
 const { title, mdPath } = Astro.props;
 const html = loadRule(mdPath);
+const { slug } = Astro.params;
+
+// Find current page's neighbors
+const allSlugs = allRuleSlugs();
+const currentIndex = allSlugs.indexOf(slug);
+const prevSlug = currentIndex > 0 ? allSlugs[currentIndex - 1] : null;
+const nextSlug = currentIndex < allSlugs.length - 1 ? allSlugs[currentIndex + 1] : null;
+
+// Get labels
+function getLabel(s: string): string {
+  for (const section of rulesNav) {
+    for (const link of section.links) {
+      if (link.slug === s) return link.label;
+    }
+  }
+  return s;
+}
+const prevLabel = prevSlug ? getLabel(prevSlug) : null;
+const nextLabel = nextSlug ? getLabel(nextSlug) : null;
 ---
 <RulesLayout title={title}>
   <Fragment set:html={html} />
+  <nav class="page-nav" aria-label="Page navigation">
+    {prevSlug ? (
+      <a href={`/rules/${prevSlug}/`} class="page-nav-link page-nav-prev">
+        <span class="page-nav-dir">&larr; Previous</span>
+        <span class="page-nav-title">{prevLabel}</span>
+      </a>
+    ) : <div />}
+    {nextSlug ? (
+      <a href={`/rules/${nextSlug}/`} class="page-nav-link page-nav-next">
+        <span class="page-nav-dir">Next &rarr;</span>
+        <span class="page-nav-title">{nextLabel}</span>
+      </a>
+    ) : <div />}
+  </nav>
 </RulesLayout>

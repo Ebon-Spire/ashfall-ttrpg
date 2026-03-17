@@ -10,6 +10,28 @@ interface Props {
 
 const { title, description } = Astro.props;
 const currentPath = Astro.url.pathname;
+
+// Generate breadcrumbs from path
+const pathParts = currentPath.replace(/^\/rules\//, '').replace(/\/$/, '').split('/');
+const breadcrumbs: { label: string; href: string }[] = [
+  { label: 'Rules', href: '/rules/' },
+];
+if (pathParts.length > 1 && pathParts[0]) {
+  // Nested page like /rules/classes/warrior/ or /rules/bestiary/fauna-flora/
+  const sectionLabels: Record<string, string> = {
+    'classes': 'Classes',
+    'bestiary': 'Bestiary',
+    'appendices': 'Reference',
+  };
+  const section = pathParts[0];
+  if (sectionLabels[section]) {
+    breadcrumbs.push({
+      label: sectionLabels[section],
+      href: section === 'classes' ? '/rules/classes/' : section === 'bestiary' ? '/rules/bestiary/fauna-flora/' : '/rules/appendices/tables/',
+    });
+  }
+}
+const showBreadcrumbs = pathParts.length > 1 && pathParts[0] !== '';
 ---
 
 <BaseLayout title={title} description={description}>
@@ -20,6 +42,17 @@ const currentPath = Astro.url.pathname;
         <summary class="toc-mobile-header">On This Page</summary>
         <ul class="toc-mobile-list" id="toc-mobile-list"></ul>
       </details>
+      {showBreadcrumbs && (
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          {breadcrumbs.map((crumb, i) => (
+            <>
+              <a href={crumb.href}>{crumb.label}</a>
+              <span class="breadcrumb-sep">/</span>
+            </>
+          ))}
+          <span class="breadcrumb-current">{title}</span>
+        </nav>
+      )}
       <article class="prose">
         <slot />
       </article>
@@ -128,6 +161,34 @@ const currentPath = Astro.url.pathname;
   }
   @media (max-width: 1200px) {
     .toc-mobile { display: block; }
+  }
+
+  .breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: var(--space-lg);
+    flex-wrap: wrap;
+  }
+  .breadcrumbs a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .breadcrumbs a:hover {
+    color: var(--accent);
+  }
+  .breadcrumb-sep {
+    color: var(--border);
+  }
+  .breadcrumb-current {
+    color: var(--text-secondary);
+  }
+  @media print {
+    .breadcrumbs { display: none !important; }
   }
 
   @media (max-width: 960px) {
