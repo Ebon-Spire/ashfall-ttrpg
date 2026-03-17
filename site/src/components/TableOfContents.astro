@@ -110,6 +110,25 @@
       items.push({ el: h, link: a });
     });
 
+    // Also populate mobile TOC
+    const mobileTocList = document.getElementById('toc-mobile-list');
+    if (mobileTocList) {
+      items.forEach(item => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `#${item.el.id}`;
+        a.textContent = item.el.textContent.trim();
+        if (item.el.tagName === 'H3') a.classList.add('toc-h3');
+        // Close the details on click (mobile UX)
+        a.addEventListener('click', () => {
+          const details = document.getElementById('toc-mobile');
+          if (details) details.removeAttribute('open');
+        });
+        li.appendChild(a);
+        mobileTocList.appendChild(li);
+      });
+    }
+
     // Intersection Observer for active state
     let currentActive = null;
     const observer = new IntersectionObserver((entries) => {

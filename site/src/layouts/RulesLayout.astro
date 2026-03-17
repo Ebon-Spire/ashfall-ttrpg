@@ -16,6 +16,10 @@ const currentPath = Astro.url.pathname;
   <div class="rules-wrapper">
     <Sidebar currentPath={currentPath} />
     <main class="rules-content">
+      <details class="toc-mobile" id="toc-mobile">
+        <summary class="toc-mobile-header">On This Page</summary>
+        <ul class="toc-mobile-list" id="toc-mobile-list"></ul>
+      </details>
       <article class="prose">
         <slot />
       </article>
@@ -69,6 +73,61 @@ const currentPath = Astro.url.pathname;
     border-radius: 8px;
     border: 1px solid var(--border);
     box-shadow: var(--shadow-sm);
+  }
+
+  /* ---- Mobile TOC (visible only when sidebar TOC is hidden) ---- */
+  .toc-mobile {
+    display: none;
+    margin-bottom: var(--space-lg);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .toc-mobile-header {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    padding: var(--space-md) var(--space-lg);
+    cursor: pointer;
+    list-style: none;
+  }
+  .toc-mobile-header::after {
+    content: '+';
+    float: right;
+    color: var(--text-muted);
+  }
+  .toc-mobile[open] .toc-mobile-header::after {
+    content: '\2212';
+  }
+  .toc-mobile-list {
+    list-style: none;
+    padding: 0 var(--space-lg) var(--space-md);
+    margin: 0;
+  }
+  .toc-mobile-list li a {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    padding: var(--space-xs) 0;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc-mobile-list li:last-child a {
+    border-bottom: none;
+  }
+  .toc-mobile-list li a:hover {
+    color: var(--accent);
+  }
+  .toc-mobile-list li a.toc-h3 {
+    padding-left: var(--space-lg);
+    font-size: 0.78rem;
+  }
+  @media (max-width: 1200px) {
+    .toc-mobile { display: block; }
   }
 
   @media (max-width: 960px) {

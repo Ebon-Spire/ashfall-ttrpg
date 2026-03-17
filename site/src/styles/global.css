@@ -313,6 +313,37 @@ blockquote.callout-warning > p:first-child strong:first-child {
   border: 1px solid rgba(138, 138, 143, 0.2);
 }
 
+/* ---- Ability Cards (auto-styled from list items with action badges) ---- */
+.prose li:has(.action-badge) {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-sm);
+  list-style: none;
+  margin-left: calc(-1 * var(--space-xl));
+}
+.prose li:has(.action-badge) strong:first-child {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+}
+.prose li:has(.action-badge):hover {
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Ability name + badge in headings */
+.prose h3:has(.action-badge),
+.prose h4:has(.action-badge) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
 hr {
   border: none;
   height: 1px;
