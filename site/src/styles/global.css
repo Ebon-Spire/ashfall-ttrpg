@@ -338,6 +338,29 @@ blockquote.callout-warning > p:first-child strong:first-child {
   box-shadow: var(--shadow-sm);
 }
 
+/* Also style paragraphs that start with bold ability name + action badge */
+.prose p:has(> strong:first-child .action-badge),
+.prose p:has(> strong:first-child + .action-badge) {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+.prose p:has(> strong:first-child .action-badge) > strong:first-child,
+.prose p:has(> strong:first-child + .action-badge) > strong:first-child {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+}
+.prose p:has(> strong:first-child .action-badge):hover,
+.prose p:has(> strong:first-child + .action-badge):hover {
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-sm);
+}
+
 /* Ability name + badge in headings */
 .prose h3:has(.action-badge),
 .prose h4:has(.action-badge) {
