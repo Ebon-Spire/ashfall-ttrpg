@@ -313,10 +313,8 @@ blockquote.callout-warning > p:first-child strong:first-child {
   border: 1px solid rgba(138, 138, 143, 0.2);
 }
 
-/* ---- Ability Cards (auto-styled from list items with action badges) ---- */
-/* Only top-level list items (not nested sub-lists) */
-.prose ul:not(li ul) > li:has(.action-badge),
-.prose ol:not(li ol) > li:has(.action-badge) {
+/* List items with action badges get card styling */
+.prose li:has(.action-badge) {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-left: 3px solid var(--accent);
@@ -325,17 +323,25 @@ blockquote.callout-warning > p:first-child strong:first-child {
   margin-bottom: var(--space-sm);
   list-style: none;
 }
-.prose ul:not(li ul) > li:has(.action-badge) strong:first-of-type,
-.prose ol:not(li ol) > li:has(.action-badge) strong:first-of-type {
+.prose li:has(.action-badge) > p > strong:first-child,
+.prose li:has(.action-badge) > strong:first-child {
   font-family: var(--font-heading);
   font-size: 0.95rem;
   letter-spacing: 0.02em;
   color: var(--text-primary);
 }
-.prose ul:not(li ul) > li:has(.action-badge):hover,
-.prose ol:not(li ol) > li:has(.action-badge):hover {
+.prose li:has(.action-badge):hover {
   border-color: var(--border-accent);
   box-shadow: var(--shadow-sm);
+}
+/* Nested list items inside ability cards — no card styling */
+.prose li:has(.action-badge) li {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  list-style: disc;
 }
 
 /* Ability card wrapper (build-time generated from p + badge + optional ul) */

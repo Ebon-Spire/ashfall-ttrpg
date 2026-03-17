@@ -183,18 +183,46 @@ function postProcessHtml(html: string): string {
   });
 
   // 4. Ability card wrapping: wrap <p> with action badge + following <ul>/<ol> into a card div
-  // Detects: <p><strong>Name <badge>...</strong> description</p> optionally followed by <ul>...</ul>
-  html = html.replace(
-    /(<p><strong>(?:(?!<\/p>).)*?action-badge(?:(?!<\/p>).)*?<\/p>)\s*(<ul>[\s\S]*?<\/ul>)?/g,
-    (match, paragraph, list) => {
-      if (!list) {
-        // Just a paragraph with a badge, no following list
-        return `<div class="ability-card">${paragraph}</div>`;
-      }
-      // Paragraph + list wrapped together
-      return `<div class="ability-card">${paragraph}${list}</div>`;
+  // Split HTML into segments and only wrap <p> that are NOT inside <li>
+  const lines = html.split('\n');
+  let insideLi = 0;
+  const result: string[] = [];
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    // Track li nesting depth
+    const liOpens = (line.match(/<li/g) || []).length;
+    const liCloses = (line.match(/<\/li/g) || []).length;
+    insideLi += liOpens - liCloses;
+
+    if (insideLi > 0 || !line.includes('action-badge') || !line.match(/^<p><strong>/)) {
+      result.push(line);
+      continue;
     }
-  );
+
+    // This is a standalone <p> with an action badge — wrap it
+    // Check if next line is a <ul> to include it in the card
+    const nextLine = lines[i + 1] || '';
+    if (nextLine.match(/^<ul>/)) {
+      // Find the end of the <ul>
+      let ulEnd = i + 1;
+      let depth = 1;
+      while (ulEnd < lines.length - 1 && depth > 0) {
+        ulEnd++;
+        depth += (lines[ulEnd].match(/<ul/g) || []).length;
+        depth -= (lines[ulEnd].match(/<\/ul/g) || []).length;
+      }
+      // Wrap the <p> and entire <ul> block
+      result.push(`<div class="ability-card">${line}`);
+      for (let j = i + 1; j <= ulEnd; j++) {
+        result.push(lines[j]);
+      }
+      result.push('</div>');
+      i = ulEnd; // skip the lines we just consumed
+    } else {
+      result.push(`<div class="ability-card">${line}</div>`);
+    }
+  }
+  html = result.join('\n');
 
   return html;
 }
