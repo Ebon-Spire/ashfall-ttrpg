@@ -1,0 +1,392 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/global.css';
+
+const base = import.meta.env.BASE_URL;
+
+const downloads = [
+  {
+    title: 'Character Sheet',
+    desc: 'Printable character sheet for Ashfall — designed for the 3-action economy and all 8 archetypes.',
+    format: 'PDF',
+    status: 'coming-soon',
+    icon: '📋',
+  },
+  {
+    title: 'Quick Reference Card',
+    desc: 'Combat actions, conditions, and key rules at a glance. Perfect for players and GMs.',
+    format: 'PDF',
+    status: 'coming-soon',
+    icon: '⚡',
+  },
+  {
+    title: 'GM Screen Inserts',
+    desc: 'Encounter building tables, CR reference, lethality dial settings, and rest economy summary.',
+    format: 'PDF',
+    status: 'coming-soon',
+    icon: '🛡',
+  },
+  {
+    title: 'Condition Cards',
+    desc: 'Printable cards for all status effects and conditions. Hand them to players when they apply.',
+    format: 'PDF',
+    status: 'coming-soon',
+    icon: '🃏',
+  },
+  {
+    title: 'Blank Scenario Template',
+    desc: 'A structured template for building combat encounters and exploration scenarios.',
+    format: 'PDF',
+    status: 'coming-soon',
+    icon: '📝',
+  },
+];
+
+const onlineResources = [
+  { title: 'Character Builder', desc: 'Build a character step by step with the interactive tool.', href: `${base}character-builder/`, icon: '⚙' },
+  { title: 'Rules Reference', desc: 'Complete game rules, searchable and always up to date.', href: `${base}rules/`, icon: '📖' },
+  { title: 'Random Generators', desc: 'NPCs, encounters, loot, weather, and more — roll and go.', href: `${base}rules/generators/`, icon: '🎲' },
+  { title: 'GM Guide', desc: 'Encounter building, pacing, and advice for running Ashfall.', href: `${base}dm-guide/`, icon: '🗺' },
+];
+---
+
+<BaseLayout title="Downloads">
+  <main>
+    <!-- Hero Section (Compact) -->
+    <section class="dl-hero">
+      <div class="dl-hero-inner">
+        <h1 class="dl-hero-title">DOWNLOADS</h1>
+        <p class="dl-hero-subtitle">Printable resources, reference sheets, and tools for your Ashfall sessions.</p>
+      </div>
+      <div class="dl-hero-fade" aria-hidden="true"></div>
+    </section>
+
+    <!-- Downloads Grid -->
+    <section class="dl-section">
+      <div class="dl-container">
+        <h2 class="dl-section-title">Printable Resources</h2>
+        <p class="dl-section-subtitle">PDF downloads for your table. Print, fold, play.</p>
+        <div class="downloads-grid">
+          {downloads.map((item) => (
+            <div class="download-card">
+              <div class="download-card-header">
+                <span class="download-icon">{item.icon}</span>
+                <div class="download-badges">
+                  <span class="format-badge">{item.format}</span>
+                  {item.status === 'coming-soon' && <span class="status-badge">Coming Soon</span>}
+                </div>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+              <div class="download-action">
+                {item.status === 'coming-soon' ? (
+                  <span class="btn-disabled">Not Yet Available</span>
+                ) : (
+                  <a href="#" class="btn-download">Download</a>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Online Resources -->
+    <section class="dl-section dl-section-alt">
+      <div class="dl-container">
+        <h2 class="dl-section-title">Online Resources</h2>
+        <p class="dl-section-subtitle">Tools and references available right now in your browser.</p>
+        <div class="resources-grid">
+          {onlineResources.map((res) => (
+            <a href={res.href} class="resource-card">
+              <span class="resource-icon">{res.icon}</span>
+              <h3>{res.title}</h3>
+              <p>{res.desc}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Note -->
+    <section class="dl-section">
+      <div class="dl-container">
+        <div class="dl-note">
+          <p>Downloads are being prepared as Ashfall approaches public release. In the meantime, browse the full <a href={`${base}rules/`}>rules online</a>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  /* ---- Hero (Compact) ---- */
+  .dl-hero {
+    position: relative;
+    min-height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+  }
+  .dl-hero-inner {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-3xl) var(--space-lg);
+    max-width: 48rem;
+  }
+  .dl-hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+    line-height: 1.1;
+  }
+  .dl-hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.6;
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+  .dl-hero-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent 0%, var(--bg-primary) 100%);
+    z-index: 1;
+  }
+
+  /* ---- Shared Section Styles ---- */
+  .dl-section {
+    padding: var(--space-3xl) 0;
+    background: var(--bg-primary);
+  }
+  .dl-section-alt {
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 50%, rgba(232, 99, 27, 0.04) 0%, transparent 60%),
+      var(--bg-secondary);
+  }
+  .dl-container {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+  }
+  .dl-section-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    text-align: center;
+    color: var(--text-primary);
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-sm);
+  }
+  .dl-section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 36rem;
+    margin: 0 auto var(--space-2xl);
+    font-size: 1.05rem;
+  }
+
+  /* ---- Downloads Grid ---- */
+  .downloads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: var(--space-lg);
+  }
+  .download-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  }
+  .download-card:hover {
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .download-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-md);
+  }
+  .download-icon {
+    font-size: 1.8rem;
+  }
+  .download-badges {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+  .format-badge {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.2rem 0.6rem;
+    background: var(--bg-elevated);
+    color: var(--accent);
+    border: 1px solid var(--border-accent);
+    border-radius: 3px;
+  }
+  .status-badge {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem;
+    background: rgba(232, 99, 27, 0.1);
+    color: var(--accent);
+    border-radius: 3px;
+    border: 1px solid var(--border-accent);
+  }
+  .download-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: var(--space-sm);
+  }
+  .download-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+    flex: 1;
+  }
+  .download-action {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--border);
+  }
+  .btn-disabled {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    opacity: 0.5;
+    cursor: not-allowed;
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: var(--bg-elevated);
+  }
+  .btn-download {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.5rem 1.2rem;
+    background: var(--accent);
+    color: var(--bg-primary);
+    border: 1px solid var(--accent-hover);
+    border-radius: 3px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.25s ease;
+  }
+  .btn-download:hover {
+    background: var(--accent-hover);
+    color: var(--bg-primary);
+    box-shadow: 0 0 20px rgba(232, 99, 27, 0.3);
+  }
+
+  /* ---- Online Resources Grid ---- */
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: var(--space-lg);
+  }
+  .resource-card {
+    display: block;
+    padding: var(--space-xl);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  }
+  .resource-card:hover {
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .resource-icon {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: var(--space-md);
+  }
+  .resource-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 var(--space-sm) 0;
+  }
+  .resource-card p {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ---- Bottom Note ---- */
+  .dl-note {
+    text-align: center;
+    padding: var(--space-xl) var(--space-2xl);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+  .dl-note p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .dl-note a {
+    color: var(--accent);
+  }
+  .dl-note a:hover {
+    color: var(--accent-hover);
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 900px) {
+    .downloads-grid {
+      grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    }
+  }
+  @media (max-width: 640px) {
+    .dl-hero { min-height: 25vh; }
+    .downloads-grid {
+      grid-template-columns: 1fr;
+    }
+    .resources-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

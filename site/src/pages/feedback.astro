@@ -1,0 +1,430 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/global.css';
+
+const base = import.meta.env.BASE_URL;
+const repo = 'Ebon-Spire/ashfall-ttrpg';
+
+const feedbackTypes = [
+  {
+    icon: '🐛',
+    title: 'Report a Bug',
+    desc: 'Found a rules error, broken link, typo, or site issue? Let us know so we can fix it.',
+    template: 'bug-report.yml',
+    label: 'bug',
+    color: 'var(--rust)',
+  },
+  {
+    icon: '💡',
+    title: 'Share Feedback',
+    desc: 'Have an idea, suggestion, or opinion about the rules, setting, or website? We want to hear it.',
+    template: 'feedback.yml',
+    label: 'feedback',
+    color: 'var(--amber)',
+  },
+  {
+    icon: '🎲',
+    title: 'Playtest Report',
+    desc: 'Ran a session? Share what worked, what didn\'t, and help us balance the game.',
+    template: 'playtest-report.yml',
+    label: 'playtest',
+    color: 'var(--toxic-green)',
+  },
+];
+---
+
+<BaseLayout title="Feedback">
+  <main class="feedback-page">
+    <!-- Hero -->
+    <section class="fb-hero">
+      <div class="fb-hero-inner">
+        <h1 class="fb-hero-title">Feedback</h1>
+        <p class="fb-hero-subtitle">Ashfall is built in the open. Your reports, ideas, and playtest results shape the game.</p>
+      </div>
+    </section>
+
+    <!-- Feedback Types -->
+    <section class="fb-section">
+      <div class="fb-container">
+        <h2 class="fb-section-title">How Can We Help?</h2>
+        <p class="fb-section-subtitle">Choose the type of feedback below. You'll be taken to GitHub to submit — no account needed to browse, but you'll need one to post.</p>
+        <div class="fb-card-grid">
+          {feedbackTypes.map(ft => (
+            <a
+              href={`https://github.com/${repo}/issues/new?template=${ft.template}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="fb-card"
+              style={`--card-accent: ${ft.color};`}
+            >
+              <span class="fb-card-icon">{ft.icon}</span>
+              <h3>{ft.title}</h3>
+              <p>{ft.desc}</p>
+              <span class="fb-card-action">Open on GitHub &rarr;</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Bug Report (no GitHub needed) -->
+    <section class="fb-section fb-section-alt">
+      <div class="fb-container">
+        <h2 class="fb-section-title">Quick Report</h2>
+        <p class="fb-section-subtitle">Don't have a GitHub account? Use this form to generate a pre-filled issue link you can share.</p>
+
+        <div class="fb-form-card">
+          <form id="quick-report" class="fb-form">
+            <div class="fb-field">
+              <label for="report-type">Type</label>
+              <select id="report-type">
+                <option value="bug">Bug Report</option>
+                <option value="feedback">Feedback / Suggestion</option>
+                <option value="playtest">Playtest Report</option>
+              </select>
+            </div>
+
+            <div class="fb-field">
+              <label for="report-page">Page (if applicable)</label>
+              <input type="text" id="report-page" placeholder="e.g., /rules/combat/" />
+            </div>
+
+            <div class="fb-field">
+              <label for="report-title">Title</label>
+              <input type="text" id="report-title" placeholder="Brief summary of your report" required />
+            </div>
+
+            <div class="fb-field">
+              <label for="report-body">Details</label>
+              <textarea id="report-body" rows="6" placeholder="Describe the issue, idea, or playtest results..." required></textarea>
+            </div>
+
+            <button type="submit" class="fb-submit">Generate Issue Link</button>
+          </form>
+
+          <div id="fb-result" class="fb-result" style="display: none;">
+            <p>Your report is ready. Click below to open it on GitHub:</p>
+            <a id="fb-result-link" href="#" target="_blank" rel="noopener noreferrer" class="fb-result-btn">
+              Open Issue on GitHub &rarr;
+            </a>
+            <button id="fb-copy" class="fb-copy-btn">Copy Link</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Existing Issues -->
+    <section class="fb-section">
+      <div class="fb-container">
+        <h2 class="fb-section-title">Browse Existing Issues</h2>
+        <p class="fb-section-subtitle">Check if someone has already reported your issue or made your suggestion.</p>
+        <div class="fb-browse-grid">
+          <a href={`https://github.com/${repo}/issues?q=is%3Aissue+label%3Abug`} target="_blank" rel="noopener noreferrer" class="fb-browse-card">
+            <h3>Bugs</h3>
+            <p>Known issues being tracked</p>
+          </a>
+          <a href={`https://github.com/${repo}/issues?q=is%3Aissue+label%3Afeedback`} target="_blank" rel="noopener noreferrer" class="fb-browse-card">
+            <h3>Feedback</h3>
+            <p>Community suggestions and ideas</p>
+          </a>
+          <a href={`https://github.com/${repo}/issues?q=is%3Aissue+label%3Aplaytest`} target="_blank" rel="noopener noreferrer" class="fb-browse-card">
+            <h3>Playtest Reports</h3>
+            <p>Session results and balance data</p>
+          </a>
+          <a href={`https://github.com/${repo}/issues`} target="_blank" rel="noopener noreferrer" class="fb-browse-card">
+            <h3>All Issues</h3>
+            <p>Everything in one place</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<script define:vars={{ repo }}>
+  const form = document.getElementById('quick-report');
+  const result = document.getElementById('fb-result');
+  const resultLink = document.getElementById('fb-result-link');
+  const copyBtn = document.getElementById('fb-copy');
+
+  const templates = {
+    bug: 'bug-report.yml',
+    feedback: 'feedback.yml',
+    playtest: 'playtest-report.yml',
+  };
+
+  const labels = {
+    bug: 'bug',
+    feedback: 'feedback',
+    playtest: 'playtest',
+  };
+
+  const prefixes = {
+    bug: '[Bug]',
+    feedback: '[Feedback]',
+    playtest: '[Playtest]',
+  };
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const type = document.getElementById('report-type').value;
+    const page = document.getElementById('report-page').value;
+    const title = document.getElementById('report-title').value;
+    const body = document.getElementById('report-body').value;
+
+    const fullTitle = `${prefixes[type]} ${title}`;
+    const fullBody = page
+      ? `**Page:** ${page}\n\n${body}`
+      : body;
+
+    const url = `https://github.com/${repo}/issues/new?` +
+      `title=${encodeURIComponent(fullTitle)}` +
+      `&body=${encodeURIComponent(fullBody)}` +
+      `&labels=${encodeURIComponent(labels[type])}`;
+
+    resultLink.href = url;
+    result.style.display = 'block';
+    result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(resultLink.href).then(() => {
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => { copyBtn.textContent = 'Copy Link'; }, 2000);
+    });
+  });
+</script>
+
+<style>
+  /* ---- Hero ---- */
+  .fb-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-3xl) var(--space-lg);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+  }
+  .fb-hero-inner { max-width: 42rem; }
+  .fb-hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-sm);
+  }
+  .fb-hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* ---- Sections ---- */
+  .fb-section { padding: var(--space-3xl) 0; background: var(--bg-primary); }
+  .fb-section-alt {
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 50%, rgba(232, 99, 27, 0.04) 0%, transparent 60%),
+      var(--bg-secondary);
+  }
+  .fb-container { max-width: 64rem; margin: 0 auto; padding: 0 var(--space-lg); }
+  .fb-section-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    text-align: center;
+    color: var(--text-primary);
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-sm);
+  }
+  .fb-section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 36rem;
+    margin: 0 auto var(--space-2xl);
+    font-size: 1rem;
+  }
+
+  /* ---- Feedback Type Cards ---- */
+  .fb-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-lg);
+  }
+  .fb-card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-xl);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--card-accent, var(--accent));
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  }
+  .fb-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--card-accent);
+  }
+  .fb-card-icon { font-size: 2rem; margin-bottom: var(--space-md); }
+  .fb-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 var(--space-sm) 0;
+  }
+  .fb-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+    flex: 1;
+  }
+  .fb-card-action {
+    display: block;
+    margin-top: var(--space-lg);
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--card-accent, var(--accent));
+  }
+
+  /* ---- Quick Report Form ---- */
+  .fb-form-card {
+    max-width: 40rem;
+    margin: 0 auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: var(--space-2xl);
+  }
+  .fb-form { display: flex; flex-direction: column; gap: var(--space-lg); }
+  .fb-field { display: flex; flex-direction: column; gap: var(--space-xs); }
+  .fb-field label {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+  }
+  .fb-field input,
+  .fb-field select,
+  .fb-field textarea {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    padding: 0.6rem 0.8rem;
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: border-color 0.2s;
+  }
+  .fb-field input:focus,
+  .fb-field select:focus,
+  .fb-field textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .fb-field textarea { resize: vertical; min-height: 120px; }
+  .fb-submit {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.85rem 2rem;
+    background: var(--accent);
+    color: var(--bg-primary);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+  .fb-submit:hover {
+    background: var(--accent-hover);
+    box-shadow: 0 0 20px rgba(232, 99, 27, 0.3);
+  }
+
+  /* ---- Result ---- */
+  .fb-result {
+    margin-top: var(--space-xl);
+    padding: var(--space-lg);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-accent);
+    border-radius: 6px;
+    text-align: center;
+  }
+  .fb-result p { color: var(--text-secondary); margin-bottom: var(--space-md); }
+  .fb-result-btn {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.75rem 1.8rem;
+    background: var(--accent);
+    color: var(--bg-primary);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s;
+    margin-right: var(--space-sm);
+  }
+  .fb-result-btn:hover { background: var(--accent-hover); color: var(--bg-primary); }
+  .fb-copy-btn {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    padding: 0.6rem 1.2rem;
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .fb-copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ---- Browse Grid ---- */
+  .fb-browse-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--space-md);
+  }
+  .fb-browse-card {
+    display: block;
+    padding: var(--space-lg);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+  .fb-browse-card:hover {
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-2px);
+  }
+  .fb-browse-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 var(--space-xs) 0;
+  }
+  .fb-browse-card p {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    .fb-card-grid { grid-template-columns: 1fr; }
+    .fb-browse-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>

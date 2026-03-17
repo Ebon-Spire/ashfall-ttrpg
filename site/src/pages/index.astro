@@ -1,0 +1,542 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/global.css';
+
+const base = import.meta.env.BASE_URL;
+
+const pillars = [
+  { icon: '⚔', title: '3-Action Combat', desc: 'Move, strike, and use a bonus action every turn. No dead turns — every round matters.' },
+  { icon: '⛊', title: '8 Unique Archetypes', desc: 'From the armored Warrior to the reality-bending Channeler, each class plays differently.' },
+  { icon: '🎯', title: 'Bounded Lethality', desc: 'Max +18 bonus cap keeps threats dangerous at every level. The wasteland never gets safe.' },
+  { icon: '⏳', title: 'Gritty Resource Management', desc: 'Short rests take 8 hours. Long rests take a week. Every bullet and bandage counts.' },
+];
+
+const archetypes = [
+  { name: 'Warrior', die: 'd12', role: 'Tank / Striker', color: 'var(--rust)' },
+  { name: 'Gunslinger', die: 'd8', role: 'Ranged DPS', color: 'var(--flame)' },
+  { name: 'Mystic', die: 'd6', role: 'AOE Mage', color: '#9b59b6' },
+  { name: 'Medic', die: 'd6', role: 'Healer / Support', color: 'var(--toxic-green)' },
+  { name: 'Technician', die: 'd6', role: 'Pet / Support', color: 'var(--plasma-blue)' },
+  { name: 'Operative', die: 'd6', role: 'Skill / Burst', color: 'var(--ash-gray)' },
+  { name: 'Diplomat', die: 'd8', role: 'Buffer / Social', color: 'var(--amber)' },
+  { name: 'Channeler', die: 'd8', role: 'Hybrid Cleric', color: 'var(--radiation)' },
+];
+---
+
+<BaseLayout title="Home">
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true">
+        <img src="/images/illustrations/hero-ashfall-panorama.png" alt="" loading="eager" />
+      </div>
+      <div class="hero-inner">
+        <div class="hero-particles" aria-hidden="true">
+          <span class="particle"></span>
+          <span class="particle"></span>
+          <span class="particle"></span>
+          <span class="particle"></span>
+          <span class="particle"></span>
+        </div>
+        <h1 class="hero-title">ASHFALL</h1>
+        <p class="hero-subtitle">A Post-Apocalyptic Tabletop RPG</p>
+        <p class="hero-tagline">The world burned. Civilization fell. But humanity endures.</p>
+        <div class="hero-cta">
+          <a href={`${base}getting-started/`} class="btn btn-primary">Get Started</a>
+          <a href={`${base}character-builder/`} class="btn btn-secondary">Build a Character</a>
+        </div>
+      </div>
+      <div class="hero-fade" aria-hidden="true"></div>
+    </section>
+
+    <!-- Design Pillars -->
+    <section class="pillars">
+      <div class="container">
+        <h2 class="section-title">Design Pillars</h2>
+        <p class="section-subtitle">The foundations that make Ashfall brutal, tactical, and unforgettable.</p>
+        <div class="pillars-grid">
+          {pillars.map((p) => (
+            <div class="pillar-card">
+              <span class="pillar-icon">{p.icon}</span>
+              <h3>{p.title}</h3>
+              <p>{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- World Showcase -->
+    <section class="world-showcase">
+      <div class="container">
+        <h2 class="section-title">The Wasteland Awaits</h2>
+        <p class="section-subtitle">A world of mutants, magic, and survival — where every choice matters.</p>
+        <div class="showcase-grid">
+          <div class="showcase-item">
+            <img src="/images/illustrations/wasteland-landscape.png" alt="A vast wasteland landscape scarred by cataclysm" loading="lazy" style="object-position: center 40%;" />
+            <span class="showcase-label">Explore the Ruins</span>
+          </div>
+          <div class="showcase-item">
+            <img src="/images/illustrations/fortified-settlement.png" alt="A fortified settlement rising from the ashes" loading="lazy" style="object-position: center 30%;" />
+            <span class="showcase-label">Build Alliances</span>
+          </div>
+          <div class="showcase-item">
+            <img src="/images/illustrations/wasteland-firefight.png" alt="Wasteland fighters engaged in a desperate firefight on a ruined rooftop" loading="lazy" style="object-position: center 40%;" />
+            <span class="showcase-label">Fight to Survive</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- For GMs -->
+    <section class="gm-cta">
+      <div class="container">
+        <h2 class="section-title">For Game Masters</h2>
+        <p class="section-subtitle">Build encounters, generate worlds, and bring the wasteland to life.</p>
+        <div class="gm-cta-grid">
+          <a href={`${base}dm-guide/`} class="gm-cta-card">
+            <h3>Game Master's Guide</h3>
+            <p>Encounter building, bestiary, random generators, and running advice.</p>
+          </a>
+          <a href={`${base}rules/bestiary/fauna-flora/`} class="gm-cta-card">
+            <h3>Bestiary</h3>
+            <p>Over 100 creatures across five categories.</p>
+          </a>
+          <a href={`${base}rules/setting/`} class="gm-cta-card">
+            <h3>The World</h3>
+            <p>Factions, cultures, regions, and the galaxy beyond.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Archetypes -->
+    <section class="archetypes">
+      <div class="container">
+        <h2 class="section-title">Archetypes</h2>
+        <p class="section-subtitle">Eight distinct classes, each with unique mechanics and playstyles.</p>
+        <div class="archetypes-grid">
+          {archetypes.map((a) => (
+            <a href={`${base}rules/classes/${a.name.toLowerCase()}/`} class="archetype-card" style={`--card-accent: ${a.color};`}>
+              <div class="archetype-die">{a.die}</div>
+              <h3 class="archetype-name">{a.name}</h3>
+              <span class="archetype-role">{a.role}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  /* ---- Hero ---- */
+  .hero {
+    position: relative;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    opacity: 0.12;
+    filter: contrast(1.1);
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-2xl);
+  }
+
+  .hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(4rem, 12vw, 9rem);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+    line-height: 1;
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    margin-bottom: var(--space-lg);
+  }
+
+  .hero-tagline {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--text-muted);
+    font-style: italic;
+    max-width: 36rem;
+    margin: 0 auto var(--space-2xl);
+    line-height: 1.6;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.85rem 2rem;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    z-index: 3;
+  }
+
+  .btn-primary {
+    background: var(--ember);
+    color: var(--bg-primary);
+    border: 1px solid var(--flame);
+    box-shadow: 0 0 20px rgba(232, 99, 27, 0.3);
+  }
+  .btn-primary:hover {
+    background: var(--flame);
+    color: var(--bg-primary);
+    box-shadow: 0 0 30px rgba(255, 140, 56, 0.5);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 15px rgba(232, 99, 27, 0.15);
+    transform: translateY(-1px);
+  }
+
+  .hero-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent 0%, var(--bg-primary) 100%);
+    z-index: 1;
+  }
+
+  /* Floating ember particles */
+  .hero-particles {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: var(--ember);
+    border-radius: 50%;
+    opacity: 0;
+    animation: float-up 6s ease-in infinite;
+  }
+  .particle:nth-child(1) { left: 15%; animation-delay: 0s; animation-duration: 7s; }
+  .particle:nth-child(2) { left: 35%; animation-delay: 1.5s; animation-duration: 5s; }
+  .particle:nth-child(3) { left: 55%; animation-delay: 3s; animation-duration: 8s; }
+  .particle:nth-child(4) { left: 72%; animation-delay: 0.8s; animation-duration: 6s; }
+  .particle:nth-child(5) { left: 88%; animation-delay: 2.2s; animation-duration: 7.5s; }
+
+  @keyframes float-up {
+    0% {
+      transform: translateY(100vh) scale(0.5);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.8;
+    }
+    90% {
+      opacity: 0.2;
+    }
+    100% {
+      transform: translateY(-20vh) scale(1.2);
+      opacity: 0;
+    }
+  }
+
+  /* ---- Sections shared ---- */
+  .container {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    text-align: center;
+    color: var(--text-primary);
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-sm);
+  }
+
+  .section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 36rem;
+    margin: 0 auto var(--space-2xl);
+    font-size: 1.05rem;
+  }
+
+  /* ---- Pillars ---- */
+  .pillars {
+    padding: var(--space-3xl) 0;
+    background: var(--bg-primary);
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .pillar-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: var(--space-xl);
+    text-align: center;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .pillar-card:hover {
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-md);
+  }
+
+  .pillar-icon {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: var(--space-md);
+  }
+
+  .pillar-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-sm);
+  }
+
+  .pillar-card p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ---- World Showcase ---- */
+  .world-showcase {
+    padding: var(--space-3xl) 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 50%, rgba(232, 99, 27, 0.06) 0%, transparent 60%),
+      var(--bg-secondary);
+  }
+
+  .showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .showcase-item {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    aspect-ratio: 4/3;
+  }
+  .showcase-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--border-accent);
+  }
+
+  .showcase-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .showcase-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-md) var(--space-lg);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 640px) {
+    .showcase-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+    .showcase-item {
+      aspect-ratio: 16/9;
+    }
+  }
+
+  /* ---- GM CTA ---- */
+  .gm-cta {
+    padding: var(--space-3xl) 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 50%, rgba(232, 99, 27, 0.06) 0%, transparent 60%),
+      var(--bg-primary);
+  }
+
+  .gm-cta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .gm-cta-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: var(--space-xl);
+    text-decoration: none;
+    text-align: center;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    cursor: pointer;
+  }
+  .gm-cta-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
+  }
+
+  .gm-cta-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-sm);
+  }
+
+  .gm-cta-card p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ---- Archetypes ---- */
+  .archetypes {
+    padding: var(--space-3xl) 0;
+    background:
+      radial-gradient(ellipse 50% 30% at 50% 100%, rgba(232, 99, 27, 0.05) 0%, transparent 70%),
+      var(--bg-secondary);
+  }
+
+  .archetypes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+    gap: var(--space-md);
+  }
+
+  .archetype-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-xl) var(--space-md);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--card-accent, var(--accent));
+    border-radius: 6px;
+    text-decoration: none;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    cursor: pointer;
+  }
+  .archetype-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--card-accent);
+  }
+
+  .archetype-die {
+    font-family: var(--font-mono);
+    font-size: 1.6rem;
+    color: var(--card-accent, var(--accent));
+    margin-bottom: var(--space-sm);
+    text-shadow: 0 0 12px color-mix(in srgb, var(--card-accent) 40%, transparent);
+  }
+
+  .archetype-name {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-xs);
+  }
+
+  .archetype-role {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 640px) {
+    .hero {
+      min-height: 80vh;
+    }
+    .hero-inner {
+      padding: var(--space-lg);
+    }
+    .archetypes-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

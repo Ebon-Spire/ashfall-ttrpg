@@ -1,0 +1,28 @@
+---
+/**
+ * Dynamic catch-all route for all rule pages.
+ *
+ * Auto-discovers markdown files in rules/ and generates pages.
+ * No need to create individual .astro files per rule chapter.
+ */
+import RulesLayout from '../../layouts/RulesLayout.astro';
+import { loadRule, discoverRulePages } from '../../lib/loadMarkdown';
+
+export function getStaticPaths() {
+  return discoverRulePages().map(page => ({
+    params: { slug: page.slug },
+    props: { title: page.title, mdPath: page.mdPath },
+  }));
+}
+
+interface Props {
+  title: string;
+  mdPath: string;
+}
+
+const { title, mdPath } = Astro.props;
+const html = loadRule(mdPath);
+---
+<RulesLayout title={title}>
+  <Fragment set:html={html} />
+</RulesLayout>

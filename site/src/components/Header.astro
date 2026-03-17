@@ -1,0 +1,321 @@
+---
+const base = import.meta.env.BASE_URL;
+
+const navLinks = [
+  { label: "Player's Guide", href: `${base}getting-started/` },
+  { label: 'Rules', href: `${base}rules/` },
+  { label: 'Character Builder', href: `${base}character-builder/` },
+  { label: "Game Master's Guide", href: `${base}dm-guide/` },
+  { label: 'Community', href: `${base}community/` },
+];
+
+const currentPath = Astro.url.pathname;
+
+// Find the most specific (longest) matching nav link
+const activeHref = navLinks
+  .filter(l => l.href !== base && currentPath.startsWith(l.href))
+  .sort((a, b) => b.href.length - a.href.length)[0]?.href || '';
+---
+
+<header class="site-header" id="site-header">
+  <div class="header-inner">
+    <a href={base} class="logo">
+      <img src="/images/ashfall-logo.png" alt="" class="logo-icon" width="24" height="24" />
+      <span class="logo-text">Ashfall</span>
+    </a>
+
+    <nav class="main-nav" id="main-nav">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class:list={['nav-link', { active: link.href === activeHref }]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="header-actions">
+      <button class="search-trigger" id="search-trigger" aria-label="Search rules" title="Search (Ctrl+K)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <span class="search-trigger-label">Search</span>
+        <kbd>/</kbd>
+      </button>
+
+      <a href="https://discord.gg/pTUYgRsXRc" target="_blank" rel="noopener noreferrer" class="discord-link" aria-label="Join Discord" title="Join Discord">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+        </svg>
+      </a>
+
+      <button class="feedback-trigger" id="feedback-trigger" aria-label="Send feedback" title="Feedback">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+      </button>
+
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+        <svg class="theme-icon theme-icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg class="theme-icon theme-icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+
+      <button class="mobile-toggle" aria-label="Toggle navigation" id="nav-toggle">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-header);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    height: var(--header-height);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  .site-header.header-hidden {
+    transform: translateY(-100%);
+  }
+
+  .header-inner {
+    max-width: 76rem;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: var(--space-md);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .logo:hover { color: var(--accent); }
+  .logo-icon { width: 24px; height: 24px; flex-shrink: 0; }
+
+  .main-nav {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: var(--space-lg);
+  }
+
+  .nav-link {
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: 4px;
+    transition: color 0.2s, background 0.2s;
+    white-space: nowrap;
+  }
+  .nav-link:hover {
+    color: var(--text-primary);
+    background: rgba(232, 99, 27, 0.08);
+  }
+  .nav-link.active {
+    color: var(--accent);
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .search-trigger {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: var(--space-xs) var(--space-md);
+    color: var(--text-muted);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    transition: all 0.2s;
+  }
+  .search-trigger:hover {
+    border-color: var(--border-accent);
+    color: var(--text-primary);
+  }
+  .search-trigger kbd {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 1px 5px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    background: var(--bg-elevated);
+    color: var(--text-muted);
+  }
+
+  .discord-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .discord-link:hover {
+    color: #5865F2;
+    border-color: #5865F2;
+  }
+
+  .feedback-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .feedback-trigger:hover {
+    color: var(--accent);
+    border-color: var(--border-accent);
+  }
+
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .theme-toggle:hover {
+    color: var(--accent);
+    border-color: var(--border-accent);
+  }
+
+  /* Show sun in dark mode, moon in light mode */
+  .theme-icon--moon { display: none; }
+  .theme-icon--sun { display: block; }
+  [data-theme="light"] .theme-icon--moon { display: block; }
+  [data-theme="light"] .theme-icon--sun { display: none; }
+
+  .mobile-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-sm);
+  }
+  .mobile-toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--text-primary);
+    transition: all 0.3s;
+    border-radius: 1px;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-toggle { display: flex; }
+    .main-nav {
+      display: none;
+      position: absolute;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-lg);
+    }
+    .main-nav.open { display: flex; }
+    .nav-link {
+      padding: var(--space-md);
+      font-size: 0.9rem;
+    }
+    .search-trigger-label { display: none; }
+    .search-trigger kbd { display: none; }
+  }
+</style>
+
+<script>
+  // Nav toggle
+  document.getElementById('nav-toggle')?.addEventListener('click', () => {
+    document.getElementById('main-nav')?.classList.toggle('open');
+  });
+
+  // Search trigger
+  document.getElementById('search-trigger')?.addEventListener('click', () => {
+    if (typeof window.__openSearch === 'function') window.__openSearch();
+  });
+
+  // Feedback trigger — defer check to click time since modal script may load after header
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('#feedback-trigger')) {
+      if (typeof window.__openFeedback === 'function') window.__openFeedback();
+    }
+  });
+
+  // Theme toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('ashfall-theme', theme);
+  }
+  themeToggle?.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  });
+
+  // Auto-hide header on scroll (progress bar follows)
+  let lastScroll = 0;
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+    const hidden = currentScroll > 80 && currentScroll > lastScroll;
+    header?.classList.toggle('header-hidden', hidden);
+    const pb = document.getElementById('scroll-progress');
+    if (pb) pb.classList.toggle('header-away', hidden);
+    lastScroll = currentScroll;
+  }, { passive: true });
+</script>

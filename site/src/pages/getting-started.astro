@@ -1,0 +1,790 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/global.css';
+
+const base = import.meta.env.BASE_URL;
+
+const differences = [
+  { title: 'Death Is Real', desc: 'Characters can die. That\'s not a bug — it\'s what makes every decision feel like it matters.' },
+  { title: 'Resources Matter', desc: 'Ammunition, medical supplies, clean water. Track them. When the party counts their last magazine, that\'s Ashfall at its best.' },
+  { title: 'Recovery Is Slow', desc: 'Short rests take 8 hours. Long rests take a full week. You can\'t power through a ruin by resting after every fight.' },
+  { title: 'Magic Is New', desc: 'Magic emerged after the apocalypse. It\'s raw, feared, and barely understood. Casters are pioneers, not professors.' },
+  { title: 'Chrome Costs Humanity', desc: 'Cybernetic augmentations make you stronger, but they erode your connection to magic. Choose: reliable tech or volatile power.' },
+  { title: 'You Can Try Anything', desc: 'Combat is one option, never the only one. Sneak, negotiate, hack, collapse the tunnel. The wasteland rewards creativity.' },
+];
+
+const needs = [
+  { icon: '\u{1F3B2}', title: 'Dice', desc: 'A set of polyhedral dice — d4, d6, d8, d10, d12, and d20. A free digital dice roller works too.' },
+  { icon: '\u{270F}\u{FE0F}', title: 'Pencil & Paper', desc: 'Something to write on. Track your character, your gear, and your choices.', link: { label: 'Character Builder', href: `${base}character-builder/` } },
+  { icon: '\u{1F4D6}', title: 'The Rules', desc: 'Everything is free, right here on this site. No book to buy.', link: { label: 'Read the Rules', href: `${base}rules/` } },
+];
+
+const steps = [
+  { title: 'Roll or Assign Attributes', desc: 'Six attributes — Might, Agility, Endurance, Intellect, Wisdom, Presence — define your core capabilities.', href: `${base}rules/character-creation/` },
+  { title: 'Choose a Species', desc: 'Humans are the most common survivors, but the wasteland has changed some people in unexpected ways.', href: `${base}rules/character-creation/` },
+  { title: 'Pick a Background', desc: 'Your life before (or after) The Fall shapes your starting skills and narrative hooks.', href: `${base}rules/character-creation/` },
+  { title: 'Select an Archetype', desc: 'Ashfall has 8 archetypes, each with distinct mechanics and playstyles — from the frontline Warrior to the reality-bending Channeler.', href: `${base}rules/classes/` },
+  { title: 'Equip Your Gear', desc: 'Choose from the equipment list. In the wasteland, your loadout can mean the difference between survival and a shallow grave.', href: `${base}rules/equipment/` },
+];
+
+const combatConcepts = [
+  { title: '3-Action Economy', desc: 'Each turn you get a Move, a Strike, and a Bonus Action. No dead turns — every class has meaningful options every round.', href: `${base}rules/combat/`, label: 'Combat Rules' },
+  { title: 'Bounded Lethality', desc: 'Bonuses cap at +18. Even high-level characters respect a well-armed raider squad. The wasteland never gets safe.', href: `${base}rules/combat/`, label: 'Combat Rules' },
+  { title: 'Gritty Rests', desc: 'Short rests take 8 hours. Long rests take a full week. Resource management is survival — every bullet and bandage counts.', href: `${base}rules/exploration/`, label: 'Exploration Rules' },
+];
+
+const faqs = [
+  { q: 'Do I need to know all the rules?', a: 'Not at all. Your job is to describe what your character tries to do — "I want to sneak past the sentry" or "I shoot at the raider" — and the GM handles which rules apply. You\'ll pick up the mechanics naturally as you play.' },
+  { q: 'Do I need to do a voice?', a: 'No. Saying "my character tries to talk the merchant into lowering the price" works just as well as acting it out. Play at whatever level of immersion feels comfortable.' },
+  { q: 'How is this different from D&D?', a: 'Grittier and deadlier. Resources like ammo and medical supplies matter. A short rest takes 8 hours and a long rest takes a full week. Magic is new and feared. The tone is survival-first, heroics-second.' },
+  { q: 'Can my character die?', a: 'Yes, and that\'s by design. The real threat of death is what makes every decision feel like it matters. If your character dies, you create a new one and the GM works them into the story.' },
+  { q: 'What if I\'ve never played a TTRPG?', a: 'Ashfall is a great place to start. The core of play is simple: describe what your character does, roll a d20 when the outcome is uncertain, add a modifier. In combat you get three actions per turn, so you always know your options.' },
+  { q: 'How long does a session take?', a: 'Most groups play 2-4 hours. Some sessions are all tense negotiation with no combat; others are one long firefight. Both are normal.' },
+  { q: 'Can I play online?', a: 'Absolutely. Voice chat, a free dice roller, and optionally a VTT like Foundry or Roll20. Ashfall works just as well over a screen as around a table.' },
+  { q: 'What\'s the deal with magic and augmentations?', a: 'Augmentations are reliable tech upgrades. Magic is volatile but powerful. The catch: every augmentation erodes your Humanity score, making magic harder to use. You can lean into one, dabble in both, but mastering both isn\'t possible.' },
+  { q: 'What archetype should I pick first?', a: 'Whatever sounds fun. Warrior and Gunslinger are straightforward fighters. Medic and Technician support the group. Operative and Diplomat solve problems outside combat. Mystic and Channeler use magic — more complex but rewarding.' },
+];
+---
+
+<BaseLayout title="Player's Guide" description="Everything you need to sit down and play your first session of Ashfall, the post-apocalyptic tabletop RPG.">
+  <main class="gs">
+
+    <!-- 1. Hero -->
+    <section class="gs-hero">
+      <div class="gs-hero-bg" aria-hidden="true">
+        <img src="/images/illustrations/fortified-settlement.png" alt="" loading="eager" />
+      </div>
+      <div class="gs-hero-inner">
+        <h1 class="gs-hero-title">Player's Guide</h1>
+        <p class="gs-hero-subtitle">Everything you need to sit down and play your first session in the wasteland.</p>
+      </div>
+      <div class="gs-hero-fade" aria-hidden="true"></div>
+    </section>
+
+    <!-- 2. What Makes Ashfall Different -->
+    <section class="gs-section">
+      <div class="gs-container">
+        <h2 class="gs-section-title">What Makes Ashfall Different</h2>
+        <p class="gs-section-subtitle">If you're coming from other RPGs, here's what to expect.</p>
+        <div class="gs-diff-grid">
+          {differences.map(item => (
+            <div class="gs-diff-item">
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+            </div>
+          ))}
+        </div>
+        <p class="gs-media-refs">If you love <strong>Fallout</strong>, <strong>Mad Max</strong>, <strong>The Road</strong>, or <strong>Metro 2033</strong> — this is your game.</p>
+      </div>
+    </section>
+
+    <!-- 3. What You Need to Play -->
+    <section class="gs-section gs-section-alt">
+      <div class="gs-container">
+        <h2 class="gs-section-title">What You Need to Play</h2>
+        <p class="gs-section-subtitle">TTRPGs are beautifully low-maintenance. Three things. That's it.</p>
+        <div class="gs-needs-grid">
+          {needs.map(item => (
+            <div class="gs-need-card">
+              <span class="gs-need-icon">{item.icon}</span>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+              {item.link && (
+                <div class="gs-need-links">
+                  <a href={item.link.href}>{item.link.label}</a>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Creating a Character -->
+    <section class="gs-section">
+      <div class="gs-container">
+        <h2 class="gs-section-title">Creating a Character</h2>
+        <p class="gs-section-subtitle">Character creation follows five straightforward steps. The full rules are in the <a href={`${base}rules/character-creation/`}>Character Creation</a> chapter.</p>
+        <img src="/images/illustrations/party-at-crossroads.png" alt="A party of wasteland adventurers stand at a crossroads in the ruins" class="gs-section-img" loading="lazy" />
+        <div class="gs-steps">
+          {steps.map((step, i) => (
+            <div class="gs-step">
+              <span class="gs-step-number">{i + 1}</span>
+              <div>
+                <strong><a href={step.href}>{step.title}</a></strong>
+                <p>{step.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Understanding Combat -->
+    <section class="gs-section gs-section-alt">
+      <div class="gs-container">
+        <h2 class="gs-section-title">Understanding Combat</h2>
+        <p class="gs-section-subtitle">Three key concepts to know before your first fight.</p>
+        <img src="/images/illustrations/combat-tactical-scene.png" alt="A tactical combat scene in the wasteland" class="gs-section-img" loading="lazy" />
+        <div class="gs-concepts-grid">
+          {combatConcepts.map(concept => (
+            <div class="gs-concept">
+              <h3>{concept.title}</h3>
+              <p>{concept.desc}</p>
+              <a href={concept.href} class="gs-concept-link">{concept.label} &rarr;</a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. What Play Looks Like -->
+    <section class="gs-section">
+      <div class="gs-container">
+        <h2 class="gs-section-title">What Play Looks Like</h2>
+        <p class="gs-section-subtitle">A quick snapshot of the GM-player loop in action.</p>
+        <div class="gs-example">
+          <div class="gs-dialogue"><span class="gs-speaker gs-gm">GM:</span> You're picking through the remains of a fuel depot on the outskirts of Sector 7. The roof caved in long ago — rusted beams jut out like broken ribs. Fresh boot prints lead deeper inside, and you can smell smoke. Not old smoke. Recent.</div>
+          <div class="gs-dialogue"><span class="gs-speaker gs-player">Mira (Operative):</span> I want to creep along the left wall where the shadows are thickest and get a look at what's inside.</div>
+          <div class="gs-dialogue"><span class="gs-speaker gs-gm">GM:</span> Give me a Stealth check.</div>
+          <div class="gs-dialogue"><span class="gs-speaker gs-player">Mira:</span> That's a 14 plus my AGI of +3, so 17.</div>
+          <div class="gs-dialogue"><span class="gs-speaker gs-gm">GM:</span> You slide forward without a sound. Forty feet in, past a collapsed shelving unit, you see firelight. Three figures with scrap armor and machetes. Raiders. They haven't noticed you.</div>
+          <div class="gs-dialogue"><span class="gs-speaker gs-player">Dax (Gunslinger):</span> I find an elevated spot — a broken beam or staircase — somewhere with a clear sight line.</div>
+          <div class="gs-dialogue"><span class="gs-speaker gs-gm">GM:</span> There's a half-collapsed staircase to a second-floor office. You get up there and can see all three through the gaps in the floor. You have the drop.</div>
+          <div class="gs-dialogue"><span class="gs-speaker gs-player">Sable (Medic):</span> How many stim-patches do I have left?</div>
+          <div class="gs-dialogue"><span class="gs-speaker gs-gm">GM:</span> Two stim-patches and one vial of coagulant. That's it until you find more.</div>
+          <div class="gs-dialogue"><span class="gs-speaker gs-player">Sable:</span> Two. Great. Nobody get shot more than twice.</div>
+          <div class="gs-dialogue"><span class="gs-speaker gs-gm">GM:</span> Mira — one of the raiders stands up and walks toward your position. What do you do?</div>
+          <div class="gs-dialogue"><span class="gs-speaker gs-player">Mira:</span> I flash the hand signal. We go now.</div>
+          <div class="gs-dialogue"><span class="gs-speaker gs-gm">GM:</span> Roll initiative. Dax, you're first — three actions, what are you doing?</div>
+          <div class="gs-dialogue"><span class="gs-speaker gs-player">Dax:</span> Move to lean out and brace my rifle. Strike — I fire at the one with the pipe rifle. That's 18 to hit. Bonus Action: Pinning Fire to suppress the others.</div>
+          <div class="gs-dialogue"><span class="gs-speaker gs-gm">GM:</span> 18 hits. She staggers and drops the rifle. The other two flinch as shots chew into the concrete around them — they're suppressed. Mira, you're next, and they still don't know where you are.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Pick Your Character -->
+    <section class="gs-section gs-section-alt">
+      <div class="gs-container">
+        <h2 class="gs-section-title">Pick Your Character</h2>
+        <p class="gs-section-subtitle">Two ways to get a character in your hands.</p>
+        <div class="gs-pick-grid">
+          <a href={`${base}rules/pregens/`} class="gs-pick-card">
+            <span class="gs-pick-icon">{'\u{1F464}'}</span>
+            <h3>Pregenerated Characters</h3>
+            <p>Four ready-to-play Level 1 characters. Grab one and go.</p>
+          </a>
+          <a href={`${base}rules/character-creation/`} class="gs-pick-card">
+            <span class="gs-pick-icon">{'\u{1F6E0}\u{FE0F}'}</span>
+            <h3>Build Your Own</h3>
+            <p>Full character creation rules. ~25 minutes for your first character.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Common Questions -->
+    <section class="gs-section">
+      <div class="gs-container">
+        <h2 class="gs-section-title">Common Questions</h2>
+        <p class="gs-section-subtitle">Answers to what new players actually ask.</p>
+        <div class="gs-faq">
+          {faqs.map(faq => (
+            <details class="gs-faq-item">
+              <summary>{faq.q}</summary>
+              <p>{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Running the Game? -->
+    <section class="gs-section gs-section-alt">
+      <div class="gs-container">
+        <a href={`${base}dm-guide/`} class="gs-gm-card">
+          <div class="gs-gm-card-inner">
+            <span class="gs-gm-card-icon">{'\u{2694}'}</span>
+            <div>
+              <h3>Running the Game?</h3>
+              <p>If you're the Game Master, head to the GM Guide for encounter building, a starter scenario, the bestiary, and everything else you need to run Ashfall.</p>
+            </div>
+          </div>
+          <span class="gs-gm-card-arrow">&rarr;</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 10. CTA Footer -->
+    <section class="gs-cta">
+      <div class="gs-container">
+        <h2 class="gs-cta-title">Ready to Dive In?</h2>
+        <p class="gs-cta-subtitle">The wasteland is waiting. Read the rules or start building your survivor.</p>
+        <div class="gs-cta-buttons">
+          <a href={`${base}rules/`} class="gs-btn gs-btn-primary">Read the Rules</a>
+          <a href={`${base}character-builder/`} class="gs-btn gs-btn-secondary">Character Builder</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</BaseLayout>
+
+<style>
+  /* ---- Hero ---- */
+  .gs-hero {
+    position: relative;
+    min-height: 35vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+  }
+  .gs-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .gs-hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    opacity: 0.12;
+    filter: contrast(1.1);
+  }
+  .gs-hero-inner {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-3xl) var(--space-lg);
+    max-width: 48rem;
+  }
+  .gs-hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+    line-height: 1.1;
+  }
+  .gs-hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.6;
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+  .gs-hero-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent 0%, var(--bg-primary) 100%);
+    z-index: 1;
+  }
+
+  /* ---- Sections ---- */
+  .gs-section {
+    padding: var(--space-3xl) 0;
+    background: var(--bg-primary);
+  }
+  .gs-section-alt {
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 50%, rgba(232, 99, 27, 0.04) 0%, transparent 60%),
+      var(--bg-secondary);
+  }
+  .gs-container {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+  }
+  .gs-section-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    text-align: center;
+    color: var(--text-primary);
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-sm);
+  }
+  .gs-section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 36rem;
+    margin: 0 auto var(--space-2xl);
+    font-size: 1.05rem;
+  }
+  .gs-section-subtitle a {
+    color: var(--accent);
+  }
+  .gs-section-img {
+    display: block;
+    max-width: 480px;
+    width: 100%;
+    margin: 0 auto var(--space-2xl);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  /* ---- What Makes Ashfall Different ---- */
+  .gs-diff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+  }
+  .gs-diff-item {
+    padding: var(--space-lg);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .gs-diff-item:hover {
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-sm);
+  }
+  .gs-diff-item h3 {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 var(--space-xs) 0;
+  }
+  .gs-diff-item p {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .gs-media-refs {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-style: italic;
+  }
+
+  /* ---- What You Need Grid ---- */
+  .gs-needs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(200px, 280px));
+    gap: var(--space-md);
+    justify-content: center;
+  }
+  .gs-need-card {
+    padding: var(--space-xl);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-align: center;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .gs-need-card:hover {
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-md);
+  }
+  .gs-need-icon {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: var(--space-md);
+  }
+  .gs-need-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 var(--space-sm) 0;
+  }
+  .gs-need-card p {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin: 0 0 var(--space-sm) 0;
+  }
+  .gs-need-links {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: var(--space-xs);
+  }
+  .gs-need-links a {
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .gs-need-links a:hover {
+    border-color: var(--accent);
+    background: rgba(232, 99, 27, 0.08);
+  }
+
+  /* ---- Character Steps ---- */
+  .gs-steps {
+    max-width: 42rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  .gs-step {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: flex-start;
+    padding: var(--space-lg);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .gs-step:hover {
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-sm);
+  }
+  .gs-step-number {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 2rem;
+    text-align: center;
+    line-height: 1;
+    margin-top: 0.15rem;
+  }
+  .gs-step strong {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    letter-spacing: 0.02em;
+  }
+  .gs-step strong a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .gs-step strong a:hover {
+    text-decoration: underline;
+  }
+  .gs-step p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: var(--space-xs) 0 0 0;
+    line-height: 1.5;
+  }
+
+  /* ---- Combat Concepts ---- */
+  .gs-concepts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-lg);
+  }
+  .gs-concept {
+    padding: var(--space-xl);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .gs-concept:hover {
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-sm);
+  }
+  .gs-concept h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 var(--space-sm) 0;
+  }
+  .gs-concept p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0 0 var(--space-md) 0;
+  }
+  .gs-concept-link {
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    color: var(--accent);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .gs-concept-link:hover {
+    text-decoration: underline;
+  }
+
+  /* ---- Example of Play ---- */
+  .gs-example {
+    max-width: 42rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .gs-dialogue {
+    padding: var(--space-sm) var(--space-lg);
+    background: var(--bg-card);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+  .gs-dialogue:first-child { border-radius: 8px 8px 0 0; }
+  .gs-dialogue:last-child { border-radius: 0 0 8px 8px; }
+  .gs-speaker {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-right: var(--space-sm);
+  }
+  .gs-gm { color: var(--accent); }
+  .gs-player { color: var(--plasma-blue); }
+
+  /* ---- Pick Your Character ---- */
+  .gs-pick-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-lg);
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+  .gs-pick-card {
+    display: block;
+    padding: var(--space-xl);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  }
+  .gs-pick-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
+  }
+  .gs-pick-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: var(--space-md);
+  }
+  .gs-pick-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 var(--space-sm) 0;
+  }
+  .gs-pick-card p {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ---- GM Card ---- */
+  .gs-gm-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: var(--space-xl) var(--space-2xl);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  }
+  .gs-gm-card:hover {
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .gs-gm-card-inner {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: flex-start;
+  }
+  .gs-gm-card-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+  .gs-gm-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 var(--space-sm) 0;
+  }
+  .gs-gm-card p {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+  .gs-gm-card-arrow {
+    font-size: 1.5rem;
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-left: var(--space-lg);
+    transition: transform 0.2s;
+  }
+  .gs-gm-card:hover .gs-gm-card-arrow {
+    transform: translateX(4px);
+  }
+
+  /* ---- FAQ ---- */
+  .gs-faq {
+    max-width: 42rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+  .gs-faq-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .gs-faq-item summary {
+    padding: var(--space-md) var(--space-lg);
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: color 0.2s;
+  }
+  .gs-faq-item summary::-webkit-details-marker { display: none; }
+  .gs-faq-item summary:hover { color: var(--accent); }
+  .gs-faq-item summary::after {
+    content: '+';
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    margin-left: var(--space-md);
+    transition: transform 0.2s;
+  }
+  .gs-faq-item[open] summary::after {
+    content: '\2212';
+    color: var(--accent);
+  }
+  .gs-faq-item p {
+    padding: 0 var(--space-lg) var(--space-lg);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ---- CTA Footer ---- */
+  .gs-cta {
+    padding: var(--space-3xl) 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 50%, rgba(232, 99, 27, 0.06) 0%, transparent 60%),
+      var(--bg-primary);
+    text-align: center;
+  }
+  .gs-cta-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--text-primary);
+    letter-spacing: 0.08em;
+    margin-bottom: var(--space-sm);
+  }
+  .gs-cta-subtitle {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 32rem;
+    margin: 0 auto var(--space-2xl);
+    line-height: 1.6;
+  }
+  .gs-cta-buttons {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .gs-btn {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.85rem 2rem;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    display: inline-block;
+    cursor: pointer;
+  }
+  .gs-btn-primary {
+    background: var(--ember);
+    color: var(--bg-primary);
+    border: 1px solid var(--flame);
+    box-shadow: 0 0 20px rgba(232, 99, 27, 0.3);
+  }
+  .gs-btn-primary:hover {
+    background: var(--flame);
+    color: var(--bg-primary);
+    box-shadow: 0 0 30px rgba(255, 140, 56, 0.5);
+    transform: translateY(-1px);
+  }
+  .gs-btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+  }
+  .gs-btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 15px rgba(232, 99, 27, 0.15);
+    transform: translateY(-1px);
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 640px) {
+    .gs-hero { min-height: 28vh; }
+    .gs-needs-grid { grid-template-columns: 1fr 1fr; }
+    .gs-diff-grid { grid-template-columns: 1fr; }
+    .gs-concepts-grid { grid-template-columns: 1fr; }
+    .gs-pick-grid { grid-template-columns: 1fr; }
+    .gs-step { flex-direction: column; gap: var(--space-sm); }
+    .gs-gm-card { flex-direction: column; padding: var(--space-lg); }
+    .gs-gm-card-inner { flex-direction: column; }
+    .gs-gm-card-arrow { display: none; }
+  }
+  @media (max-width: 420px) {
+    .gs-needs-grid { grid-template-columns: 1fr; }
+  }
+</style>

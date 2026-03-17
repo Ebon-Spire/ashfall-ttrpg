@@ -1,0 +1,189 @@
+---
+import RulesLayout from '../../layouts/RulesLayout.astro';
+import { rulesNav } from '../../data/rules-nav';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<RulesLayout title="Rules">
+  <div class="rules-overview">
+    <header class="rules-header">
+      <h1>Ashfall Rules Reference</h1>
+      <p class="rules-subtitle">Welcome to the complete rules reference for Ashfall. Select a chapter below to begin.</p>
+    </header>
+
+    {rulesNav.map((section, i) => (
+      <section class:list={['rules-section', { 'section-alt': i % 2 === 1 }, { 'section-bestiary': section.title === 'Bestiary' }]}>
+        <div class="section-divider">
+          <span class="divider-line" />
+          <h2>{section.title}</h2>
+          <span class="divider-line" />
+        </div>
+        <div class="rules-grid">
+          {section.links.map(link => (
+            <a href={`${base}rules/${link.slug}/`} class:list={['rule-card', { 'rule-card--bestiary': section.title === 'Bestiary' }]}>
+              <h3>{link.label}</h3>
+              <p>{link.description}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</RulesLayout>
+
+<style>
+  /* ---- Header ---- */
+  .rules-header {
+    margin-bottom: var(--space-2xl);
+    padding-bottom: var(--space-xl);
+    border-bottom: 2px solid var(--accent-dim);
+  }
+
+  .rules-header h1 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    letter-spacing: 0.06em;
+    color: var(--text-primary);
+    margin: 0 0 var(--space-sm);
+  }
+
+  .rules-subtitle {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 40rem;
+  }
+
+  /* ---- Sections ---- */
+  .rules-section {
+    margin-bottom: var(--space-2xl);
+    padding: var(--space-lg);
+    border-radius: 8px;
+  }
+
+  .section-alt {
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 50%, rgba(232, 99, 27, 0.04) 0%, transparent 70%),
+      var(--bg-secondary);
+  }
+
+  .section-bestiary {
+    background:
+      radial-gradient(ellipse 60% 50% at 40% 50%, rgba(196, 81, 26, 0.06) 0%, transparent 60%),
+      var(--bg-secondary);
+    border: 1px solid rgba(196, 81, 26, 0.12);
+  }
+
+  /* ---- Section Divider ---- */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--border-accent),
+      transparent
+    );
+  }
+
+  .section-divider h2 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* ---- Card Grid ---- */
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--space-md);
+  }
+
+  /* ---- Cards ---- */
+  .rule-card {
+    display: block;
+    padding: var(--space-lg);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .rule-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--border-accent);
+    border-top-color: var(--accent-hover);
+  }
+
+  .rule-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 var(--space-sm);
+  }
+
+  .rule-card:hover h3 {
+    color: var(--accent-hover);
+  }
+
+  .rule-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+
+  /* ---- Bestiary Card Variant ---- */
+  .rule-card--bestiary {
+    border-top-color: var(--rust);
+  }
+
+  .rule-card--bestiary h3 {
+    color: var(--rust);
+  }
+
+  .rule-card--bestiary:hover {
+    border-top-color: var(--ember);
+    box-shadow:
+      var(--shadow-lg),
+      0 0 20px rgba(196, 81, 26, 0.08);
+  }
+
+  .rule-card--bestiary:hover h3 {
+    color: var(--ember);
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 640px) {
+    .rules-section {
+      padding: var(--space-md);
+    }
+
+    .rules-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

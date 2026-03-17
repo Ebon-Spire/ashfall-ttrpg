@@ -1,0 +1,369 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<div id="search-modal" class="search-overlay" aria-hidden="true">
+  <div class="search-backdrop"></div>
+  <div class="search-dialog" role="dialog" aria-label="Search rules">
+    <div class="search-input-wrap">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input
+        id="search-input"
+        type="text"
+        placeholder="Search rules..."
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <kbd class="search-kbd">Esc</kbd>
+    </div>
+    <div id="search-results" class="search-results">
+      <div class="search-empty">Type to search across all rules</div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .search-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 12vh;
+  }
+  .search-overlay[aria-hidden="false"] {
+    display: flex;
+  }
+
+  .search-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+  }
+
+  .search-dialog {
+    position: relative;
+    width: 100%;
+    max-width: 36rem;
+    max-height: 70vh;
+    background: var(--bg-card);
+    border: 1px solid var(--border-accent);
+    border-radius: 10px;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin: 0 var(--space-md);
+  }
+
+  .search-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .search-icon {
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  #search-input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 1rem;
+  }
+  #search-input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .search-kbd {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-muted);
+    background: var(--bg-card);
+    flex-shrink: 0;
+  }
+
+  .search-results {
+    overflow-y: auto;
+    padding: var(--space-sm);
+  }
+
+  .search-empty {
+    padding: var(--space-xl) var(--space-md);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+</style>
+
+<script define:vars={{ base }}>
+  const modal = document.getElementById('search-modal');
+  const input = document.getElementById('search-input');
+  const resultsContainer = document.getElementById('search-results');
+  const backdrop = modal?.querySelector('.search-backdrop');
+
+  let searchIndex = null;
+  let activeIndex = -1;
+  // Word cache built once per index load for fuzzy matching
+  let wordCache = null;
+
+  /** Levenshtein edit distance between two strings. */
+  function editDistance(a, b) {
+    if (a === b) return 0;
+    if (!a.length) return b.length;
+    if (!b.length) return a.length;
+    const matrix = [];
+    for (let i = 0; i <= b.length; i++) matrix[i] = [i];
+    for (let j = 0; j <= a.length; j++) matrix[0][j] = j;
+    for (let i = 1; i <= b.length; i++) {
+      for (let j = 1; j <= a.length; j++) {
+        const cost = b[i - 1] === a[j - 1] ? 0 : 1;
+        matrix[i][j] = Math.min(
+          matrix[i - 1][j] + 1,
+          matrix[i][j - 1] + 1,
+          matrix[i - 1][j - 1] + cost
+        );
+      }
+    }
+    return matrix[b.length][a.length];
+  }
+
+  /** Max edit distance allowed based on term length. */
+  function maxDist(term) {
+    if (term.length <= 3) return 0; // too short for fuzzy
+    if (term.length <= 5) return 1;
+    return 2;
+  }
+
+  /** Build a set of unique words from all indexed pages. */
+  function buildWordCache() {
+    if (wordCache || !searchIndex) return;
+    const words = new Set();
+    for (const page of searchIndex) {
+      for (const w of page.title.toLowerCase().split(/\s+/)) if (w.length > 1) words.add(w);
+      for (const h of page.headings) for (const w of h.toLowerCase().split(/\s+/)) if (w.length > 1) words.add(w);
+      for (const w of page.text.toLowerCase().split(/\s+/)) if (w.length > 2) words.add(w);
+    }
+    wordCache = [...words];
+  }
+
+  /**
+   * Find the best fuzzy match for a term in the word cache.
+   * Returns { word, dist } or null if nothing close enough.
+   */
+  function fuzzyMatch(term) {
+    buildWordCache();
+    const limit = maxDist(term);
+    if (limit === 0) return null;
+    let best = null;
+    for (const word of wordCache) {
+      // Quick length check to skip obviously wrong words
+      if (Math.abs(word.length - term.length) > limit) continue;
+      const d = editDistance(term, word);
+      if (d > 0 && d <= limit && (!best || d < best.dist)) {
+        best = { word, dist: d };
+        if (d === 1) break; // close enough, stop early
+      }
+    }
+    return best;
+  }
+
+  async function loadIndex() {
+    if (searchIndex) return;
+    try {
+      const res = await fetch(`${base}search-index.json`);
+      searchIndex = await res.json();
+    } catch (e) {
+      console.error('Failed to load search index:', e);
+    }
+  }
+
+  function openSearch() {
+    modal.setAttribute('aria-hidden', 'false');
+    input.value = '';
+    input.focus();
+    activeIndex = -1;
+    resultsContainer.innerHTML = '<div class="search-empty">Type to search across all rules</div>';
+    loadIndex();
+  }
+
+  function closeSearch() {
+    modal.setAttribute('aria-hidden', 'true');
+    activeIndex = -1;
+  }
+
+  function highlightSnippet(text, terms) {
+    const escaped = terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    const re = new RegExp(`(${escaped.join('|')})`, 'gi');
+    return text.replace(re, '<mark>$1</mark>').replace(/</g, '<').replace(/>/g, '>').replace(/&lt;mark&gt;/g, '<mark>').replace(/&lt;\/mark&gt;/g, '</mark>');
+  }
+
+  function getSnippet(text, terms) {
+    const lower = text.toLowerCase();
+    let bestPos = -1;
+    for (const t of terms) {
+      const pos = lower.indexOf(t.toLowerCase());
+      if (pos !== -1 && (bestPos === -1 || pos < bestPos)) bestPos = pos;
+    }
+    if (bestPos === -1) return text.slice(0, 120);
+    const start = Math.max(0, bestPos - 40);
+    const end = Math.min(text.length, bestPos + 80);
+    let snippet = text.slice(start, end);
+    if (start > 0) snippet = '...' + snippet;
+    if (end < text.length) snippet += '...';
+    return snippet;
+  }
+
+  function performSearch(query) {
+    if (!searchIndex || !query.trim()) {
+      resultsContainer.innerHTML = '<div class="search-empty">Type to search across all rules</div>';
+      activeIndex = -1;
+      return;
+    }
+
+    const terms = query.toLowerCase().split(/\s+/).filter(t => t.length > 1);
+    if (!terms.length) {
+      resultsContainer.innerHTML = '<div class="search-empty">Type to search across all rules</div>';
+      activeIndex = -1;
+      return;
+    }
+
+    // Resolve fuzzy alternatives for each term
+    const resolved = terms.map(term => {
+      const fm = fuzzyMatch(term);
+      return { exact: term, fuzzy: fm ? fm.word : null };
+    });
+
+    const scored = searchIndex.map(page => {
+      let score = 0;
+      const titleLower = page.title.toLowerCase();
+      const textLower = page.text.toLowerCase();
+      const headingsLower = page.headings.map(h => h.toLowerCase());
+
+      for (const { exact, fuzzy } of resolved) {
+        let matched = false;
+
+        // Exact matches (full score)
+        if (titleLower.includes(exact)) { score += 10; matched = true; }
+        for (const h of headingsLower) {
+          if (h.includes(exact)) { score += 5; matched = true; break; }
+        }
+        if (textLower.includes(exact)) {
+          score += 1; matched = true;
+          // Count occurrences in body (minor boost)
+          let idx = 0, count = 0;
+          while ((idx = textLower.indexOf(exact, idx)) !== -1) { count++; idx += exact.length; }
+          score += Math.min(count * 0.2, 3);
+        }
+
+        // Fuzzy fallback (reduced score) — only if no exact match found
+        if (!matched && fuzzy) {
+          if (titleLower.includes(fuzzy)) score += 6;
+          for (const h of headingsLower) {
+            if (h.includes(fuzzy)) { score += 3; break; }
+          }
+          if (textLower.includes(fuzzy)) score += 0.6;
+        }
+      }
+
+      return { ...page, score };
+    })
+    .filter(p => p.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 15);
+
+    if (!scored.length) {
+      resultsContainer.innerHTML = '<div class="search-empty">No results found</div>';
+      activeIndex = -1;
+      return;
+    }
+
+    // Collect all searchable terms (exact + fuzzy alternatives) for snippets
+    const allTerms = resolved.flatMap(r => r.fuzzy ? [r.exact, r.fuzzy] : [r.exact]);
+
+    activeIndex = 0;
+    resultsContainer.innerHTML = scored.map((result, i) => {
+      const snippet = getSnippet(result.text, allTerms);
+      const matchedHeadings = result.headings
+        .filter(h => allTerms.some(t => h.toLowerCase().includes(t)))
+        .slice(0, 3);
+
+      return `<a href="${base}rules/${result.slug}/" class="search-result${i === 0 ? ' active' : ''}" data-index="${i}">
+        <div class="search-result-title">${escapeHtml(result.title)}</div>
+        ${matchedHeadings.length ? `<div class="search-result-headings">${matchedHeadings.map(h => escapeHtml(h)).join(' &rsaquo; ')}</div>` : ''}
+        <div class="search-result-snippet">${escapeHtml(snippet)}</div>
+      </a>`;
+    }).join('');
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function updateActive() {
+    const items = resultsContainer.querySelectorAll('.search-result');
+    items.forEach((el, i) => {
+      el.classList.toggle('active', i === activeIndex);
+      if (i === activeIndex) el.scrollIntoView({ block: 'nearest' });
+    });
+  }
+
+  // Event listeners
+  document.addEventListener('keydown', (e) => {
+    // Ctrl+K or Cmd+K to open
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      openSearch();
+      return;
+    }
+    // "/" to open when not in an input
+    if (e.key === '/' && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName)) {
+      e.preventDefault();
+      openSearch();
+      return;
+    }
+
+    if (modal.getAttribute('aria-hidden') !== 'false') return;
+
+    if (e.key === 'Escape') {
+      closeSearch();
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      const items = resultsContainer.querySelectorAll('.search-result');
+      if (items.length) { activeIndex = Math.min(activeIndex + 1, items.length - 1); updateActive(); }
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (activeIndex > 0) { activeIndex--; updateActive(); }
+    } else if (e.key === 'Enter') {
+      const items = resultsContainer.querySelectorAll('.search-result');
+      if (items[activeIndex]) {
+        window.location.href = items[activeIndex].getAttribute('href');
+      }
+    }
+  });
+
+  backdrop?.addEventListener('click', closeSearch);
+
+  let debounceTimer;
+  input?.addEventListener('input', () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => performSearch(input.value), 100);
+  });
+
+  // Expose for header button
+  window.__openSearch = openSearch;
+</script>

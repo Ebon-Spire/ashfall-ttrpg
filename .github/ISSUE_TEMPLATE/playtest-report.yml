@@ -1,0 +1,48 @@
+name: Playtest Report
+description: Share results from a playtest session
+title: "[Playtest] "
+labels: ["playtest"]
+body:
+  - type: input
+    id: party
+    attributes:
+      label: Party composition
+      placeholder: "e.g., Warrior 5, Gunslinger 5, Medic 5, Mystic 5"
+    validations:
+      required: true
+  - type: input
+    id: encounter
+    attributes:
+      label: What did you play?
+      placeholder: "e.g., Combat encounter vs. CR 8 raiders, exploration scenario, etc."
+    validations:
+      required: true
+  - type: textarea
+    id: observations
+    attributes:
+      label: What happened?
+      placeholder: Key moments, things that worked well, things that felt off
+    validations:
+      required: true
+  - type: textarea
+    id: balance
+    attributes:
+      label: Balance observations
+      placeholder: Was anything too strong, too weak, or unclear?
+  - type: dropdown
+    id: fun
+    attributes:
+      label: How fun was the session?
+      options:
+        - "5 — Excellent, everyone had a great time"
+        - "4 — Good, minor issues"
+        - "3 — Average, some friction"
+        - "2 — Below average, notable problems"
+        - "1 — Not fun, major issues"
+    validations:
+      required: true
+  - type: textarea
+    id: suggestions
+    attributes:
+      label: Suggestions for improvement
+      placeholder: What would you change?

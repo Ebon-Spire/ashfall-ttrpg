@@ -1,0 +1,50 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SearchModal from '../components/SearchModal.astro';
+import FeedbackModal from '../components/FeedbackModal.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'A Post-Apocalyptic Tabletop Roleplaying Game' } = Astro.props;
+const fullTitle = title === 'Home' ? 'Ashfall RPG' : `${title} — Ashfall RPG`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{fullTitle}</title>
+    <link rel="icon" type="image/png" href="/images/ashfall-logo.png" />
+    <!-- Prevent flash of wrong theme -->
+    <script is:inline>
+      (function() {
+        const saved = localStorage.getItem('ashfall-theme');
+        const pref = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', saved || pref);
+      })();
+    </script>
+  </head>
+  <body>
+    <Header />
+    <div class="scroll-progress" id="scroll-progress"></div>
+    <SearchModal />
+    <FeedbackModal />
+    <slot />
+    <Footer />
+    <script is:inline>
+      window.addEventListener('scroll', function() {
+        var el = document.getElementById('scroll-progress');
+        if (!el) return;
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        if (h > 0) el.style.width = (window.scrollY / h * 100) + '%';
+      }, { passive: true });
+    </script>
+  </body>
+</html>

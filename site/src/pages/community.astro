@@ -1,0 +1,327 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/global.css';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Community">
+  <main>
+    <!-- Hero -->
+    <section class="comm-hero">
+      <div class="comm-hero-bg" aria-hidden="true">
+        <img src="/images/illustrations/campfire-gathering.png" alt="" loading="eager" />
+      </div>
+      <div class="comm-hero-inner">
+        <h1 class="comm-hero-title">Community</h1>
+        <p class="comm-hero-subtitle">The wasteland is harsh — but you don't have to survive it alone.</p>
+      </div>
+      <div class="comm-hero-fade" aria-hidden="true"></div>
+    </section>
+
+    <!-- Get Involved -->
+    <section class="comm-section comm-section-alt">
+      <div class="comm-container">
+        <h2 class="comm-section-title">Get Involved</h2>
+        <p class="comm-section-subtitle">Ashfall is shaped by its community. Join the Discord and help build the game.</p>
+        <div class="discord-cta">
+          <a href="https://discord.gg/pTUYgRsXRc" class="btn btn-discord" target="_blank" rel="noopener noreferrer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 0.5rem;">
+              <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+            </svg>
+            Join the Discord
+          </a>
+        </div>
+        <div class="involve-grid">
+          <img src="/images/illustrations/community-tabletop.png" alt="Friends gathered around a table playing Ashfall, rolling dice and laughing" class="involve-img" loading="lazy" />
+          <div class="involve-items">
+            <div class="involve-item">
+              <h3>Playtest</h3>
+              <p>Run a session with the current rules. Try edge cases. Break things. Every playtest report makes the game stronger.</p>
+            </div>
+            <div class="involve-item">
+              <h3>Report Issues</h3>
+              <p>Found a rule that contradicts itself, a broken link, or a math error? Use the feedback button in the header or drop it in the Discord.</p>
+            </div>
+            <div class="involve-item">
+              <h3>Share Homebrew</h3>
+              <p>Built a custom archetype, creature, or scenario? Share it in the Discord homebrew channel. The best homebrew often inspires official content.</p>
+            </div>
+            <div class="involve-item">
+              <h3>Spread the Word</h3>
+              <p>Tell your gaming group. Post about your sessions. The wasteland needs more survivors.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="comm-section">
+      <div class="comm-container">
+        <h2 class="comm-section-title">Start Playing</h2>
+        <p class="comm-section-subtitle">Everything you need is free and online.</p>
+        <div class="start-grid">
+          <a href={`${base}getting-started/`} class="start-card">
+            <img src="/images/illustrations/party-at-crossroads.png" alt="" class="start-card-img" loading="lazy" />
+            <h3>Player's Guide</h3>
+            <p>New to Ashfall? Start here.</p>
+          </a>
+          <a href={`${base}rules/`} class="start-card">
+            <img src="/images/illustrations/wasteland-landscape.png" alt="" class="start-card-img" loading="lazy" />
+            <h3>Rules</h3>
+            <p>The complete ruleset, free online.</p>
+          </a>
+          <a href={`${base}dm-guide/`} class="start-card">
+            <img src="/images/illustrations/gm-planning-table.png" alt="" class="start-card-img" loading="lazy" />
+            <h3>Game Master's Guide</h3>
+            <p>Encounters, bestiary, generators.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  /* ---- Hero ---- */
+  .comm-hero {
+    position: relative;
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+  }
+  .comm-hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+  .comm-hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; opacity: 0.12; filter: contrast(1.1); }
+  .comm-hero-inner { position: relative; z-index: 2; padding: var(--space-3xl) var(--space-lg); max-width: 48rem; }
+  .comm-hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+  }
+  .comm-hero-subtitle { font-size: 1.15rem; color: var(--text-muted); font-style: italic; line-height: 1.6; }
+  .comm-hero-fade { position: absolute; bottom: 0; left: 0; right: 0; height: 120px; background: linear-gradient(to bottom, transparent 0%, var(--bg-secondary) 100%); z-index: 1; }
+
+  /* ---- Sections ---- */
+  .comm-section { padding: var(--space-3xl) 0; background: var(--bg-primary); }
+  .comm-section-alt {
+    background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(232, 99, 27, 0.04) 0%, transparent 60%), var(--bg-secondary);
+  }
+  .comm-container { max-width: 72rem; margin: 0 auto; padding: 0 var(--space-lg); }
+  .comm-section-title { font-family: var(--font-heading); font-size: 2rem; text-align: center; color: var(--text-primary); letter-spacing: 0.06em; margin-bottom: var(--space-sm); }
+  .comm-section-subtitle { text-align: center; color: var(--text-muted); max-width: 36rem; margin: 0 auto var(--space-2xl); font-size: 1.05rem; }
+
+  /* ---- Discord Feature ---- */
+  .discord-feature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+    max-width: 56rem;
+    margin: 0 auto;
+  }
+  .discord-content { text-align: center; }
+  .discord-icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: rgba(88, 101, 242, 0.1);
+    border: 2px solid rgba(88, 101, 242, 0.3);
+    border-radius: 50%;
+    margin-bottom: var(--space-lg);
+  }
+  .discord-content h2 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-md);
+  }
+  .discord-content p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 28rem;
+    margin: 0 auto var(--space-xl);
+  }
+  .btn-discord {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    background: #5865F2;
+    color: #fff;
+    border: 1px solid #4752C4;
+    box-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
+    transition: all 0.25s;
+  }
+  .btn-discord:hover {
+    background: #4752C4;
+    color: #fff;
+    box-shadow: 0 0 30px rgba(88, 101, 242, 0.5);
+    transform: translateY(-1px);
+  }
+
+  .discord-channels {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+  .channel-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: border-color 0.2s;
+  }
+  .channel-item:hover { border-color: var(--border-accent); }
+  .channel-hash {
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+  .channel-item strong {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    letter-spacing: 0.02em;
+  }
+  .channel-item p {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    margin: var(--space-xs) 0 0;
+    line-height: 1.4;
+  }
+
+  /* ---- Discord Widget ---- */
+  .discord-widget-wrap {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-2xl);
+    align-items: center;
+    max-width: 48rem;
+    margin: 0 auto;
+  }
+  .discord-widget {
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .discord-widget-cta h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    letter-spacing: 0.04em;
+    margin: 0 0 var(--space-md) 0;
+  }
+  .discord-widget-cta p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0 0 var(--space-xl) 0;
+  }
+
+  /* ---- Discord CTA ---- */
+  .discord-cta { text-align: center; margin-bottom: var(--space-2xl); }
+
+  /* ---- Get Involved ---- */
+  .involve-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+  .involve-img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .involve-items { display: flex; flex-direction: column; gap: var(--space-md); }
+  .involve-item {
+    padding: var(--space-lg);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+  }
+  .involve-item h3 {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 var(--space-xs) 0;
+  }
+  .involve-item p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; margin: 0; }
+
+  /* ---- Start Playing ---- */
+  .start-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+  .start-card {
+    display: block;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  }
+  .start-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--border-accent);
+  }
+  .start-card-img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    display: block;
+  }
+  .start-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: var(--space-md) var(--space-lg) var(--space-xs);
+  }
+  .start-card p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 0 var(--space-lg) var(--space-lg);
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 900px) {
+    .discord-widget-wrap { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+    .involve-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .comm-hero { min-height: 30vh; }
+    .start-grid { grid-template-columns: 1fr; }
+  }
+</style>

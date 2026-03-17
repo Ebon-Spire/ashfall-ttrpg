@@ -1,0 +1,18 @@
+---
+/**
+ * Renders raw markdown content.
+ * We pass the content to a Fragment and let Astro's built-in markdown handle it.
+ * Since Astro pages handle .md natively, for dynamic content we'll use set:html
+ * with a simple markdown-to-HTML converter.
+ */
+interface Props {
+  content: string;
+}
+
+const { content } = Astro.props;
+
+// Simple markdown to HTML - we use Astro's built-in marked-like rendering
+// by importing the markdown content at build time and passing rendered HTML.
+---
+
+<div class="md-content" set:html={content} />

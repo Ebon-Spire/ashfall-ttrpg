@@ -1,0 +1,48 @@
+name: Bug Report
+description: Report a rules error, broken link, or site issue
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Rules Error (incorrect mechanic, math, or wording)
+        - Broken Link or Missing Page
+        - Site Display Issue (layout, styling, mobile)
+        - Character Builder Bug
+        - Typo or Grammatical Error
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: page
+    attributes:
+      label: Which page is affected?
+      placeholder: "e.g., /rules/combat/ or /rules/classes/warrior/"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What's wrong?
+      placeholder: Describe the issue clearly. What did you expect vs. what you found?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce (if applicable)
+      placeholder: "1. Go to...\n2. Click on...\n3. See error"
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser (if site issue)
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - Mobile Browser
+        - N/A

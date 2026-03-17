@@ -1,0 +1,135 @@
+---
+/**
+ * Auto-generated Table of Contents from page headings.
+ * Client-side: uses Intersection Observer to highlight the current section.
+ */
+---
+
+<nav class="toc" id="toc" aria-label="On this page">
+  <div class="toc-header">On This Page</div>
+  <ul class="toc-list" id="toc-list"></ul>
+</nav>
+
+<style>
+  .toc {
+    width: var(--toc-width);
+    flex-shrink: 0;
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-lg));
+    max-height: calc(100vh - var(--header-height) - var(--space-2xl));
+    overflow-y: auto;
+    padding-left: var(--space-lg);
+    border-left: 1px solid var(--border);
+  }
+
+  .toc-header {
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    margin-bottom: var(--space-sm);
+  }
+
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .toc-list :global(li) {
+    margin: 0;
+  }
+
+  .toc-list :global(a) {
+    display: block;
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: var(--text-muted);
+    padding: 3px 0 3px var(--space-sm);
+    border-left: 2px solid transparent;
+    margin-left: -1px;
+    transition: color 0.15s, border-color 0.15s;
+    text-decoration: none;
+  }
+
+  .toc-list :global(a:hover) {
+    color: var(--text-primary);
+  }
+
+  .toc-list :global(a.active) {
+    color: var(--accent);
+    border-left-color: var(--accent);
+  }
+
+  .toc-list :global(.toc-h3) {
+    padding-left: calc(var(--space-sm) + var(--space-md));
+    font-size: 0.74rem;
+  }
+
+  @media (max-width: 1200px) {
+    .toc { display: none; }
+  }
+</style>
+
+<script>
+  function initToc() {
+    const tocList = document.getElementById('toc-list');
+    const toc = document.getElementById('toc');
+    if (!tocList || !toc) return;
+
+    // Find all h2 and h3 in the prose area
+    const prose = document.querySelector('.prose');
+    if (!prose) return;
+
+    const headings = prose.querySelectorAll('h2, h3');
+    if (headings.length === 0) {
+      toc.style.display = 'none';
+      return;
+    }
+
+    // Ensure headings have IDs
+    const items = [];
+    headings.forEach((h, i) => {
+      if (!h.id) {
+        h.id = h.textContent.trim().toLowerCase()
+          .replace(/[^a-z0-9\s-]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-') || `section-${i}`;
+      }
+      const level = h.tagName.toLowerCase();
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = `#${h.id}`;
+      a.textContent = h.textContent.trim();
+      if (level === 'h3') a.classList.add('toc-h3');
+      a.setAttribute('data-heading-id', h.id);
+      li.appendChild(a);
+      tocList.appendChild(li);
+      items.push({ el: h, link: a });
+    });
+
+    // Intersection Observer for active state
+    let currentActive = null;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const match = items.find(item => item.el === entry.target);
+          if (match) {
+            if (currentActive) currentActive.classList.remove('active');
+            match.link.classList.add('active');
+            currentActive = match.link;
+          }
+        }
+      });
+    }, {
+      rootMargin: '-80px 0px -70% 0px',
+      threshold: 0
+    });
+
+    items.forEach(item => observer.observe(item.el));
+  }
+
+  initToc();
+</script>
