@@ -313,6 +313,13 @@ blockquote.callout-warning > p:first-child strong:first-child {
   border: 1px solid rgba(138, 138, 143, 0.2);
 }
 
+/* Lists containing ability cards — remove default list indentation */
+.prose ul:has(> li > .action-badge),
+.prose ul:has(> li > p > strong > .action-badge),
+.prose ol:has(> li > .action-badge),
+.prose ol:has(> li > p > strong > .action-badge) {
+  padding-left: 0;
+}
 /* List items with action badges get card styling */
 .prose li:has(.action-badge) {
   background: var(--bg-card);
