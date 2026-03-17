@@ -22,14 +22,17 @@ function splitFrontmatter(raw: string): { frontmatter: string | null; body: stri
 const TERM_LINKS: Record<string, string> = {
   // Conditions
   'Blinded': '/rules/conditions/',
+  'Bleeding': '/rules/conditions/',
   'Charmed': '/rules/conditions/',
   'Confused': '/rules/conditions/',
   'Dazed': '/rules/conditions/',
   'Deafened': '/rules/conditions/',
   'Exhaustion': '/rules/conditions/',
+  'Flat-Footed': '/rules/conditions/',
   'Frightened': '/rules/conditions/',
   'Grappled': '/rules/conditions/',
   'Incapacitated': '/rules/conditions/',
+  'Incorporeal': '/rules/conditions/',
   'Invisible': '/rules/conditions/',
   'Paralyzed': '/rules/conditions/',
   'Petrified': '/rules/conditions/',
@@ -39,12 +42,24 @@ const TERM_LINKS: Record<string, string> = {
   'Slowed': '/rules/conditions/',
   'Stunned': '/rules/conditions/',
   'Unconscious': '/rules/conditions/',
+  'Weakened': '/rules/conditions/',
   // Core mechanics
   'Burnout': '/rules/magic/#burnout-mechanics',
   'Twilight Event': '/rules/magic/#twilight-events-critical-overcasting-failures',
   'Sigil System': '/rules/magic/#the-sigil-system--modular-spell-crafting',
   'Bounded Accuracy': '/rules/introduction/',
   'Defense Value': '/rules/combat/',
+  'Multiple Attack Penalty': '/rules/combat/',
+  'Advantage': '/rules/introduction/',
+  'Disadvantage': '/rules/introduction/',
+  'Temporary HP': '/rules/combat/',
+  'Concentration': '/rules/magic/#concentration',
+  'Lingering Injury': '/rules/exploration/',
+  'Overcasting': '/rules/magic/#overcasting-procedure',
+  // Resources
+  'Spell Slots': '/rules/magic/',
+  'Hit Dice': '/rules/exploration/',
+  'Advancement Points': '/rules/progression/',
   // Rest economy
   'Short Rest': '/rules/exploration/',
   'Long Rest': '/rules/exploration/',
@@ -77,35 +92,79 @@ function postProcessHtml(html: string): string {
     }
   );
 
-  // 2. Action cost badges: convert patterns like (1 Action), (2 Actions), (Reaction), (Passive), (Free)
+  // 2. Action cost badges: flexible detection of action costs in parentheticals
+  // Matches (1 Action), (1 Action, 1/Short Rest), (At-Will, 1 Action), etc.
+  // Extracts the action type and renders a badge, preserving other info as text
   html = html.replace(
-    /\(1 Action\)/gi,
-    '<span class="action-badge action-badge-1">1 Action</span>'
+    /\(([^)]*?\b(?:1 [Aa]ction|2 [Aa]ctions?|3 [Aa]ctions?|[Rr]eaction|[Ff]ree(?: [Aa]ction)?|[Pp]assive|[Aa]t-[Ww]ill)\b[^)]*?)\)/g,
+    (match, inner) => {
+      let badge = '';
+      const rest: string[] = [];
+
+      // Extract the action type
+      if (/\b1 [Aa]ction/i.test(inner)) {
+        badge = '<span class="action-badge action-badge-1">1 Action</span>';
+      } else if (/\b2 [Aa]ctions?/i.test(inner)) {
+        badge = '<span class="action-badge action-badge-2">2 Actions</span>';
+      } else if (/\b3 [Aa]ctions?/i.test(inner)) {
+        badge = '<span class="action-badge action-badge-3">3 Actions</span>';
+      } else if (/\b[Rr]eaction\b/i.test(inner)) {
+        badge = '<span class="action-badge action-badge-reaction">Reaction</span>';
+      } else if (/\b[Aa]t-[Ww]ill\b/i.test(inner)) {
+        badge = '<span class="action-badge action-badge-free">At-Will</span>';
+      } else if (/\b[Ff]ree/i.test(inner)) {
+        badge = '<span class="action-badge action-badge-free">Free</span>';
+      } else if (/\b[Pp]assive/i.test(inner)) {
+        badge = '<span class="action-badge action-badge-passive">Passive</span>';
+      }
+
+      // Collect remaining text (frequency, conditions, etc.)
+      const remaining = inner
+        .replace(/\b1 [Aa]ction\b/i, '')
+        .replace(/\b2 [Aa]ctions?\b/i, '')
+        .replace(/\b3 [Aa]ctions?\b/i, '')
+        .replace(/\b[Rr]eaction\b/i, '')
+        .replace(/\b[Aa]t-[Ww]ill\b/i, '')
+        .replace(/\b[Ff]ree(?: [Aa]ction)?\b/i, '')
+        .replace(/\b[Pp]assive(?: [Tt]rigger| [Oo]ption| [Ff]eature| [Ee]nhancement| [Dd]amage [Bb]oost| & [Ii]nitiative [Bb]onus)?\b/i, '')
+        .replace(/^[\s,]+|[\s,]+$/g, '')
+        .trim();
+
+      if (remaining) {
+        return `${badge} <span class="action-meta">(${remaining})</span>`;
+      }
+      return badge;
+    }
   );
+
+  // Also catch standalone non-standard badges that didn't match above
+  // (1/Short Rest), (1/Long Rest), (Daily Ability), etc. — render as muted meta text
   html = html.replace(
-    /\(2 Actions?\)/gi,
-    '<span class="action-badge action-badge-2">2 Actions</span>'
+    /\((1\/(?:Short|Long) Rest[^)]*)\)/gi,
+    '<span class="action-meta">($1)</span>'
   );
+
+  // 2b. Convert "Action Cost:" labeled lines into inline badges
+  // Matches: <strong>Action Cost:</strong> 1 action / Reaction / Free action / etc.
   html = html.replace(
-    /\(3 Actions?\)/gi,
-    '<span class="action-badge action-badge-3">3 Actions</span>'
+    /<strong>Action Cost:<\/strong>\s*(.*?)(?:<\/p>|<br>)/gi,
+    (match, cost) => {
+      const cleaned = cost.trim().replace(/<\/?[^>]+>/g, '');
+      let badge = '';
+      if (/1 action/i.test(cleaned)) badge = '<span class="action-badge action-badge-1">1 Action</span>';
+      else if (/2 action/i.test(cleaned)) badge = '<span class="action-badge action-badge-2">2 Actions</span>';
+      else if (/reaction/i.test(cleaned)) badge = '<span class="action-badge action-badge-reaction">Reaction</span>';
+      else if (/free/i.test(cleaned)) badge = '<span class="action-badge action-badge-free">Free</span>';
+      else if (/passive/i.test(cleaned)) badge = '<span class="action-badge action-badge-passive">Passive</span>';
+      else badge = `<span class="action-meta">(${cleaned})</span>`;
+      return badge + '</p>';
+    }
   );
-  html = html.replace(
-    /\(Reaction\)/gi,
-    '<span class="action-badge action-badge-reaction">Reaction</span>'
-  );
-  html = html.replace(
-    /\(Free(?: Action)?\)/gi,
-    '<span class="action-badge action-badge-free">Free</span>'
-  );
-  html = html.replace(
-    /\(Passive\)/gi,
-    '<span class="action-badge action-badge-passive">Passive</span>'
-  );
-  html = html.replace(
-    /\(At-Will\)/gi,
-    '<span class="action-badge action-badge-free">At-Will</span>'
-  );
+
+  // 2c. Convert "As 1 action" / "As a reaction" in descriptions to badges
+  html = html.replace(/\bAs 1 action\b/gi, '<span class="action-badge action-badge-1">1 Action</span>');
+  html = html.replace(/\bAs 2 actions?\b/gi, '<span class="action-badge action-badge-2">2 Actions</span>');
+  html = html.replace(/\bAs a reaction\b/gi, '<span class="action-badge action-badge-reaction">Reaction</span>');
 
   // 3. Auto-link game terms (only in paragraph text, not in headings or links)
   // Split on HTML tags to avoid modifying tag attributes or existing links

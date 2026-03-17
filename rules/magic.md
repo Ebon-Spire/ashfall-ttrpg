@@ -284,6 +284,8 @@ In addition to slot-based scaling, damage cantrips gain additional base damage d
 
 Utility cantrips: Range/effect increases at DM discretion
 
+> **Rule:** Healing cantrips (such as Minor Heal) do **not** benefit from slot-scaling. Healing output is governed by dedicated healing spells and class features. Cantrip scaling applies only to damage-dealing cantrips.
+
 **Healing cantrips** (such as Minor Heal) do **not** benefit from slot-scaling. Healing output is governed by dedicated healing spells (Healing Touch, Bind Wounds, etc.) and class features (Field Medic, Channel Energy). Cantrip scaling applies only to damage-dealing cantrips.
 
 ### Cantrip Acquisition

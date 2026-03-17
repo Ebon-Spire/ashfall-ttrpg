@@ -4,7 +4,7 @@
 
 ## Rest and Recovery
 
-**This is not a variant rule. This is the default rest system.**
+> **Rule:** This is not a variant rule. This is the default rest system. Short rests take 8 hours. Long rests take 1 week in a safe settlement.
 
 In the harsh post-apocalyptic wasteland, recovery is slow and dangerous.
 
@@ -29,6 +29,8 @@ In the harsh post-apocalyptic wasteland, recovery is slow and dangerous.
 - Cannot benefit from multiple short rests in same 24-hour period
 - Interrupted rest (combat, environmental hazard) must restart
 - No spell slot recovery beyond 1 slot
+
+> **GM Note:** The Dungeon Breather is an optional variant for dungeons where an 8-hour rest would break pacing. Use sparingly — 1-2 per dungeon maximum.
 
 **Dungeon "Breather" Variant:**
 - DMs may place "safe rooms" in dungeons/hostile areas
@@ -73,6 +75,8 @@ In the harsh post-apocalyptic wasteland, recovery is slow and dangerous.
 - Regain END modifier HP per day of light activity (minimum 1)
 - Requires adequate food and water
 - Slow but doesn't require full rest week
+
+> **Warning:** Without water in hot climates, a character gains 1 Exhaustion after 1 day, then 2 per day. Death occurs in 3-4 days. Finding water stops the gain but doesn't remove existing Exhaustion levels.
 
 **Starvation/Dehydration:**
 - 3 days without food: Gain 1 Exhaustion, then 1 per day

@@ -383,6 +383,14 @@ li::marker {
   color: var(--accent-dim);
 }
 
+/* ---- Action Meta (frequency, conditions after badge) ---- */
+.action-meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  vertical-align: middle;
+}
+
 /* ---- Term Auto-Links ---- */
 a.term-link {
   color: var(--accent);

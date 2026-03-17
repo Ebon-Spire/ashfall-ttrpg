@@ -27,6 +27,8 @@ Each costs **1 action** unless noted otherwise.
 
 - **Strike:** Make one attack with weapon or unarmed
 
+> **Rule:** Each additional Strike action in the same turn takes a cumulative -3 penalty: first Strike +0, second -3, third -6. This applies to all attack rolls, including spell attacks.
+
 **Multiple Attack Penalty:** When you make more than one Strike on your turn, each attack after the first takes a cumulative -3 penalty. Your second attack is at -3, your third at -6, and so on. Abilities that grant Extra Attack (such as from class features) do NOT apply the penalty to the bonus attack granted by Extra Attack — only to additional Strike actions beyond that. The All-Out Attack activity (3 actions) follows these same penalties.
 
 - 1 Strike = no penalty
