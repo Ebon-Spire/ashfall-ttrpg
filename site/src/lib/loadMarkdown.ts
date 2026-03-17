@@ -187,11 +187,11 @@ function postProcessHtml(html: string): string {
   // <div class="ability-card"> blocks. This guarantees consistent styling
   // regardless of markdown source formatting.
 
-  // 4a. Convert <li> entries with action badges into ability-card divs
+  // 4a. Convert <li> entries with action badges OR action-meta into ability-card divs
   // Matches: <li><p><strong>Name <badge>...</strong>...</p></li>
   // or:      <li><strong>Name <badge>...</strong>...</li>
   html = html.replace(
-    /<li>\s*(<p>)?\s*(<strong>(?:(?!<\/li>).)*?action-badge[\s\S]*?)<\/li>/g,
+    /<li>\s*(<p>)?\s*(<strong>(?:(?!<\/li>).)*?(?:action-badge|action-meta)[\s\S]*?)<\/li>/g,
     (match, pTag) => {
       // Extract the inner content, stripping the outer <li> tags
       let inner = match.replace(/^<li>\s*/, '').replace(/<\/li>$/, '');
@@ -199,7 +199,7 @@ function postProcessHtml(html: string): string {
     }
   );
 
-  // Clean up: <ul> that now contain only ability-card divs should become plain containers
+  // Clean up: <ul> that now contain only ability-card divs (and maybe whitespace/other divs) should become plain containers
   html = html.replace(/<ul>\s*((?:<div class="ability-card">[\s\S]*?<\/div>\s*)+)<\/ul>/g,
     '<div class="ability-list">$1</div>'
   );
@@ -216,7 +216,7 @@ function postProcessHtml(html: string): string {
       continue;
     }
 
-    if (!line.includes('action-badge') || !line.match(/^<p><strong>/)) {
+    if ((!line.includes('action-badge') && !line.includes('action-meta')) || !line.match(/^<p><strong>/)) {
       result.push(line);
       continue;
     }
