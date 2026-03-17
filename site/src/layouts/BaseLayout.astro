@@ -20,8 +20,29 @@ const fullTitle = title === 'Home' ? 'Ashfall RPG' : `${title} — Ashfall RPG`;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://ashfallrpg.com/images/og-image.png" />
+    <meta property="og:url" content={`https://ashfallrpg.com${Astro.url.pathname}`} />
+    <meta property="og:site_name" content="Ashfall RPG" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://ashfallrpg.com/images/og-image.png" />
+
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#e8631b" />
+    <link rel="canonical" href={`https://ashfallrpg.com${Astro.url.pathname}`} />
+
     <title>{fullTitle}</title>
     <link rel="icon" type="image/png" href="/images/ashfall-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <!-- Prevent flash of wrong theme -->
     <script is:inline>
       (function() {

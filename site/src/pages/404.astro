@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/global.css';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Lost in the Wasteland" description="Page not found — this part of the wasteland hasn't been mapped yet.">
+  <main class="error-page">
+    <div class="error-container">
+      <img src="/images/illustrations/404-lost.png" alt="A lost traveler scratches their head at a broken road sign in the wasteland" class="error-bg" loading="eager" />
+      <div class="error-content">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-title">Lost in the Wasteland</h2>
+        <p class="error-desc">This part of the wasteland hasn't been mapped yet. The page you're looking for doesn't exist, was moved, or was consumed by a Twilight Event.</p>
+        <div class="error-actions">
+          <a href={`${base}`} class="error-btn error-btn-primary">Return Home</a>
+          <a href={`${base}rules/`} class="error-btn error-btn-secondary">Browse Rules</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .error-page {
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-secondary);
+  }
+
+  .error-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.08;
+    filter: contrast(1.1);
+    z-index: 0;
+  }
+
+  .error-container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: var(--space-3xl) var(--space-lg);
+    max-width: 36rem;
+  }
+
+  .error-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .error-code {
+    font-family: var(--font-heading);
+    font-size: clamp(6rem, 20vw, 12rem);
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: var(--space-sm);
+    opacity: 0.3;
+  }
+
+  .error-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    color: var(--text-primary);
+    letter-spacing: 0.06em;
+    margin-bottom: var(--space-md);
+  }
+
+  .error-desc {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .error-actions {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .error-btn {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.75rem 1.8rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.25s;
+    display: inline-block;
+  }
+
+  .error-btn-primary {
+    background: var(--accent);
+    color: var(--bg-primary);
+    border: 1px solid var(--accent-hover);
+  }
+  .error-btn-primary:hover {
+    background: var(--accent-hover);
+    color: var(--bg-primary);
+    box-shadow: 0 0 20px rgba(232, 99, 27, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .error-btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+  }
+  .error-btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
+</style>

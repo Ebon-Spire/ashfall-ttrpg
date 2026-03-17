@@ -374,6 +374,11 @@ hr {
   display: block;
 }
 
+/* ---- Image Performance ---- */
+img {
+  content-visibility: auto;
+}
+
 /* ---- Tables ---- */
 table {
   width: 100%;
