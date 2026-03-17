@@ -182,28 +182,48 @@ function postProcessHtml(html: string): string {
     });
   });
 
-  // 4. Ability card wrapping: wrap <p> with action badge + following <ul>/<ol> into a card div
-  // Split HTML into segments and only wrap <p> that are NOT inside <li>
+  // 4. Ability card wrapping — unified approach
+  // Convert ALL ability entries (both <li> and <p> with action badges) into
+  // <div class="ability-card"> blocks. This guarantees consistent styling
+  // regardless of markdown source formatting.
+
+  // 4a. Convert <li> entries with action badges into ability-card divs
+  // Matches: <li><p><strong>Name <badge>...</strong>...</p></li>
+  // or:      <li><strong>Name <badge>...</strong>...</li>
+  html = html.replace(
+    /<li>\s*(<p>)?\s*(<strong>(?:(?!<\/li>).)*?action-badge[\s\S]*?)<\/li>/g,
+    (match, pTag) => {
+      // Extract the inner content, stripping the outer <li> tags
+      let inner = match.replace(/^<li>\s*/, '').replace(/<\/li>$/, '');
+      return `<div class="ability-card">${inner}</div>`;
+    }
+  );
+
+  // Clean up: <ul> that now contain only ability-card divs should become plain containers
+  html = html.replace(/<ul>\s*((?:<div class="ability-card">[\s\S]*?<\/div>\s*)+)<\/ul>/g,
+    '<div class="ability-list">$1</div>'
+  );
+
+  // 4b. Wrap standalone <p> with action badge + optional following <ul>
   const lines = html.split('\n');
-  let insideLi = 0;
   const result: string[] = [];
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    // Track li nesting depth
-    const liOpens = (line.match(/<li/g) || []).length;
-    const liCloses = (line.match(/<\/li/g) || []).length;
-    insideLi += liOpens - liCloses;
 
-    if (insideLi > 0 || !line.includes('action-badge') || !line.match(/^<p><strong>/)) {
+    // Skip if already inside an ability-card or ability-list
+    if (line.includes('ability-card') || line.includes('ability-list')) {
       result.push(line);
       continue;
     }
 
-    // This is a standalone <p> with an action badge — wrap it
-    // Check if next line is a <ul> to include it in the card
+    if (!line.includes('action-badge') || !line.match(/^<p><strong>/)) {
+      result.push(line);
+      continue;
+    }
+
+    // Standalone <p> with badge — check if next line is a <ul>
     const nextLine = lines[i + 1] || '';
     if (nextLine.match(/^<ul>/)) {
-      // Find the end of the <ul>
       let ulEnd = i + 1;
       let depth = 1;
       while (ulEnd < lines.length - 1 && depth > 0) {
@@ -211,13 +231,12 @@ function postProcessHtml(html: string): string {
         depth += (lines[ulEnd].match(/<ul/g) || []).length;
         depth -= (lines[ulEnd].match(/<\/ul/g) || []).length;
       }
-      // Wrap the <p> and entire <ul> block
       result.push(`<div class="ability-card">${line}`);
       for (let j = i + 1; j <= ulEnd; j++) {
         result.push(lines[j]);
       }
       result.push('</div>');
-      i = ulEnd; // skip the lines we just consumed
+      i = ulEnd;
     } else {
       result.push(`<div class="ability-card">${line}</div>`);
     }

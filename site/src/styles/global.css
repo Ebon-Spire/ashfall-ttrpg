@@ -313,42 +313,10 @@ blockquote.callout-warning > p:first-child strong:first-child {
   border: 1px solid rgba(138, 138, 143, 0.2);
 }
 
-/* Lists containing ability cards — remove default list indentation */
-.prose ul:has(> li > .action-badge),
-.prose ul:has(> li > p > strong > .action-badge),
-.prose ol:has(> li > .action-badge),
-.prose ol:has(> li > p > strong > .action-badge) {
+/* Ability list container (replaces <ul> when all items are ability cards) */
+.ability-list {
   padding-left: 0;
-}
-/* List items with action badges get card styling */
-.prose li:has(.action-badge) {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
-  border-radius: 0 6px 6px 0;
-  padding: var(--space-md) var(--space-lg);
-  margin-bottom: var(--space-sm);
-  list-style: none;
-}
-.prose li:has(.action-badge) > p > strong:first-child,
-.prose li:has(.action-badge) > strong:first-child {
-  font-family: var(--font-heading);
-  font-size: 0.95rem;
-  letter-spacing: 0.02em;
-  color: var(--text-primary);
-}
-.prose li:has(.action-badge):hover {
-  border-color: var(--border-accent);
-  box-shadow: var(--shadow-sm);
-}
-/* Nested list items inside ability cards — no card styling */
-.prose li:has(.action-badge) li {
-  background: none;
-  border: none;
-  padding: 0;
-  margin-bottom: 0;
-  margin-left: 0;
-  list-style: disc;
+  margin: var(--space-md) 0;
 }
 
 /* Ability card wrapper (build-time generated from p + badge + optional ul) */
