@@ -1,0 +1,117 @@
+---
+/**
+ * DevBanner — Only renders on the dev site (dev.ashfallrpg.com).
+ * Controlled by DEV_SITE env var, set in deploy-dev.yml.
+ * Production builds never set this var, so the banner is invisible.
+ */
+const isDev = import.meta.env.PUBLIC_DEV_SITE === 'true';
+const commitsAhead = parseInt(import.meta.env.PUBLIC_DEV_COMMITS_AHEAD || '0', 10);
+const syncStatus = commitsAhead > 0
+  ? `${commitsAhead} commit${commitsAhead === 1 ? '' : 's'} ahead of public`
+  : 'In sync with public';
+const syncClass = commitsAhead > 0 ? 'ahead' : 'synced';
+---
+
+{isDev && (
+  <div class="dev-banner" role="status">
+    <div class="dev-banner-inner">
+      <span class="dev-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+        </svg>
+        DEV BUILD
+      </span>
+      <span class="dev-separator">|</span>
+      <span class={`dev-sync ${syncClass}`}>
+        <span class="dev-sync-dot"></span>
+        {syncStatus}
+      </span>
+    </div>
+  </div>
+)}
+
+<style>
+  .dev-banner {
+    position: relative;
+    z-index: 101;
+    background: linear-gradient(90deg, rgba(232, 99, 27, 0.15) 0%, rgba(196, 81, 26, 0.1) 50%, rgba(232, 99, 27, 0.15) 100%);
+    border-bottom: 1px solid rgba(232, 99, 27, 0.3);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--flame);
+    user-select: none;
+  }
+
+  .dev-banner-inner {
+    max-width: 76rem;
+    margin: 0 auto;
+    padding: 0.35rem var(--space-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+  }
+
+  .dev-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 700;
+    color: var(--ember);
+  }
+
+  .dev-separator {
+    color: rgba(232, 99, 27, 0.3);
+  }
+
+  .dev-sync {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 500;
+  }
+
+  .dev-sync-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .dev-sync.ahead .dev-sync-dot {
+    background: var(--amber);
+    box-shadow: 0 0 6px rgba(245, 166, 35, 0.6);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .dev-sync.ahead {
+    color: var(--amber);
+  }
+
+  .dev-sync.synced .dev-sync-dot {
+    background: var(--toxic-green);
+    box-shadow: 0 0 6px rgba(74, 255, 130, 0.5);
+  }
+
+  .dev-sync.synced {
+    color: var(--toxic-green);
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* Light theme adjustments */
+  [data-theme="light"] .dev-banner {
+    background: linear-gradient(90deg, rgba(232, 99, 27, 0.08) 0%, rgba(196, 81, 26, 0.05) 50%, rgba(232, 99, 27, 0.08) 100%);
+  }
+
+  @media (max-width: 768px) {
+    .dev-banner-inner {
+      font-size: 0.65rem;
+    }
+  }
+</style>
