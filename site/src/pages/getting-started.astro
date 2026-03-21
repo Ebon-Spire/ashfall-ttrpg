@@ -23,13 +23,14 @@ const steps = [
   { title: 'Roll or Assign Attributes', desc: 'Six attributes — Might, Agility, Endurance, Intellect, Wisdom, Presence — define your core capabilities.', href: `${base}rules/character-creation/` },
   { title: 'Choose a Species', desc: 'Humans are the most common survivors, but the wasteland has changed some people in unexpected ways.', href: `${base}rules/character-creation/` },
   { title: 'Pick a Background', desc: 'Your life before (or after) The Fall shapes your starting skills and narrative hooks.', href: `${base}rules/character-creation/` },
-  { title: 'Select an Archetype', desc: 'Ashfall has 8 archetypes, each with distinct mechanics and playstyles — from the frontline Warrior to the reality-bending Channeler.', href: `${base}rules/classes/` },
+  { title: 'Choose a Chassis', desc: 'Five chassis define your physical baseline — hit die, proficiencies, and starting gear. Your chassis doesn\'t lock you into a role; it\'s just where you start.', href: `${base}rules/chassis/` },
+  { title: 'Spend Your Starting CP', desc: 'You get 15 Character Points at Level 1 (20 if Human). Spend them across 11 shared skill trees to pick up combat techniques, magic, support abilities, or anything else. Any character can invest in any tree.', href: `${base}rules/character-points/` },
   { title: 'Equip Your Gear', desc: 'Choose from the equipment list. In the wasteland, your loadout can mean the difference between survival and a shallow grave.', href: `${base}rules/equipment/` },
 ];
 
 const combatConcepts = [
-  { title: '3-Action Economy', desc: 'Each turn you get a Move, a Strike, and a Bonus Action. No dead turns — every class has meaningful options every round.', href: `${base}rules/combat/`, label: 'Combat Rules' },
-  { title: 'Bounded Lethality', desc: 'Bonuses cap at +18. Even high-level characters respect a well-armed raider squad. The wasteland never gets safe.', href: `${base}rules/combat/`, label: 'Combat Rules' },
+  { title: '3-Action Economy', desc: 'You get 3 actions per turn, spent however you choose — move, attack, cast, or use abilities in any combination. Plus 1 reaction on others\' turns.', href: `${base}rules/combat/`, label: 'Combat Rules' },
+  { title: 'Bounded Lethality', desc: 'Bonuses cap at +14 (core) or +18 at mythic tier. Even high-level characters respect a well-armed raider squad. The wasteland never gets safe.', href: `${base}rules/combat/`, label: 'Combat Rules' },
   { title: 'Gritty Rests', desc: 'Short rests take 8 hours. Long rests take a full week. Resource management is survival — every bullet and bandage counts.', href: `${base}rules/exploration/`, label: 'Exploration Rules' },
 ];
 
@@ -42,7 +43,7 @@ const faqs = [
   { q: 'How long does a session take?', a: 'Most groups play 2-4 hours. Some sessions are all tense negotiation with no combat; others are one long firefight. Both are normal.' },
   { q: 'Can I play online?', a: 'Absolutely. Voice chat, a free dice roller, and optionally a VTT like Foundry or Roll20. Ashfall works just as well over a screen as around a table.' },
   { q: 'What\'s the deal with magic and augmentations?', a: 'Augmentations are reliable tech upgrades. Magic is volatile but powerful. The catch: every augmentation erodes your Humanity score, making magic harder to use. You can lean into one, dabble in both, but mastering both isn\'t possible.' },
-  { q: 'What archetype should I pick first?', a: 'Whatever sounds fun. Warrior and Gunslinger are straightforward fighters. Medic and Technician support the group. Operative and Diplomat solve problems outside combat. Mystic and Channeler use magic — more complex but rewarding.' },
+  { q: 'What chassis should I pick?', a: 'Pick the one that fits your concept. Heavy chassis: d12 HD, best defenses — great for frontline fighters. Striker: d8 HD, high damage output. Specialist: d8 HD, flexible skills and a technical edge. Adept: d6 HD, suited for magic and support. Survivor: d10 HD, built tough for wasteland exploration and social play. Your chassis sets your physical baseline but doesn\'t lock your build — spend CP in any skill tree you want. If you want a ready-made path, check the build guides (Warrior, Mystic, Operative, etc.) for suggested CP spending.' },
 ];
 ---
 
@@ -104,7 +105,7 @@ const faqs = [
     <section class="gs-section">
       <div class="gs-container">
         <h2 class="gs-section-title">Creating a Character</h2>
-        <p class="gs-section-subtitle">Character creation follows five straightforward steps. The full rules are in the <a href={`${base}rules/character-creation/`}>Character Creation</a> chapter.</p>
+        <p class="gs-section-subtitle">Character creation follows six straightforward steps. The full rules are in the <a href={`${base}rules/character-creation/`}>Character Creation</a> chapter.</p>
         <img src="/images/illustrations/party-at-crossroads.png" alt="A party of wasteland adventurers stand at a crossroads in the ruins" class="gs-section-img" loading="lazy" />
         <div class="gs-steps">
           {steps.map((step, i) => (
@@ -157,7 +158,7 @@ const faqs = [
           <div class="gs-dialogue"><span class="gs-speaker gs-gm">GM:</span> Mira — one of the raiders stands up and walks toward your position. What do you do?</div>
           <div class="gs-dialogue"><span class="gs-speaker gs-player">Mira:</span> I flash the hand signal. We go now.</div>
           <div class="gs-dialogue"><span class="gs-speaker gs-gm">GM:</span> Roll initiative. Dax, you're first — three actions, what are you doing?</div>
-          <div class="gs-dialogue"><span class="gs-speaker gs-player">Dax:</span> Move to lean out and brace my rifle. Strike — I fire at the one with the pipe rifle. That's 18 to hit. Bonus Action: Pinning Fire to suppress the others.</div>
+          <div class="gs-dialogue"><span class="gs-speaker gs-player">Dax:</span> Move to lean out and brace my rifle. Strike — I fire at the one with the pipe rifle. That's 18 to hit. Third action: Pinning Fire to suppress the others.</div>
           <div class="gs-dialogue"><span class="gs-speaker gs-gm">GM:</span> 18 hits. She staggers and drops the rifle. The other two flinch as shots chew into the concrete around them — they're suppressed. Mira, you're next, and they still don't know where you are.</div>
         </div>
       </div>
@@ -202,7 +203,7 @@ const faqs = [
     <!-- 9. Running the Game? -->
     <section class="gs-section gs-section-alt">
       <div class="gs-container">
-        <a href={`${base}dm-guide/`} class="gs-gm-card">
+        <a href={`${base}gm-guide/`} class="gs-gm-card">
           <div class="gs-gm-card-inner">
             <span class="gs-gm-card-icon">{'\u{2694}'}</span>
             <div>

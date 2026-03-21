@@ -108,6 +108,12 @@ const base = import.meta.env.BASE_URL;
     color: var(--text-muted);
     font-size: 0.9rem;
   }
+
+  .search-result mark {
+    background: rgba(232, 99, 27, 0.25);
+    color: inherit;
+    border-radius: 2px;
+  }
 </style>
 
 <script define:vars={{ base }}>
@@ -207,9 +213,10 @@ const base = import.meta.env.BASE_URL;
   }
 
   function highlightSnippet(text, terms) {
-    const escaped = terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
-    const re = new RegExp(`(${escaped.join('|')})`, 'gi');
-    return text.replace(re, '<mark>$1</mark>').replace(/</g, '<').replace(/>/g, '>').replace(/&lt;mark&gt;/g, '<mark>').replace(/&lt;\/mark&gt;/g, '</mark>');
+    const safe = escapeHtml(text);
+    const escapedTerms = terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    const re = new RegExp(`(${escapedTerms.join('|')})`, 'gi');
+    return safe.replace(re, '<mark>$1</mark>');
   }
 
   function getSnippet(text, terms) {
@@ -303,9 +310,9 @@ const base = import.meta.env.BASE_URL;
         .slice(0, 3);
 
       return `<a href="${base}rules/${result.slug}/" class="search-result${i === 0 ? ' active' : ''}" data-index="${i}">
-        <div class="search-result-title">${escapeHtml(result.title)}</div>
-        ${matchedHeadings.length ? `<div class="search-result-headings">${matchedHeadings.map(h => escapeHtml(h)).join(' &rsaquo; ')}</div>` : ''}
-        <div class="search-result-snippet">${escapeHtml(snippet)}</div>
+        <div class="search-result-title">${highlightSnippet(result.title, allTerms)}</div>
+        ${matchedHeadings.length ? `<div class="search-result-headings">${matchedHeadings.map(h => highlightSnippet(h, allTerms)).join(' &rsaquo; ')}</div>` : ''}
+        <div class="search-result-snippet">${highlightSnippet(snippet, allTerms)}</div>
       </a>`;
     }).join('');
   }

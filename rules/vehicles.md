@@ -18,7 +18,7 @@ crew_roles:
   - {role: Navigator, skill: Navigation, actions: "Plot Course, Scan, Countermeasures"}
   - {role: Gunner, skill: "Weapon Systems", actions: "Fire Mounted Weapon, Aimed Shot, Suppressive Fire"}
   - {role: Engineer, skill: Engineering, actions: "Damage Control, Reroute Power, Emergency Repair"}
-  - {role: Commander, skill: "Tactics or Persuasion", actions: "Issue Orders, Coordinate, Rally Crew"}
+  - {role: Commander, skill: "Tactics, Persuasion, or Intimidation", actions: "Issue Orders, Coordinate, Rally Crew"}
   - {role: Communications, skill: "Technology or Persuasion", actions: "Broadcast, Intercept, Jam Signal"}
 station_layouts:
   - {size: Personal, stations: ["Pilot"]}
@@ -484,7 +484,7 @@ A dedicated engineering space surrounding the vehicle's primary power plant.
 
 - Engineer gains **advantage on all Engineering checks** while stationed here
 - **Overclock Engine** has no risk of system damage when performed from the engine room
-- Emergency Repair restores **3d10 + INT** HP instead of 2d10 + INT
+- Emergency Repair restores **+1d10 additional HP** (e.g., Personal/Light: 3d10, Medium: 4d10, Heavy: 5d10, Massive: 6d10, all + INT modifier)
 - Provides direct access to all vehicle systems for rapid Damage Control (−2 DC to Damage Control checks)
 
 **Narrative Use:** The engine room is the Engineer's domain — loud, hot, and dangerous. It's the beating heart of the vehicle, and the Engineer who works here knows every pipe, every junction, every warning light by sound and feel. When the vehicle takes critical damage, the engine room is where the miracle happens — or where the Engineer goes down with the ship.
@@ -872,7 +872,7 @@ The wasteland doesn't care about your vehicle. Radiation storms, collapsing infr
 | Hazard | Effect | DC |
 |--------|--------|-----|
 | **Gravity Anomaly** | Vehicle weight doubles or halves. Doubled: speed halved, +2 DV. Halved: speed doubled, −2 DV, Piloting DC 16 each round or lose control | 18 Navigation to detect before entering |
-| **Temporal Stutter** | Time moves at different rates. Roll 1d4 each round: 1-2 = crew loses 1 action, 3-4 = crew gains 1 bonus action. Unpredictable | 20 Arcana or Science to detect |
+| **Temporal Stutter** | Time moves at different rates. Roll 1d4 each round: 1-2 = crew loses 1 action (2 total that round), 3-4 = crew gains 1 additional action (4 total that round). Unpredictable | 20 Arcana or Science to detect |
 | **Null Field** | All technology fails. Engines stall, weapons offline, sensors dead. Vehicle coasts on momentum (half speed, decreasing by 10 ft/round). Only manual/mechanical systems work | 16 Navigation to detect, 20 Engineering to insulate systems |
 | **Spore Cloud** | Biological contamination. Unsealed vehicles: all crew make DC 16 END save or Poisoned for 1 hour. Vehicle hull takes 1d4 acid damage per round from corrosive spores | 14 Survival or Science to detect |
 
@@ -1149,6 +1149,320 @@ Select compartments for each compartment slot. See *Compartments* for the full l
 
 ---
 
+## Vehicle Acquisition & Upgrades
+
+In the wasteland, a vehicle is more than transportation — it's a fortress, a lifeline, and a statement. Vehicles are rare, valuable, and fought over. Most survivors will never own one. The party that acquires a vehicle has reached a milestone: they are no longer pedestrians. They are a force.
+
+This section covers how PCs obtain vehicles, upgrade them, and keep them running. For vehicle design and module installation, see **Vehicle Design** above. For combat repairs, see **Repair and Maintenance** below.
+
+---
+
+### Obtaining a Vehicle
+
+There are five primary ways to acquire a vehicle in Ashfall. Each has trade-offs in cost, time, risk, and reliability.
+
+#### 1. Salvage
+
+The wasteland is littered with wrecked vehicles — pre-war relics half-buried in ash, raider technicals gutted by ambushes, military transports abandoned during the Fall. Finding one is a matter of luck and skill. Getting it running is the hard part.
+
+**Finding a Wreck:**
+- During exploration, the GM may place wrecked vehicles as discoverable locations or random encounters
+- A character with the Scavenging advanced skill can actively search for salvageable vehicles during a Scavenge downtime activity (see **Downtime**)
+- Survival DC 16 to locate a potentially salvageable wreck in the field (1 day of searching per attempt)
+
+**Assessing a Wreck:**
+When a wreck is found, the GM rolls or selects from the Salvage Condition table:
+
+| d6 | Condition | Frame Integrity | Modules | Repair Required |
+|----|-----------|----------------|---------|-----------------|
+| 1 | Gutted Shell | Frame only, 25% HP | None — stripped clean | Full rebuild |
+| 2 | Stripped Wreck | Frame + 1 system, 40% HP | 1 damaged module (50% function) | Major rebuild |
+| 3 | Damaged Vehicle | Frame intact, 50% HP | 1d3 modules (functional) | Significant repair |
+| 4 | Battered but Whole | Frame intact, 75% HP | 1d3+1 modules (functional) | Moderate repair |
+| 5 | Abandoned | Fully intact, 90% HP | All original modules | Minor repair + fuel |
+| 6 | Hidden Cache | Fully intact, 100% HP | All modules + 1 bonus upgrade | Fuel only |
+
+**Salvage Vehicle Tier:** Wrecks are typically Tier 1 (Salvaged) or Tier 2 (Functional). The GM may place higher-tier wrecks in dangerous locations (military bases, faction territory, Voidscar zones) as quest rewards.
+
+**Salvage Vehicle Size:** Roll or choose based on location:
+
+| Location | Typical Size |
+|----------|-------------|
+| Roadside / surface ruins | Personal or Light |
+| Military installation | Light or Medium |
+| Faction motor pool | Medium |
+| Pre-war military base | Medium or Heavy |
+| Deep ruin / vault | Any (GM's choice) |
+
+**Repairing a Wreck:**
+- Requires Engineering proficiency
+- **Gutted Shell / Stripped Wreck:** Engineering DC 18, 3 days of work, materials costing 40% of vehicle's Tier 1 frame value
+- **Damaged Vehicle:** Engineering DC 16, 2 days of work, materials costing 25% of frame value
+- **Battered but Whole:** Engineering DC 14, 1 day of work, materials costing 10% of frame value
+- **Abandoned:** Engineering DC 12, 4 hours of work, no material cost (just fuel)
+- **Hidden Cache:** No repair needed — just fuel it up
+
+A Workshop compartment on another vehicle or a settlement garage reduces all repair DCs by 2. A Scavenger with Wasteland Ingenuity can attempt repairs with improvised materials (halve material costs, increase DC by 2).
+
+> *Example: The party finds a Damaged APC (Medium, Tier 1) in a collapsed overpass. The frame is intact at 50% HP (40 HP), with 2 functional modules: a Standard Engine and Scrap Plating. Repairing it requires Engineering DC 16, 2 days, and materials worth 500 cr (25% of the APC's 2,000 cr base cost). Once repaired, they have a functional Tier 1 Medium vehicle.*
+
+#### 2. Faction Reward
+
+Factions grant vehicles to trusted allies. A vehicle from a faction is a powerful statement of allegiance — and a leash. Faction vehicles often carry identifying marks, and using one signals whose banner you fly.
+
+**Requirements:**
+- **Standing +2 (Allied):** The faction may loan or grant a vehicle appropriate to the party's level (see Starting Vehicle Guidelines below). Loaned vehicles must be returned if standing drops below +2.
+- **Standing +3 (Devoted):** The faction grants a vehicle permanently. Higher tier and larger size available. The faction may also offer upgrades at reduced cost (50% material discount on tier upgrades performed at faction facilities).
+
+**Faction Vehicle Quality:**
+
+| Standing | Max Tier | Max Size | Notes |
+|----------|----------|----------|-------|
+| +2 | Tier 2 | Light | Loaned; faction markings |
+| +3 | Tier 3 | Medium | Permanent; faction markings optional |
+
+**Faction Markings:** Vehicles bearing faction markings grant +1 to social checks with that faction's allies but impose -1 to social checks with hostile factions (see **Faction Relationships** in Setting). Removing markings requires 1 day and a Technology DC 14 check. The faction will know.
+
+#### 3. Purchase
+
+Settlements with established trade infrastructure sell vehicles. Availability depends on settlement size and faction alignment.
+
+**Vehicle Purchase Prices:**
+The total cost of a vehicle is: **Frame Base Cost × Tier Multiplier + Module Costs + Compartment Costs**
+
+| Settlement Type | Max Tier Available | Max Size Available | Price Modifier |
+|----------------|-------------------|-------------------|---------------|
+| Small outpost (pop. <100) | Tier 1 | Personal | ×1.5 (limited supply) |
+| Established settlement (pop. 100-1,000) | Tier 2 | Light | ×1.0 (standard) |
+| Major settlement / faction hub (pop. 1,000+) | Tier 3 | Medium | ×0.9 (competitive market) |
+| Faction capital / metropolis | Tier 4 (see Tier 4 availability in Vehicle Tiers) | Heavy | ×0.8 (bulk supply) |
+
+**Tier 5 (Experimental) vehicles cannot be purchased** — they must be found, built, or earned as quest rewards. Tier 6 (Prototype) vehicles are unique and exist only as GM-placed rewards.
+
+**Negotiation:** A Persuasion or Deception check can modify the price. DC 14: 10% discount. DC 18: 20% discount. DC 22: 30% discount. Failure by 5+ offends the dealer (prices increase by 10% for that seller). A successful Persuasion DC 18 apology or a gift worth 10% of the vehicle's value can restore normal pricing.
+
+#### 4. Mission Objective
+
+The GM can place vehicles as quest rewards, scenario objectives, or campaign milestones. This is often the most narratively satisfying acquisition method.
+
+**Guidelines for GM-Placed Vehicles:**
+
+| Party Level | Appropriate Tier | Appropriate Size | Context |
+|-------------|-----------------|-----------------|---------|
+| 1-4 | Tier 1 | Personal or Light | Reward for completing a major early quest. The vehicle is unreliable and needs work. |
+| 5-8 | Tier 2 | Light or Medium | Faction mission reward, or captured from enemies. Solid workhorse. |
+| 9-12 | Tier 3 | Medium | Military salvage, faction promotion, or major story milestone. Combat-ready. |
+| 13-16 | Tier 4 | Medium or Heavy | Faction elite asset, recovered pre-war military vehicle, or raid on enemy motor pool. |
+| 17-20 | Tier 5 | Heavy or Massive | Campaign-defining. Pre-war experimental tech, alien hybrid vehicle, or Voidscar-warped relic. |
+
+**Progression Note:** A party should ideally have access to a vehicle by Level 3-5. If the campaign hasn't provided one naturally by Level 5, the GM should create an opportunity — a salvage encounter, a faction offer, or a desperate escape that puts the party behind the wheel.
+
+#### 5. Theft
+
+Vehicles can be stolen from settlements, faction motor pools, enemy camps, or encountered NPCs. Theft is risky but free.
+
+**Stealing a Vehicle:**
+1. **Approach:** Reach the vehicle undetected. Stealth check vs. guards' Perception (DC varies by location security)
+2. **Access:** Bypass security. Technology DC 14 (civilian vehicle), DC 18 (faction vehicle), DC 22 (military vehicle). Failure triggers an alarm.
+3. **Start:** Hot-wire or override ignition. Engineering DC 14 (Tier 1-2), DC 16 (Tier 3), DC 18 (Tier 4), DC 20 (Tier 5). Failure locks the vehicle for 1 hour (anti-theft system).
+4. **Escape:** Piloting checks to flee pursuit (see **Chase Rules** above).
+
+**Consequences:**
+- **Faction Standing:** Stealing from a faction reduces your standing with that faction by 1 level (minimum -3)
+- **Bounty:** Major settlements and factions may place a bounty on the thief. Bounty value = 50% of vehicle's value.
+- **Identification:** Stolen vehicles may be recognized. A Technology DC 16 check (1 day of work) can strip identifying features. Until then, faction members and law enforcement have advantage on checks to identify the vehicle.
+- **Hacking Protection:** Some faction vehicles have AI-locked ignition systems. These require a Hacking advanced skill check to bypass (see **Hacking** chapter). Failure may alert the faction's network.
+
+---
+
+### Starting Vehicle Guidelines
+
+Use this table to determine what vehicle is appropriate for a party at each level range. These are guidelines, not hard limits — a creative party may acquire a better vehicle early, or a campaign may deliberately withhold vehicles for narrative reasons.
+
+| Party Level | Recommended Tier | Recommended Size | Estimated Total Value | Notes |
+|-------------|-----------------|-----------------|----------------------|-------|
+| 1-4 | Tier 1 (Salvaged) | Personal or Light | 200-1,000 cr | Unreliable. Breakdowns are part of the story. Likely salvaged or gifted. |
+| 5-8 | Tier 2 (Functional) | Light or Medium | 1,000-8,000 cr | Solid workhorse. Basic modules. Earned through adventure or faction loyalty. |
+| 9-12 | Tier 3 (Military) | Medium | 8,000-25,000 cr | Combat-ready. Specialized modules. A real tactical asset. |
+| 13-16 | Tier 4 (Advanced) | Medium or Heavy | 25,000-100,000 cr | Faction-grade. Multiple compartments. A mobile base of operations. |
+| 17-20 | Tier 5 (Experimental) | Heavy or Massive | 100,000+ cr | Campaign-defining. Rare tech. A legend on wheels (or legs, or wings). |
+
+**Multiple Vehicles:** By mid-levels (8-12), a party may have 2-3 vehicles: a primary transport and one or two personal vehicles for scouting or side missions. This is expected and healthy — vehicle maintenance costs scale to prevent fleet bloat.
+
+---
+
+### Upgrade System
+
+Vehicles grow with the party. A Tier 1 wreck salvaged at Level 2 can become a Tier 4 war machine by Level 14 — if the party invests the time, credits, and effort.
+
+#### Tier Upgrade
+
+Upgrading a vehicle's tier improves its HP multiplier, unlocks bonus module slots, and represents a comprehensive overhaul of the vehicle's systems.
+
+| Upgrade | Engineering DC | Material Cost | Time | Facility Required |
+|---------|---------------|---------------|------|-------------------|
+| Tier 1 → 2 | DC 16 | 50% of Tier 2 frame cost | 3 days | Workshop compartment or settlement garage |
+| Tier 2 → 3 | DC 18 | 50% of Tier 3 frame cost | 5 days | Settlement garage |
+| Tier 3 → 4 | DC 20 | 50% of Tier 4 frame cost | 7 days | Faction-grade facility |
+| Tier 4 → 5 | DC 22 | 50% of Tier 5 frame cost | 14 days | Research lab or faction capital |
+
+**Maximum Tier via Upgrade:** Tier 5. Tier 6 (Prototype) vehicles cannot be created through upgrades — they are unique artifacts.
+
+**Failure:** If the Engineering check fails, the upgrade attempt fails. Materials worth 25% of the cost are wasted. The vehicle is not damaged — you can try again after acquiring more materials.
+
+**Failure by 5+:** The upgrade attempt damages the vehicle. The vehicle drops one system damage level (Operational → Stressed, etc.). Materials are fully wasted. Repair the damage before attempting again.
+
+**Assistance:** Up to 2 additional characters with Engineering proficiency can assist, granting advantage on the check. A Technician's Drone Workshop or a Scavenger's Jury-Rigger abilities reduce the DC by 2.
+
+#### Module Swap
+
+Modules can be swapped, installed, or removed from a vehicle without upgrading the tier.
+
+| Operation | Time | DC | Cost | Facility Required |
+|-----------|------|----|------|-------------------|
+| Remove module | 4 hours | DC 12 | None | Workshop or garage |
+| Install module | 8 hours | DC 14 | Module cost | Workshop or garage |
+| Swap (remove + install) | 1 day | DC 14 | New module cost only | Workshop or garage |
+| Field swap (no facility) | 2 days | DC 18 | New module cost + 50% surcharge | None (but requires tools) |
+
+**Salvaged Modules:** Modules removed from a vehicle can be reinstalled in another compatible vehicle. A module from a destroyed vehicle can be salvaged with an Engineering DC 14 check (50% chance it's functional; on failure, it's scrap worth 25% of original cost).
+
+#### Compartment Addition
+
+Compartments represent major structural additions to a vehicle's interior.
+
+| Operation | Time | DC | Cost | Facility Required |
+|-----------|------|----|------|-------------------|
+| Add compartment | 3 days | DC 16 | Compartment cost + 50% installation | Settlement garage |
+| Remove compartment | 2 days | DC 14 | None (recover 25% of compartment value) | Settlement garage |
+| Swap compartment | 5 days | DC 16 | New compartment cost + 50% installation | Settlement garage |
+
+**Compartment Limits:** A vehicle cannot exceed its size class's maximum compartment slots (see Vehicle Size table). Personal and Light vehicles have 0 compartment slots and cannot add compartments.
+
+#### Frame Expansion
+
+A vehicle's size class **cannot** be upgraded. A Light vehicle cannot become a Medium vehicle — the frame is fundamentally different. If the party outgrows their vehicle, they must acquire a larger one.
+
+---
+
+### Ongoing Costs
+
+Vehicles demand continuous investment. A party that ignores maintenance will find their vehicle degrading at the worst possible time.
+
+#### Fuel
+
+Fuel costs are defined in the **Fuel** section under Repair and Maintenance. In addition to base costs, fuel availability varies by region:
+
+| Location | Fuel Cost (per unit) | Availability |
+|----------|---------------------|--------------|
+| Faction settlement | 5 cr | Readily available |
+| Independent settlement | 5-8 cr | Usually available (GM's discretion) |
+| Frontier outpost | 10 cr | Limited supply (1d6 × 10 units available) |
+| Deep wasteland | 15 cr | Rare (must find or trade for it) |
+| Voidscar zone | 20 cr or barter only | Extremely rare |
+
+**Running Out of Fuel:**
+When a vehicle runs out of fuel, it becomes inoperable. The party must:
+1. **Walk:** Abandon the vehicle and travel on foot (see **Overland Travel** in Exploration)
+2. **Forage for fuel:** Survival DC 18 to find salvageable fuel in the wasteland (1d4 hours of searching yields 1d4 units on success). A Scavenger reduces the DC to 14.
+3. **Wait for rescue:** If near a trade route, a passing convoy may sell fuel at premium prices (×3 normal cost)
+4. **Tow:** Another vehicle with a Tow Hitch can tow the stranded vehicle to the nearest settlement
+
+**Fuel Reserves:** Wise parties carry spare fuel. A Fuel Canister (25 cr, 5 lbs) holds 5 units of fuel. Characters can carry these in their personal inventory.
+
+#### Monthly Maintenance
+
+Vehicles require periodic maintenance to stay operational. Skipping maintenance leads to cascading failures.
+
+**Maintenance Cost:** 5% of the vehicle's total value per month (frame + modules + compartments, at current tier pricing).
+
+| Example Vehicle | Total Value | Monthly Maintenance |
+|----------------|-------------|-------------------|
+| Tier 1 Cycle (Personal) | ~300 cr | 15 cr |
+| Tier 2 Car (Light) + Standard Engine + Scrap Plating | ~1,200 cr | 60 cr |
+| Tier 3 APC (Medium) + Performance Engine + Composite Armor | ~12,500 cr | 625 cr |
+| Tier 4 Tank (Heavy) full loadout | ~80,000 cr | 4,000 cr |
+
+**Skipping Maintenance:**
+- **1 month skipped:** Vehicle gains the **Unreliable** condition. On any natural 1 on a Piloting or Engineering check involving the vehicle, a random module malfunctions (50% function until repaired).
+- **2 months skipped:** Cumulative -1 to all vehicle checks. One random module ceases to function entirely.
+- **3+ months skipped:** Cumulative -2 to all vehicle checks per additional month. Each month, make a d6 roll: on a 1-2, the vehicle drops one system damage level automatically.
+
+**Performing Maintenance:** Maintenance requires Engineering proficiency, 1 day of work, and the maintenance cost in parts. It can be performed at a settlement garage (no check required) or in the field with a Workshop compartment (Engineering DC 12).
+
+#### Settlement Repair Costs
+
+When the party brings a damaged vehicle to a settlement for professional repairs (instead of doing it themselves), the costs are:
+
+| Repair Scope | Cost | Time |
+|-------------|------|------|
+| Stressed → Operational | 5% of vehicle value | 1 day |
+| Damaged → Operational | 15% of vehicle value | 3 days |
+| Critical → Operational | 30% of vehicle value | 7 days |
+| Disabled → Operational | 50% of vehicle value | 14 days |
+| Full HP restoration | 10% of vehicle value | 3 days |
+| Module repair (damaged) | 50% of module cost | 1 day per module |
+
+**Rush Jobs:** Pay double cost to halve the repair time (minimum 1 day). The settlement mechanic works around the clock.
+
+---
+
+### Vehicle Downtime Activities
+
+These activities integrate with the downtime system (see **Downtime** chapter).
+
+**Vehicle Repair/Upgrade (Downtime Activity)**
+- **Time:** Varies (see Upgrade System above)
+- **Skill:** Engineering
+- **Cost:** Varies (see tables above)
+- **Effect:** Repair vehicle damage, upgrade tier, swap modules, or add compartments during downtime. A character can work on one vehicle upgrade per long rest.
+
+**Vehicle Salvage Run (Downtime Activity)**
+- **Time:** 3 days
+- **Skill:** Survival + Scavenging (if available)
+- **DC:** Survival DC 16
+- **Cost:** Travel supplies (~50 cr)
+- **Success:** Locate a salvageable wreck (roll on Salvage Condition table). The character learns the wreck's location and condition. A second expedition is required to retrieve and repair it.
+- **Failure:** No wreck found. The character may try again in a different area next long rest.
+- **Critical Success (beat DC by 5+):** Locate an unusually intact wreck (result 4-6 on the Salvage Condition table).
+
+---
+
+### Worked Example: Salvaging the Overpass APC
+
+*The party (Level 5) is traveling through the Crucible when their scout spots a military transport half-buried in rubble beneath a collapsed overpass.*
+
+**Step 1 — Discovery:**
+The GM places this as a location encounter. The APC is visible from the road — no Survival check needed to find it, but reaching it requires climbing through rubble (Athletics DC 12).
+
+**Step 2 — Assessment:**
+The GM rolls a 3 on the Salvage Condition table: **Damaged Vehicle.** The APC (Medium frame, Tier 1) has its frame intact at 50% HP (40 of 80 HP). It has 2 functional modules: a Scrap Engine (Tier 1, unreliable) and Scrap Plating (+1 DV). The cockpit is filled with debris but structurally sound.
+
+**Step 3 — Repair:**
+The party's Technician (Engineering +7) sets up camp at the overpass. Repairing a Damaged Vehicle requires:
+- **Engineering DC 16** — the Technician rolls 14 + 7 = 21. Success.
+- **2 days of work** — the party uses this as a short rest, resting while the Technician works
+- **Materials costing 500 cr** (25% of the APC's 2,000 cr base cost) — they spend credits on parts from their last settlement visit
+
+The APC is restored to full HP (80 HP). It's a Tier 1 APC: slow (30 ft speed due to Scrap Engine stalling on natural 1s), lightly armored (+1 DV from Scrap Plating), but functional. It has 3 stations (Pilot, Navigator, Gunner/Engineer) and 1 compartment slot (currently empty).
+
+**Step 4 — First Upgrades:**
+Back at a settlement, the party invests in immediate improvements:
+- **Install a Standard Engine** (Tier 2, 300 cr, 8 hours, DC 14): Reliable operation, no more stalling
+- **Install a Mounted MG** (Tier 2, 600 cr, 8 hours, DC 14): 2d8 damage at 100/300 range for the Gunner
+- **Total spent:** 900 cr + 500 cr repair = 1,400 cr invested
+
+**Step 5 — Long-Term Upgrade Plan:**
+The party plans to upgrade the APC to Tier 2 during their next long rest:
+- **Tier 1 → 2 upgrade:** Engineering DC 16, 3 days, 2,000 cr materials (50% of 4,000 cr Tier 2 Medium frame cost)
+- This will boost the APC's HP from 80 to 100 (1.25× multiplier) and make it a solid Tier 2 military transport
+
+By Level 9-10, they'll be looking at a Tier 3 upgrade (DC 18, 5 days, 4,000 cr) to turn their salvaged wreck into a proper combat vehicle.
+
+*The party went from walking the Crucible on foot to commanding a functional APC in one downtime period and about 2,500 cr — less than the 4,000 cr purchase price of a Tier 1 APC from a dealer, but with risk, time, and adventure attached.*
+
+---
+
 ## Drones
 
 Drones are autonomous or remote-controlled vehicles of Personal size. They follow all standard vehicle rules with these modifications:
@@ -1296,7 +1610,7 @@ Vehicles require maintenance and repairs following the gritty rest economy.
 | Method | Time | Effect | Requirements |
 |--------|------|--------|-------------|
 | **Damage Control** | 1 action | Restore one system level | Engineering DC 14-22, 1 repair supply |
-| **Emergency Repair** | 3 actions | Restore 2d10 + INT HP | Engineering DC 16, 2 repair supplies, 1/SR per vehicle |
+| **Emergency Repair** | 3 actions | Restore HP by vehicle size: Personal/Light 2d10, Medium 3d10, Heavy 4d10, Massive 5d10 (+ INT modifier) | Engineering DC 16, 2 repair supplies, 1/SR per vehicle |
 
 ### Short Rest Repairs (8 Hours)
 
@@ -1311,7 +1625,7 @@ During a long rest in a settlement with a workshop or garage:
 - **Full Repair:** Restore vehicle to full HP. Cost: 10% of vehicle's total value in parts and labor.
 - **Full System Restoration:** All systems restored to Operational.
 - **Module Replacement:** Swap, install, or remove modules. No check required (workshop available). Cost: module price only.
-- **Upgrade Tier:** A vehicle can be upgraded one tier (max Tier 5 through upgrades). Cost: difference in frame price between tiers + 50% labor surcharge. Time: 7 days per tier upgraded.
+- **Upgrade Tier:** See **Vehicle Acquisition & Upgrades** for the full tier upgrade system.
 
 ### Repair Supplies
 
@@ -1369,14 +1683,14 @@ Vehicles have **CR values** for encounter building, integrated with the existing
 
 ---
 
-## Class Feature Synergies
+## Build Feature Synergies
 
-Certain class features interact with vehicle operations. These features are **always superior** to skill-only alternatives — a class-trained character is better in their specialty than a generalist with the same skill.
+Certain build features interact with vehicle operations. These features are **always superior** to skill-only alternatives — a build-specialized character is better in their specialty than a generalist with the same skill.
 
 ### Warrior
 
 - **Mounted Combat (L3):** Extends to vehicles. When operating as Pilot, add MIG modifier to ram damage. Vehicle DV increases by +1 when you are Pilot.
-- **Battlemaster (L6 Warlord):** Issue Orders as a bonus action instead of a full action when serving as Commander. Coordinate affects all crew instead of two.
+- **Battlemaster (L6 Warlord):** When serving as Commander, **Issue Orders** is a **free action** (normally 1 action). Coordinate affects all crew instead of two.
 
 ### Gunslinger
 
@@ -1387,7 +1701,7 @@ Certain class features interact with vehicle operations. These features are **al
 
 - **Drone Commander:** Command 2 drones with 1 action. Drones gain +2 to all checks.
 - **Field Engineer (L3):** Advantage on all Engineering checks for vehicles. Damage Control restores 2 system levels instead of 1.
-- **Master Craftsman (L6 Artificer):** Build vehicles at 75% cost. Field Modifications take half time. Can upgrade vehicles by 2 tiers during long rest (normally max 1).
+- **Master Craftsman (L6 Engineer):** Build vehicles at 75% cost. Field Modifications take half time. Can upgrade vehicles by 2 tiers during long rest (normally max 1).
 
 ### Operative
 
@@ -1408,6 +1722,30 @@ Certain class features interact with vehicle operations. These features are **al
 ### Mystic
 
 - **Arcane Ward (L1):** Can extend Arcane Ward to cover a vehicle's hull. The ward provides temp HP to the vehicle equal to twice the normal amount.
+
+### Scavenger
+
+- **Salvage Dice (L1):** When serving as Engineer, spend 1 Salvage Die to perform Damage Control without requiring Engineering tools. The repair restores hit points equal to the Salvage Die roll + END modifier (minimum 1) instead of the standard amount. This cannot restore destroyed systems — only patch what's still functional.
+- **Makeshift Solution (L2):** Adapt Makeshift Solution for vehicles. Spending 1 Salvage Die as 1 action, choose one: **Improvised Armor Patch** (vehicle gains temporary hit points equal to 1d6 + your level, lasting until the end of the encounter), **Emergency Fuel** (vehicle can operate for 1 additional hour on improvised fuel), or **Scrap Barricade** (create half cover for one crew station until the vehicle moves).
+- **Wasteland Ingenuity (L5):** During a short rest, spend 3 Salvage Dice to scavenge a disabled or destroyed vehicle within reach. You recover one functional module or weapon system (GM's choice from what the vehicle carried). The salvaged component can be installed on your vehicle with a DC 16 Engineering check, functioning at one tier lower than its original rating.
+
+### Infiltrator
+
+- **Assess Target (L1):** When you use Assess Target on a vehicle, you learn one of the following (your choice): current hit points and system damage, crew complement and station assignments, installed weapon systems, or cargo type. Each use reveals one category. This information is shared with your crew as a free action.
+- **Contingency — Vehicle Operations (L2):** The following Contingency preparations apply to vehicle encounters (uses the same Contingency resource — first free per short rest, additional uses cost 1 Intel Die): **Escape Route** (when your vehicle drops below half HP, you may use your reaction to identify the nearest viable exit — the Pilot gains advantage on the next Piloting check to disengage), **Planted Device** (if you had 10 minutes of physical access to an enemy vehicle beforehand, you may trigger a planted device as a bonus action — the vehicle suffers one system damage to a system of your choice).
+- **Subversion tree (Tier 2+):** When serving in any crew role, you can spend 1 Intel Die to attempt vehicle sabotage at range. Make a Hacking or Engineering check (your choice) against the target vehicle's DV. On a success, choose one: jam a weapon system for 1 round, reduce the vehicle's speed by half for 1 round, or disable one sensor system. This does not require boarding. Range: 120 ft (requires line of sight to the target vehicle).
+
+### Psion
+
+- **Telekinesis Discipline (L1):** If you have the Telekinesis discipline, you can manipulate external vehicle components at Close range (within 30 ft). As 1 action, make a Psionic Power check against the target vehicle's DV. On success, choose one: force the helm to turn (the vehicle moves 1 space in a direction you choose on its next turn), jam an external weapon mount (the weapon cannot fire until the crew spends 1 action to clear it), or rip open a hatch (next boarding attempt against this vehicle has advantage). Each use adds +1 Focus as normal. You cannot affect internal systems or sealed compartments.
+- **Psionic Resilience (L3):** Your resistance to psychic damage extends to neural feedback from vehicle-linked systems. If you are connected to a vehicle's neural interface and the vehicle takes a critical hit that would deal feedback damage to the pilot, you take half damage.
+- **Psionic Overcharge — Vehicle Resonance (L5):** While Psionic Overcharge is active and you are serving in a vehicle crew role, your psionic abilities gain vehicle-specific effects that go beyond the standard Overcharge bonuses: your Telekinesis Discipline vehicle manipulation (above) affects two targets instead of one (choose two effects or apply the same effect to two vehicles), and your Psionic Resilience (above) negates all neural feedback damage instead of halving it. These vehicle-specific benefits end when Overcharge ends.
+
+### Mutant
+
+- **Feral Evolution — Boarding (L5):** While Feral Evolution is active, you gain advantage on all checks to initiate or resist boarding actions. Your natural weapons function without penalty in the tight confines of vehicle interiors (normally, Reach weapons have disadvantage in vehicle compartments). Additionally, when you hit a creature with a Mutation Surge attack in vehicle tight quarters, the surge rider imposes **disadvantage on the target's next attack roll or ability check** (the confined space amplifies the impact of rending, constricting, or disorienting effects).
+- **Adaptive Response (L2):** Your passive damage adaptation applies to vehicle hazards. The first time you take a specific damage type from a vehicle source in an encounter (collision, explosion, weapon fire), you gain resistance to that damage type until the start of your next turn. This applies to damage you take personally, not to vehicle hit points.
+- **Strain Dice — Vehicle Survival (L1):** When your vehicle suffers a critical hit or catastrophic failure, you may spend 1 Strain Die as a reaction. Roll the die and add your END modifier — you and one adjacent crew member gain that many temporary hit points against the resulting damage (explosion, shrapnel, structural collapse). This reflects your mutant physiology absorbing punishment that would kill an unaugmented human.
 
 ---
 

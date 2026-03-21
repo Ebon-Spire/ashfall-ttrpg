@@ -5,21 +5,25 @@ import '../styles/global.css';
 const base = import.meta.env.BASE_URL;
 
 const pillars = [
-  { icon: '⚔', title: '3-Action Combat', desc: 'Move, strike, and use a bonus action every turn. No dead turns — every round matters.' },
-  { icon: '⛊', title: '8 Unique Archetypes', desc: 'From the armored Warrior to the reality-bending Channeler, each class plays differently.' },
-  { icon: '🎯', title: 'Bounded Lethality', desc: 'Max +18 bonus cap keeps threats dangerous at every level. The wasteland never gets safe.' },
+  { icon: '⚔', title: '3-Action Combat', desc: 'Three actions per turn, spent however you choose — move, attack, cast, or use abilities in any combination. Plus 1 reaction.' },
+  { icon: '⛊', title: 'Classless Build System', desc: 'Choose a chassis for your physical baseline, then spend Character Points across 11 shared skill trees. Invest in any combination of skill trees to build exactly the character you want.' },
+  { icon: '🎯', title: 'Bounded Lethality', desc: 'Max +14 bonus cap (+18 mythic) keeps threats dangerous at every level. The wasteland never gets safe.' },
   { icon: '⏳', title: 'Gritty Resource Management', desc: 'Short rests take 8 hours. Long rests take a week. Every bullet and bandage counts.' },
 ];
 
 const archetypes = [
   { name: 'Warrior', die: 'd12', role: 'Tank / Striker', color: 'var(--rust)' },
   { name: 'Gunslinger', die: 'd8', role: 'Ranged DPS', color: 'var(--flame)' },
-  { name: 'Mystic', die: 'd6', role: 'AOE Mage', color: '#9b59b6' },
+  { name: 'Mystic', die: 'd6', role: 'AOE Mage/Control', color: '#9b59b6' },
   { name: 'Medic', die: 'd6', role: 'Healer / Support', color: 'var(--toxic-green)' },
   { name: 'Technician', die: 'd6', role: 'Pet / Support', color: 'var(--plasma-blue)' },
-  { name: 'Operative', die: 'd6', role: 'Skill / Burst', color: 'var(--ash-gray)' },
+  { name: 'Operative', die: 'd6', role: 'Skill/Burst Damage', color: 'var(--ash-gray)' },
   { name: 'Diplomat', die: 'd8', role: 'Buffer / Social', color: 'var(--amber)' },
-  { name: 'Channeler', die: 'd8', role: 'Hybrid Cleric', color: 'var(--radiation)' },
+  { name: 'Channeler', die: 'd8', role: 'Hybrid Warrior/Mage', color: 'var(--radiation)' },
+  { name: 'Scavenger', die: 'd8', role: 'Resourceful Generalist', color: 'var(--rust)' },
+  { name: 'Infiltrator', die: 'd8', role: 'Intelligence/Tactical Support', color: 'var(--ash-gray)' },
+  { name: 'Psion', die: 'd6', role: 'Controller / Damage', color: '#9b59b6' },
+  { name: 'Mutant', die: 'd10', role: 'Adaptive Striker/Bruiser', color: 'var(--toxic-green)' },
 ];
 ---
 
@@ -94,7 +98,7 @@ const archetypes = [
         <h2 class="section-title">For Game Masters</h2>
         <p class="section-subtitle">Build encounters, generate worlds, and bring the wasteland to life.</p>
         <div class="gm-cta-grid">
-          <a href={`${base}dm-guide/`} class="gm-cta-card">
+          <a href={`${base}gm-guide/`} class="gm-cta-card">
             <h3>Game Master's Guide</h3>
             <p>Encounter building, bestiary, random generators, and running advice.</p>
           </a>
@@ -113,8 +117,8 @@ const archetypes = [
     <!-- Archetypes -->
     <section class="archetypes">
       <div class="container">
-        <h2 class="section-title">Archetypes</h2>
-        <p class="section-subtitle">Eight distinct classes, each with unique mechanics and playstyles.</p>
+        <h2 class="section-title">Recommended Builds</h2>
+        <p class="section-subtitle">Recommended builds to get you started — or build your own path with Character Points.</p>
         <div class="archetypes-grid">
           {archetypes.map((a) => (
             <a href={`${base}rules/classes/${a.name.toLowerCase()}/`} class="archetype-card" style={`--card-accent: ${a.color};`}>

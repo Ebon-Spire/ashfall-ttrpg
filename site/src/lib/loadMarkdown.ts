@@ -21,51 +21,64 @@ function splitFrontmatter(raw: string): { frontmatter: string | null; body: stri
 /** Game terms with definitions for tooltips and links to full pages. */
 const TERM_DATA: Record<string, { href: string; tip: string }> = {
   // Conditions
-  'Blinded': { href: '/rules/conditions/', tip: 'Cannot see. Auto-fail sight checks. Attacks have disadvantage, attacks against you have advantage.' },
+  'Blinded': { href: '/rules/conditions/', tip: 'Cannot see. Auto-fail sight-based checks. Attacks have disadvantage, attacks against you have advantage. -10 to Passive Perception.' },
   'Bleeding': { href: '/rules/conditions/', tip: 'Take 1d4 damage at the start of each turn. Ends on successful DC 12 Medicine check or magical healing.' },
-  'Charmed': { href: '/rules/conditions/', tip: 'Cannot attack the charmer. Charmer has advantage on social checks against you.' },
-  'Confused': { href: '/rules/conditions/', tip: 'Roll d4 each turn: 1 = do nothing, 2 = move randomly, 3 = attack nearest, 4 = act normally.' },
+  'Charmed': { href: '/rules/conditions/', tip: 'Cannot attack or target charmer with harmful effects. Charmer has advantage on social checks. Ends if charmer\'s side harms you, or after 24 hrs.' },
+  'Confused': { href: '/rules/conditions/', tip: 'Roll d4 each turn: 1 = move randomly, 2 = do nothing, 3 = attack nearest, 4 = act normally. Cannot take reactions.' },
   'Dazed': { href: '/rules/conditions/', tip: 'Can take actions OR move (not both). No reactions. Disadvantage on attacks.' },
   'Deafened': { href: '/rules/conditions/', tip: 'Cannot hear. Auto-fail hearing checks. -10 Passive Perception.' },
-  'Exhaustion': { href: '/rules/conditions/', tip: '6 levels. L1: disadvantage on checks. L3: max HP reduced 25%. L6: death. Short rest removes L1-2 only.' },
-  'Flat-Footed': { href: '/rules/conditions/', tip: '-2 to DV. Cannot use reactions. Ends at the start of your next turn.' },
-  'Frightened': { href: '/rules/conditions/', tip: 'Disadvantage on checks/attacks while source is visible. Cannot willingly move closer to the source.' },
-  'Grappled': { href: '/rules/conditions/', tip: 'Speed is 0. Can escape with MIG or AGI check vs grappler\'s MIG check.' },
-  'Incapacitated': { href: '/rules/conditions/', tip: 'Cannot take actions or reactions. Automatically fail MIG and AGI saves.' },
-  'Incorporeal': { href: '/rules/conditions/', tip: 'Can move through solid objects. Resistance to non-magical physical damage.' },
+  'Exhaustion': { href: '/rules/conditions/', tip: '6 cumulative levels. L1: disadvantage on checks, -5 ft speed. L2: +disadvantage on attacks. L3: +disadvantage on saves, max HP -25%. L4: movement halved, no reactions, max HP -50%. L5: speed 5 ft, no concentration, max HP -75%. L6: death. Short rest removes L1-2 only.' },
+  'Flat-Footed': { href: '/rules/conditions/', tip: 'Lose AGI bonus to DV. Cannot use reactions.' },
+  'Frightened': { href: '/rules/conditions/', tip: 'Disadvantage on checks/attacks while source is visible. -2 to DV. Cannot willingly move closer to source.' },
+  'Grappled': { href: '/rules/conditions/', tip: 'Speed is 0. Escape: 1 action, Athletics or Acrobatics vs grappler\'s Athletics.' },
+  'Incapacitated': { href: '/rules/conditions/', tip: 'Cannot take actions or reactions. Lose concentration on spells.' },
+  'Incorporeal': { href: '/rules/conditions/', tip: 'Immunity to non-magical physical damage. Can move through solid objects (treated as difficult terrain). Cannot interact with physical objects. End turn inside a solid object: 1d10 force damage. Magical/force damage affects normally.' },
   'Invisible': { href: '/rules/conditions/', tip: 'Cannot be seen without special senses. Attacks against you have disadvantage, your attacks have advantage.' },
   'Paralyzed': { href: '/rules/conditions/', tip: 'Incapacitated. Auto-fail MIG/AGI saves. Attacks have advantage. Melee hits within 5 ft auto-crit.' },
-  'Petrified': { href: '/rules/conditions/', tip: 'Turned to stone. Weight x10. Immune to poison/disease. Resistance to all damage.' },
+  'Petrified': { href: '/rules/conditions/', tip: 'Turned to stone. Incapacitated, can\'t move or speak. Unaware of surroundings. Resistance to all damage. Immune to poison/disease. Weight x10.' },
   'Poisoned': { href: '/rules/conditions/', tip: 'Disadvantage on attack rolls and ability checks.' },
-  'Prone': { href: '/rules/conditions/', tip: 'Melee attacks against you have advantage. Ranged attacks have disadvantage. Standing costs half your movement.' },
+  'Prone': { href: '/rules/conditions/', tip: 'Can only crawl (half speed) or stand (1 action). Disadvantage on attacks. Melee attacks against you have advantage, ranged have disadvantage.' },
   'Restrained': { href: '/rules/conditions/', tip: 'Speed is 0. Attacks against you have advantage. Your attacks and AGI saves have disadvantage.' },
   'Slowed': { href: '/rules/conditions/', tip: 'Speed halved. Disadvantage on AGI saves. No reactions.' },
-  'Stunned': { href: '/rules/conditions/', tip: 'Incapacitated. Cannot move. Can only speak falteringly. Auto-fail MIG/AGI saves.' },
-  'Unconscious': { href: '/rules/conditions/', tip: 'Incapacitated, drop what you\'re holding, fall prone. Auto-fail MIG/AGI saves. Melee auto-crits.' },
-  'Weakened': { href: '/rules/conditions/', tip: 'Deal half damage with weapon attacks. Disadvantage on MIG checks and saves.' },
+  'Stunned': { href: '/rules/conditions/', tip: 'Incapacitated. Cannot move. Can only speak falteringly. Auto-fail MIG/AGI saves. Attacks against you have advantage.' },
+  'Unconscious': { href: '/rules/conditions/', tip: 'Incapacitated, drop what you\'re holding, fall prone. Auto-fail MIG/AGI saves. Attacks have advantage. Melee hits within 5 ft auto-crit.' },
+  'Weakened': { href: '/rules/conditions/', tip: 'Disadvantage on all attack rolls. Disadvantage on MIG checks and saves. Carrying capacity halved.' },
+  'Addicted': { href: '/rules/conditions/', tip: 'Disadvantage on all ability checks until you consume the substance (once per 24 hrs). Cured by Detox item or 1 week abstinence + Fortitude save DC 18.' },
+  'Burning': { href: '/rules/conditions/', tip: 'Take 1d6 fire damage at turn start. Fortitude save at turn end (or 1 action) to extinguish. Doesn\'t stack — use higher damage/DC from overlapping sources.' },
+  'Buried': { href: '/rules/conditions/', tip: 'Restrained, blinded, deafened, can\'t breathe; 1d6 bludgeoning damage/turn. 2 actions + Athletics DC 15 to escape. Leads to Suffocating when breath runs out.' },
+  'Diseased': { href: '/rules/conditions/', tip: 'Variable effects by disease severity (Mild/Moderate/Severe). Fortitude save each long rest: 3 consecutive successes cure; failures worsen severity.' },
+  'Dying': { href: '/rules/conditions/', tip: '0 HP, Unconscious. Death saves each turn: 3 successes = Stabilized, 3 failures = death. Any healing ends Dying immediately.' },
+  'Shaken': { href: '/rules/conditions/', tip: 'Minor fear. Disadvantage on Will saves; cannot move closer to source. Removed by any effect that removes Frightened.' },
+  'Stabilized': { href: '/rules/conditions/', tip: 'Unconscious at 0 HP; no longer making death saves. Regain 1 HP after 1d4 hours; wake with the Wounded condition.' },
+  'Traumatized': { href: '/rules/conditions/', tip: 'Gained at Stress 5. Will save DC 12 near trauma trigger: failure = Frightened 1 round + lose 1 action. Requires narrative resolution or downtime to remove.' },
+  'Suffocating': { href: '/rules/conditions/', tip: 'Fortitude saves (DC 12, +2 per failure): 1d8 damage + Dazed on fail. Third failure = Drowning (in water) or Unconscious. Ends when you can breathe.' },
+  'Wounded': { href: '/rules/conditions/', tip: '-2 to all attack rolls, -1 DV, disadvantage on MIG/AGI checks. Gained when dropping to 0 HP. Removed by Medicine check DC 15 on a short rest.' },
+  'Drowning': { href: '/rules/conditions/', tip: 'Incapacitated, speed 0, sink 10 ft/turn; 2d6 unresistable damage/turn. At 0 HP, automatically fail a death save each turn. Ends when you can breathe.' },
+  'Irradiated': { href: '/rules/conditions/', tip: '4-level radiation exposure. L1: disadvantage on END checks/saves. L2: max HP −10%, disadvantage on all ability checks. L3: max HP −25%, disadvantage on attacks, 1 Exhaustion/day. L4: max HP −50%, 1d6 necrotic/hour, death in 72 hrs without treatment.' },
   // Core mechanics
-  'Burnout': { href: '/rules/magic/#burnout-mechanics', tip: 'Accumulated magical strain. At 9+ BP: Exhaustion. At 12+: unconscious + reset. At 20+: permanent consequences.' },
+  'Burnout': { href: '/rules/magic/#burnout-mechanics', tip: 'Accumulated magical strain. At 9+ BP: cantrips only, gain 1 Exhaustion. At 12+: unconscious 1d4 hrs, gain 2 Exhaustion, BP reset to 0. At 20+: risk of permanent magic loss.' },
   'Twilight Event': { href: '/rules/magic/#twilight-events-critical-overcasting-failures', tip: 'Catastrophic magical failure. Reality warps. Roll d10: wild surge, backlash, reality tear, or worse.' },
   'Sigil System': { href: '/rules/magic/#the-sigil-system--modular-spell-crafting', tip: 'Modular spell crafting: Cantrip + Form + Metamagic = Spell Level. Build any spell from components.' },
-  'Bounded Accuracy': { href: '/rules/introduction/', tip: 'Max bonus cap of +18. Threats remain dangerous at every level.' },
-  'Defense Value': { href: '/rules/combat/', tip: 'DV = 10 + AGI mod + armor bonus + shield bonus. The target number to hit a creature.' },
+  'Bounded Accuracy': { href: '/rules/introduction/', tip: 'Max bonus cap of +14 (core), +18 at mythic tier. Threats remain dangerous at every level.' },
+  'Defense Value': { href: '/rules/combat/', tip: 'DV = 10 + AGI mod + armor bonus + shield + misc. The target number to hit a creature.' },
   'Multiple Attack Penalty': { href: '/rules/combat/', tip: 'Each additional Strike in a turn: -3 cumulative. 1st +0, 2nd -3, 3rd -6.' },
   'Advantage': { href: '/rules/introduction/', tip: 'Roll d20 twice, take the higher result. Worth roughly +3.33 on average.' },
   'Disadvantage': { href: '/rules/introduction/', tip: 'Roll d20 twice, take the lower result. Worth roughly -3.33 on average.' },
-  'Temporary HP': { href: '/rules/combat/', tip: 'Absorbs damage before real HP. Doesn\'t stack — take the higher value. Lost first, then real HP.' },
-  'Concentration': { href: '/rules/magic/#concentration', tip: 'Only one concentration spell at a time. Taking damage requires Will save (DC 10 or half damage).' },
-  'Lingering Injury': { href: '/rules/exploration/', tip: 'Permanent wound from dropping to 0 HP. Roll d100 with severity modifier. Half-recovery at half time.' },
+  'Temporary HP': { href: '/rules/combat/', tip: 'Absorbs damage before real HP. Doesn\'t stack — take the higher value. Can\'t be healed, only refreshed. Exception: Arcane Ward stacks with itself.' },
+  'Concentration': { href: '/rules/magic/#concentration', tip: 'Only one concentration spell at a time. Taking damage requires Will save (DC 10 or half damage, whichever is higher).' },
+  'Free Action': { href: '/rules/combat/', tip: 'Does not consume any of your 3 actions. Minor, instant activities (speak, drop item, fall prone) at GM discretion. Not part of the action economy.' },
+  'Lingering Injury': { href: '/rules/exploration/', tip: 'Wound from dropping to 0 HP or taking ≥50% max HP in one hit. Roll d100 with severity modifier. Recovery times vary by injury.' },
   'Overcasting': { href: '/rules/magic/#overcasting-procedure', tip: 'Casting without a spell slot. Gain Burnout = spell level, then make a casting check or face consequences.' },
   // Resources
   'Spell Slots': { href: '/rules/magic/', tip: 'Limited magical energy. Recovered on long rest (1 week). Power cantrips or cast leveled spells.' },
   'Hit Dice': { href: '/rules/exploration/', tip: 'Recover half your level in HD on a short rest. Roll to heal during rest.' },
-  'Advancement Points': { href: '/rules/progression/', tip: 'AP spent on skill tree features. 15 at L1, +10 per level. Cross-training costs 1.5x.' },
+  'Character Points': { href: '/rules/character-points/', tip: 'CP spent on skill tree features. 15 at L1, +10 per level. Spend on any shared skill tree from Level 1.' },
   // Rest economy
-  'Short Rest': { href: '/rules/exploration/', tip: '8 hours. Recover half-level Hit Dice, per-short-rest abilities, remove Exhaustion 1-2.' },
+  'Short Rest': { href: '/rules/exploration/', tip: '8 hours. Recover half-level Hit Dice, 1 spell slot (3rd or lower), per-short-rest abilities. Remove 1 Burnout Point. Remove Exhaustion 1-2 only.' },
   'Long Rest': { href: '/rules/exploration/', tip: '1 week in a safe settlement. Full recovery. 5 downtime activity days included.' },
   // Equipment
-  'Augmentation': { href: '/rules/equipment/#augmentations', tip: 'Cybernetic enhancement. Costs Humanity (reduces magic potential). Synthetics install free.' },
-  'Humanity': { href: '/rules/equipment/#humanity-threshold-effects', tip: 'Starts at 10. Each augmentation reduces it. Low Humanity = social penalties + reduced magic. Synthetics = 0.' },
+  'Augmentation': { href: '/rules/equipment/#augmentations', tip: 'Cybernetic enhancement. Costs Humanity (social penalties scale; lose spellcasting at 0). Synthetics install free.' },
+  'Humanity': { href: '/rules/equipment/#humanity-threshold-effects', tip: 'Starts at 10. Each augmentation reduces it. Low Humanity = scaling PRE penalties. At 0: no spellcasting. Synthetics = 0.' },
 };
 
 /** Build a regex that matches any game term (longest first to avoid partial matches). */
@@ -166,12 +179,20 @@ function postProcessHtml(html: string): string {
   html = html.replace(/\bAs 2 actions?\b/gi, '<span class="action-badge action-badge-2">2 Actions</span>');
   html = html.replace(/\bAs a reaction\b/gi, '<span class="action-badge action-badge-reaction">Reaction</span>');
 
-  // 3. Auto-link game terms (only in paragraph text, not in headings or links)
-  // Split on HTML tags to avoid modifying tag attributes or existing links
+  // 3. Auto-link game terms only in paragraph text — skip inside <a> or <h1>–<h6> elements
+  // Split on HTML tags to track element context and avoid modifying tag attributes
+  let insideLink = false;
+  let insideHeading = false;
   html = html.replace(/(<[^>]+>)|([^<]+)/g, (match, tag, text) => {
-    if (tag) return tag; // Don't modify HTML tags
+    if (tag) {
+      if (/^<a[\s>]/i.test(tag)) insideLink = true;
+      else if (/^<\/a>/i.test(tag)) insideLink = false;
+      else if (/^<h[1-6][\s>]/i.test(tag)) insideHeading = true;
+      else if (/^<\/h[1-6]>/i.test(tag)) insideHeading = false;
+      return tag;
+    }
     if (!text) return match;
-    // Don't link inside headings (already processed) or if surrounded by link tags
+    if (insideLink || insideHeading) return text;
     return text.replace(termRegex, (term: string) => {
       const data = TERM_DATA[term];
       if (data) {
@@ -247,16 +268,53 @@ function postProcessHtml(html: string): string {
 }
 
 /**
+ * Rewrite relative .md hrefs in rendered HTML to absolute site URLs.
+ * e.g., href="crafting.md"          → href="/rules/crafting/"
+ *       href="../chassis.md"         → href="/rules/chassis/"
+ *       href="hacking.md#combat"     → href="/rules/hacking/#combat"
+ *       href="../classes/technician.md" → href="/rules/classes/technician/"
+ */
+function rewriteMdLinks(html: string, mdPath: string): string {
+  // Determine the subdirectory of this file within rules/
+  // mdPath examples: 'rules/crafting.md', 'rules/classes/warrior.md'
+  const rulesIdx = mdPath.indexOf('rules/');
+  const withinRules = rulesIdx >= 0 ? mdPath.slice(rulesIdx + 'rules/'.length) : mdPath;
+  const lastSlash = withinRules.lastIndexOf('/');
+  const fileSubdir = lastSlash >= 0 ? withinRules.slice(0, lastSlash + 1) : '';
+  // fileSubdir: '' for top-level rules files, 'classes/' for class files, etc.
+
+  return html.replace(/href="([^"]*\.md(?:#[^"]*)?)"/g, (_, href) => {
+    const hashIdx = href.indexOf('#');
+    const pathPart = hashIdx >= 0 ? href.slice(0, hashIdx) : href;
+    const fragment = hashIdx >= 0 ? href.slice(hashIdx) : '';
+
+    // Resolve the relative path against the file's subdirectory within rules/
+    const parts = (fileSubdir + pathPart).split('/');
+    const resolved: string[] = [];
+    for (const part of parts) {
+      if (part === '..') {
+        if (resolved.length > 0) resolved.pop();
+      } else if (part !== '.' && part !== '') {
+        resolved.push(part);
+      }
+    }
+    const slug = resolved.join('/').replace(/\.md$/, '');
+    return `href="/rules/${slug}/${fragment}"`;
+  });
+}
+
+/**
  * Load and render a markdown file from the repo root.
  * Returns HTML string (strips frontmatter before rendering).
- * Applies post-processing: callout boxes, action badges, and term auto-linking.
+ * Applies post-processing: callout boxes, action badges, term auto-linking,
+ * and rewriting of relative .md cross-reference links to site URLs.
  */
 export function loadRule(relativePath: string): string {
   const filePath = repoPath(relativePath);
   const raw = readFileSync(filePath, 'utf-8');
   const { body } = splitFrontmatter(raw);
   const html = marked.parse(body) as string;
-  return postProcessHtml(html);
+  return rewriteMdLinks(postProcessHtml(html), relativePath);
 }
 
 /**
@@ -319,6 +377,6 @@ export function loadRuleData<T = Record<string, unknown>>(relativePath: string):
   const raw = readFileSync(filePath, 'utf-8');
   const { frontmatter, body } = splitFrontmatter(raw);
   const data = frontmatter ? (parseYaml(frontmatter) as T) : ({} as T);
-  const html = postProcessHtml(marked.parse(body) as string);
+  const html = rewriteMdLinks(postProcessHtml(marked.parse(body) as string), relativePath);
   return { data, html };
 }

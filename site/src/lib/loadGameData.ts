@@ -11,15 +11,27 @@ export interface SkillBonus {
 
 export interface Ability {
   name: string;
-  ap_cost: number;
+  cp_cost: number;
   tier: number;
   effect: string;
+}
+
+export interface Milestone {
+  cp: number;
+  bonus: string;
+}
+
+export interface SkillTreeMilestones {
+  initiate: Milestone;
+  journeyman: Milestone;
+  master: Milestone;
 }
 
 export interface SkillTree {
   name: string;
   focus: string;
   abilities: Ability[];
+  milestones?: SkillTreeMilestones;
 }
 
 export interface FeatureChoice {
@@ -60,7 +72,7 @@ export interface ClassData {
   weapon_proficiency: string[];
   save_proficiencies: string[];
   skill_bonuses: SkillBonus[];
-  starting_ap: number;
+  starting_cp: number;
   role: string;
   magic_type: string;
   level_1_features: string[];
@@ -110,7 +122,7 @@ export interface ProficiencyEntry {
   bonus: number;
 }
 
-export interface APCost {
+export interface CPCost {
   name: string;
   cost: number;
   requires?: string;
@@ -209,7 +221,7 @@ export interface CrossTrainingTierCost {
 }
 
 export interface CrossTrainingConfig {
-  ap_multiplier: number;
+  cp_multiplier: number;
   tier_costs: CrossTrainingTierCost[];
   max_other_archetypes: number;
   lock_in_threshold: number;
@@ -219,6 +231,7 @@ export interface GameData {
   species: Species[];
   backgrounds: Background[];
   classes: ClassData[];
+  shared_skill_trees: SkillTree[];
   skills: Skill[];
   attributes: string[];
   attribute_names: Record<string, string>;
@@ -227,9 +240,9 @@ export interface GameData {
   point_buy_costs: PointBuyCost[];
   modifier_table: ModifierEntry[];
   proficiency_by_level: ProficiencyEntry[];
-  ap_costs: APCost[];
-  starting_ap: number;
-  ap_per_level: number;
+  cp_costs: CPCost[];
+  starting_cp: number;
+  cp_per_level: number;
   base_movement: number;
   base_humanity: number;
   cantrips: CantripData[];
@@ -263,6 +276,10 @@ const CLASS_FILES = [
   'rules/classes/operative.md',
   'rules/classes/diplomat.md',
   'rules/classes/channeler.md',
+  'rules/classes/scavenger.md',
+  'rules/classes/infiltrator.md',
+  'rules/classes/psion.md',
+  'rules/classes/mutant.md',
 ];
 
 export function loadGameData(): GameData {
@@ -296,10 +313,15 @@ export function loadGameData(): GameData {
   const talentFile = loadRuleData('rules/talents.md');
   const tal = talentFile.data as Record<string, any>;
 
+  // Load shared skill trees
+  const skillTreesFile = loadRuleData('rules/skill-trees.md');
+  const st = skillTreesFile.data as Record<string, any>;
+
   return {
     species: cc.species ?? [],
     backgrounds: cc.backgrounds ?? [],
     classes,
+    shared_skill_trees: st.shared_skill_trees ?? [],
     skills: sd.skills ?? [],
     attributes: cc.attributes ?? ['MIG', 'AGI', 'END', 'INT', 'WIS', 'PRE'],
     attribute_names: cc.attribute_names ?? {},
@@ -308,9 +330,9 @@ export function loadGameData(): GameData {
     point_buy_costs: cc.point_buy_costs ?? [],
     modifier_table: cc.modifier_table ?? [],
     proficiency_by_level: cc.proficiency_by_level ?? [],
-    ap_costs: cc.ap_costs ?? [],
-    starting_ap: cc.starting_ap ?? 15,
-    ap_per_level: cc.ap_per_level ?? 10,
+    cp_costs: cc.cp_costs ?? [],
+    starting_cp: cc.starting_cp ?? 15,
+    cp_per_level: cc.cp_per_level ?? 10,
     base_movement: cc.base_movement ?? 30,
     base_humanity: cc.base_humanity ?? 10,
     cantrips: mg.cantrips ?? [],
@@ -332,7 +354,7 @@ export function loadGameData(): GameData {
     legendary_talents: tal.legendary_talents ?? [],
     mastery_paths: prog.mastery_paths ?? [],
     multiclass_requirements: prog.multiclass_requirements ?? [],
-    cross_training: prog.cross_training ?? { ap_multiplier: 1.5, tier_costs: [], max_other_archetypes: 2, lock_in_threshold: 2 },
+    cross_training: prog.cross_training ?? { cp_multiplier: 1.5, tier_costs: [], max_other_archetypes: 2, lock_in_threshold: 2 },
   };
 }
 

@@ -96,7 +96,7 @@ Not all crafters are equal. A grizzled Technician who's been building guns for y
 
 ### Crafter Level
 
-Your **crafter level** determines the maximum tier you can attempt and provides crafting bonuses. It equals your character level unless a class feature says otherwise.
+Your **crafter level** determines the maximum tier you can attempt and provides crafting bonuses. It equals your character level unless a build feature says otherwise.
 
 | Crafter Level | Max Craftable Tier | Expertise Bonus |
 |---------------|-------------------|-----------------|
@@ -108,10 +108,10 @@ Your **crafter level** determines the maximum tier you can attempt and provides 
 | 15-17 | Tier 6 | +3 to crafting checks |
 | 18-20 | Tier 7 | +3 to crafting checks |
 
-**Class Bonuses:**
-- **Technicians** increase their max craftable tier by 1 (a level 4 Technician can craft Tier 4).
-- **Medics** with the Pharmacology skill tree treat stims as one tier lower for crafting purposes (a Tier 3 stim uses Tier 2 DC and costs). Medic Pharmacists also craft serums at DC -2 (see Serums section below).
-- **Mystics** and **Channelers** with Arcana proficiency add their spellcasting modifier to enchanting checks (in addition to normal skill modifiers).
+**Build Bonuses:**
+- **Characters following the Technician build** increase their max craftable tier by 1 (a level 4 Technician build character can craft Tier 4).
+- **Characters following the Medic build** with the Pharmacology skill tree treat stims as one tier lower for crafting purposes (a Tier 3 stim uses Tier 2 DC and costs). Characters with the **Pharmacology tree (Tier 2+)** also craft serums at DC −2 (see Serums section below).
+- **Characters following the Mystic or Channeler build** with Arcana proficiency add their spellcasting modifier to enchanting checks (in addition to normal skill modifiers).
 
 ### Masterwork Quality
 
@@ -206,20 +206,30 @@ Each modification occupies one slot unless otherwise noted. You cannot exceed an
 
 ### Weapon Modifications
 
-| Mod | DC | Cost | Time | Effect |
-|-----|----|------|------|--------|
-| **Scope** | DC 13 | 50 cr / 3 Salvage | 2 hours | +2 to aimed shots. Ranged weapons only. |
-| **Extended Barrel** | DC 15 | 75 cr / 4 Salvage | 4 hours | Increase normal and long range by 50%. Ranged weapons only. |
-| **Hair Trigger** | DC 15 | 60 cr / 3 Salvage | 2 hours | Reduce reload by 1 action (minimum free action). |
-| **Suppressor** | DC 16 | 100 cr / 5 Salvage + 1 Tech | 4 hours | Weapon makes no audible noise beyond 30 feet. Ranged firearms only. |
-| **Reinforced Frame** | DC 13 | 40 cr / 2 Salvage | 2 hours | +10 Durability Points. |
-| **Serrated Edge** | DC 14 | 50 cr / 3 Salvage | 3 hours | +1 damage on critical hits (per damage die). Melee slashing/piercing only. |
-| **Weighted Head** | DC 14 | 50 cr / 3 Salvage | 3 hours | Knockback: target MIG save or pushed 5 feet on hit. Melee bludgeoning only. |
-| **Integrated Bayonet** | DC 12 | 30 cr / 2 Salvage | 1 hour | Ranged weapon can make 1d6 melee attacks. |
-| **Overcharged Cell** | DC 18 | 150 cr / 5 Salvage + 2 Tech | 1 day | +1d4 energy damage. Energy weapons only. Weapon gains Overheat property if it doesn't have it. |
-| **Stabilizer** | DC 16 | 100 cr / 5 Salvage + 1 Tech | 4 hours | Remove disadvantage from firing Heavy weapons without MIG 13. |
-| **Quick-Release Magazine** | DC 14 | 60 cr / 3 Salvage | 2 hours | Reload as a free action once per combat. Resets after combat ends. |
-| **Smart-Link Interface** | DC 19 | 300 cr / 8 Salvage + 3 Tech | 1 day | +1 to attack rolls (requires Smart Link augment). Ranged weapons only. |
+For the complete list of available weapon modifications, their effects, slot requirements, and trade-offs, see **Equipment — Weapon Modifications**. Installation mechanics (DC, cost, time) are listed below. On a failed check, the modification component is damaged (50% cost to repair or replace), but the base weapon is undamaged. Time is spent regardless of success or failure.
+
+| Mod | DC | Cost | Time |
+|-----|----|------|------|
+| **Tactical Scope** | DC 13 | 50 cr / 3 Salvage | 2 hours |
+| **Extended Barrel** | DC 15 | 75 cr / 4 Salvage | 4 hours |
+| **Hair Trigger** | DC 15 | 60 cr / 3 Salvage | 2 hours |
+| **Suppressor** | DC 16 | 100 cr / 5 Salvage + 1 Tech | 4 hours |
+| **Reinforced Frame** | DC 13 | 40 cr / 2 Salvage | 2 hours |
+| **Serrated Edge** | DC 14 | 50 cr / 3 Salvage | 3 hours |
+| **Weighted Head** | DC 14 | 50 cr / 3 Salvage | 3 hours |
+| **Integrated Bayonet** | DC 12 | 30 cr / 2 Salvage | 1 hour |
+| **Overcharged Cell** | DC 18 | 150 cr / 5 Salvage + 2 Tech | 1 day |
+| **Heavy Weapon Brace** | DC 16 | 100 cr / 5 Salvage + 1 Tech | 4 hours |
+| **Quick-Release Magazine** | DC 14 | 60 cr / 3 Salvage | 2 hours |
+| **Smart-Link Interface** | DC 19 | 300 cr / 8 Salvage + 3 Tech | 1 day |
+
+**Tier 1 modifications** do not require a formula. Tier 2 modifications require either a formula or impose **disadvantage** on the installation check. Tier 3 modifications always require a formula. See **Equipment — Modification Slots** for weapon slot limits by tier.
+
+**Modification effects:** Effects for Suppressor, Tactical Scope, Heavy Weapon Brace, Integrated Bayonet, and all Tier 2–3 mods are defined in **Equipment — Weapon Modifications**. *Overcharged Cell, Extended Barrel, Hair Trigger, Reinforced Frame, Serrated Edge, Weighted Head, and Quick-Release Magazine:* effects as listed in the original table remain authoritative; these are crafting-only mods not in the Equipment expansion.
+
+**Heavy Weapon Brace** (formerly "Stabilizer"): Removes the −2 attack roll penalty from firing Heavy weapons without MIG 13. Distinct from the Stabilizer Stock in Equipment — Weapon Modifications (which grants +1 to all attacks at the cost of −5 ft movement).
+
+**Smart-Link Interface:** +1 to attack rolls (Equipment bonus). Requires Smart Link neural augmentation. Cannot be installed simultaneously with the **Neural Interface Stock** weapon modification (see Equipment — Weapon Modifications) — both route through the weapon's processing bus and conflict.
 
 ### Armor Modifications
 
@@ -228,24 +238,75 @@ Each modification occupies one slot unless otherwise noted. You cannot exceed an
 | **Reinforced Plating** | DC 13 | 50 cr / 3 Salvage | 3 hours | +1 DV. (Max once per armor.) |
 | **Thermal Lining** | DC 14 | 75 cr / 4 Salvage | 4 hours | Resistance to cold damage. Advantage on Fortitude saves vs extreme cold. |
 | **Ablative Coating** | DC 15 | 100 cr / 5 Salvage | 4 hours | Resistance to fire damage. Advantage on Fortitude saves vs extreme heat. |
-| **Sealed Environment** | DC 17 | 200 cr / 8 Salvage + 2 Tech | 1 day | Immune to inhaled toxins and airborne diseases. 2 hours of breathable air. |
+| **Sealed Environment** | DC 17 | 200 cr / 8 Salvage + 2 Tech | 1 day | Immune to inhaled toxins and airborne diseases while sealed. **8 hours** of breathable air (sufficient for one full short rest in a hazardous zone). While sealed, you have **advantage on Fortitude saves** against **Irradiated**, **Poisoned**, and **Disease** conditions from environmental sources. Seal can be activated or deactivated as a **free action** (conserve air in safe areas, seal up in danger zones). |
 | **Camouflage Weave** | DC 15 | 100 cr / 5 Salvage | 4 hours | +2 to Stealth checks in one environment type (urban ruins, forest, wasteland, snow). Choose when installing. |
 | **Servo Assist** | DC 18 | 250 cr / 8 Salvage + 3 Tech | 1 day | Negate armor speed penalties. Medium and heavy armor only. |
 | **EMP Shielding** | DC 16 | 100 cr / 4 Salvage + 2 Tech | 4 hours | Armor's electronics immune to EMP. Advantage on saves vs Shock effects while wearing. |
 | **Magnetic Holster** | DC 12 | 30 cr / 2 Salvage | 1 hour | Draw or stow one weapon as a free action. |
 | **Auto-Injector** | DC 15 | 75 cr / 3 Salvage + 1 Tech | 3 hours | When you drop below half HP, automatically use one loaded stim (holds 1 stim, reload during rest). |
-| **Impact Gel** | DC 16 | 125 cr / 5 Salvage + 1 Tech | 4 hours | Reduce bludgeoning damage taken by 3 (minimum 1). |
+| **Impact Gel** | DC 16 | 125 cr / 5 Salvage + 1 Tech | 4 hours | Reduce **physical damage** (bludgeoning, slashing, and piercing) taken by **2** (minimum 1). Does not stack with other flat damage reduction from armor mods. |
+| **Reactive Plating** | DC 18 | 200 cr / 6 Salvage + 2 Tech | 1 day | When you are hit by a **melee attack**, the attacker takes **1d4 damage** of the same type they dealt to you. Heavy armor only. |
+| **Kinetic Redistributor** | DC 19 | 250 cr / 8 Salvage + 3 Tech | 1 day | When you take **10+ damage** from a single attack, gain **+10 ft movement speed** until the end of your next turn. Once per round. |
+| **Threat Display Module** | DC 16 | 150 cr / 5 Salvage + 2 Tech | 4 hours | As a **reaction** when an enemy moves within **10 feet** of you, force them to make a **Will save (DC 12 + your PRE modifier)** or stop their movement and end their move action. Once per round. Medium or heavy armor only. |
+| **Ablative Shield Generator** | DC 20 | 300 cr / 10 Salvage + 4 Tech | 1 day | Armor gains a **10 HP energy shield** that absorbs damage before your HP. While the shield is active, you have **resistance to the first instance of energy damage** (fire, cold, lightning, psychic) you take each round. Shield regenerates fully during a short rest. |
+| **Medical Hardpoint** | DC 15 | 100 cr / 4 Salvage + 1 Tech | 3 hours | Armor has a built-in medical dispenser. Administer a stim to yourself or an adjacent ally as a **free action** once per short rest (instead of the normal Use Item action cost). Holds **2 stims** (reload during rest). |
+| **Signal Jammer Array** | DC 17 | 175 cr / 6 Salvage + 2 Tech | 4 hours | **15-foot aura.** Electronic devices and augmentations within the aura have **disadvantage on Technology checks**. Enemies with neural interfaces have **disadvantage on Will saves against hacking** while in the aura. Toggle on/off as a free action. **Tradeoff:** While active, YOUR electronic devices also have disadvantage on Technology checks. |
 
 ### Modification Rules
 
 - **Adding a Mod:** Technology check at the listed DC. On failure, the mod component is damaged (50% cost to replace), but the base item is undamaged. Time is spent regardless.
-- **Removing a Mod:** Takes half the installation time. Technology check at DC 10. On success, mod is recovered intact. On failure, mod is destroyed but the base item is undamaged.
+- **Removing a Mod:** Takes half the installation time. Technology check at DC 10. On success, mod is recovered intact and can be reinstalled. On failure, mod is destroyed but the base item is undamaged; a destroyed mod yields no recoverable materials.
 - **Stacking:** Each specific mod can only be installed once per item. Different mods can stack freely up to the slot limit.
 - **Mod Formulas:** Common mods (DC 15 or lower) don't require formulas. Advanced mods (DC 16+) require a formula or impose disadvantage on the check.
 
 ### Equipment Bonus Cap
 
-Total bonuses to attack rolls from equipment sources (modifications, enchantments, and augmentations combined) cannot exceed **+3**. If multiple sources would push the total above +3, the excess is lost. This preserves bounded accuracy — your gear makes you better, but your skill and attributes are what define your ceiling.
+Total bonuses to attack rolls from equipment sources cannot exceed **+3**. This preserves bounded accuracy — your gear makes you better, but your skill and attributes define your ceiling.
+
+#### Bonus Categories
+
+Equipment attack bonuses fall into three categories. **Bonuses within the same category do not stack** — use the highest value from each category. Bonuses from different categories stack, subject to the +3 cap.
+
+| Category | Source Examples | Typical Bonus |
+|----------|---------------|---------------|
+| **Equipment** | Weapon modifications (Smart-Link Interface, stabilizers), Masterwork quality (Balanced) | +1 |
+| **Augmentation** | Cybernetic implants (Smart Link, targeting augments) | +1 to +2 |
+| **Enchantment** | Weapon sigils, arcane capacitor mods (Focused Emitter) | +1 to +2 |
+
+**Rule:** Within each category, take the highest single bonus. Then add the highest from each category together. If the total exceeds +3, the excess is lost.
+
+> **Defense Value bonuses** from augmentations follow the same principle — the total DV bonus from augmentations cannot exceed +3 (see **Equipment**, Augmentations section).
+
+#### Interaction Table
+
+| Combination | Category Breakdown | Total | At Cap? |
+|-------------|-------------------|-------|---------|
+| Smart Link (+2) alone | Augmentation +2 | **+2** | No |
+| Balanced masterwork (+1) alone | Equipment +1 | **+1** | No |
+| Smart Link (+2) + Balanced (+1) | Augmentation +2, Equipment +1 | **+3** | Yes |
+| Smart Link (+2) + Smart-Link Interface (+1) | Augmentation +2, Equipment +1 | **+3** | Yes |
+| Smart Link (+2) + Balanced (+1) + Smart-Link Interface (+1) | Augmentation +2, Equipment +1 (Balanced and Interface are same category — take highest, both +1) | **+3** | Yes |
+| Smart Link (+2) + Focused Emitter (+2) | Augmentation +2, Enchantment +2 | **+3** | Yes (capped from +4) |
+| Balanced (+1) + Focused Emitter (+2) | Equipment +1, Enchantment +2 | **+3** | Yes |
+| Smart Link (+2) + Balanced (+1) + Focused Emitter (+2) | Augmentation +2, Equipment +1, Enchantment +2 | **+3** | Yes (capped from +5) |
+
+#### Worked Examples
+
+**Example 1 — Gunslinger Sniper Build:**
+Kira has a Tier 4 rifle with a Smart Link augment (+2 attack, Augmentation category) and a Balanced masterwork quality (+1 attack, Equipment category). Her equipment bonus is +2 (Augmentation) + +1 (Equipment) = **+3** (at cap). If she also installs a Smart-Link Interface mod (+1, Equipment category), it doesn't help — Balanced and Smart-Link Interface are the same category, and both grant +1, so she still takes +1 from Equipment. Her total remains +3.
+
+**Example 2 — Channeler Hybrid Build:**
+Marcus wields an enchanted mace with a Focused Emitter capacitor (+2 spell attack rolls, Enchantment category). He has no combat augmentations. His equipment bonus to spell attacks is +2. If he later installs a Smart Link augment (+2, Augmentation category), his total would be +2 (Enchantment) + +2 (Augmentation) = +4, which is capped at **+3**. The Smart Link is partially wasted on spell attacks — he'd benefit more from it on a separate weapon for weapon attacks.
+
+**Example 3 — Operative Budget Build:**
+Zara can't afford a Smart Link augment yet. She installs a Smart-Link Interface mod — but it requires a Smart Link augment to function, so it provides no bonus. Instead, she focuses on a Balanced masterwork pistol (+1, Equipment category). Her equipment bonus is **+1**. Later, when she can afford the Smart Link augment (+2, Augmentation category), her total becomes +1 + +2 = **+3**. At that point, she could add the Smart-Link Interface mod, but it would be redundant with her Balanced quality (same category, same bonus).
+
+#### Key Clarifications
+
+- **Focused Emitter** capacitor mods count as **Enchantment** category. They apply to spell attack rolls only, not weapon attack rolls.
+- **Consumable bonuses** (such as Adrenaline Shot's +2 to attack rolls) are **temporary status bonuses**, not equipment bonuses. They are not subject to the equipment bonus cap and stack with equipment bonuses normally.
+- **Build feature bonuses** (such as a Scavenger's Scrapyard Strike or a Psion's Overcharge bonus) are **feature bonuses**, not equipment bonuses. They are not subject to the equipment bonus cap.
+- The **+3 cap applies per weapon**, not per character. A character with two weapons can have +3 on each.
 
 ### Tier Upgrade
 
@@ -256,7 +317,7 @@ You can upgrade an item to the next tier:
 - **Time:** Full crafting time for the higher tier
 - **Formula:** Required for upgrading to Tier 4+
 
-Tier upgrades increase the item's damage/DV to the new tier's baseline and add one mod slot. Existing mods are preserved. An item can only be upgraded one tier at a time.
+Tier upgrades increase the item's damage/DV to the new tier's baseline and add one mod slot. Existing mods are preserved. An item can only be upgraded one tier at a time. An item must be fully repaired before it can be upgraded to a higher tier.
 
 ---
 
@@ -357,8 +418,8 @@ Enchantment slots are separate from modification slots. A Tier 3 weapon could ha
 - **Empowered:** Also ignores heavy cover.
 
 **Sigil of the Leech**
-- **Effect:** On hit, gain temporary HP equal to half the damage dealt (max 5 temp HP).
-- **Empowered:** Max increases to 10 temp HP.
+- **Effect:** On hit, gain temporary HP equal to half the damage dealt (round down). These temporary HP do not stack — each hit replaces the previous amount rather than adding to it.
+- **Empowered:** On hit, gain temporary HP equal to the full damage dealt (non-stacking, replaces as above).
 
 **Sigil of Disruption**
 - **Effect:** +2d6 radiant damage against undead and aberrations.
@@ -524,13 +585,15 @@ Beyond enchanting mundane items with sigils, some items are inherently magical �
 
 ### Example Magical Items
 
+*Note: Standard stims are limited to 2 uses per 24 hours before causing chemical overload (see **Equipment — Stims**). Crafted magical consumables such as Healing Draughts bypass this limit — they do not count against stim tolerance.*
+
 **Healing Draught** (Consumable, Minor)
 - *Crafting:* DC 12, 1 Essence, 1 Salvage, 2 hours
 - *Effect:* Drink to restore 2d8 + 4 HP. Does not count against stim tolerance.
 
 **Stim of Haste** (Consumable, Standard)
 - *Crafting:* DC 15, 2 Essence, 2 Salvage, 4 hours
-- *Effect:* Inject to gain +1 action for 3 rounds. After effect ends, lose 1 action next turn.
+- *Effect:* Inject to gain 1 additional action per turn (4 actions total) for 3 rounds. After the effect ends, you are limited to 2 actions on your next turn.
 
 **Scroll of Protection** (Consumable, Greater)
 - *Crafting:* DC 18, 4 Essence, 4 Salvage + 1 Tech, 1 day
@@ -557,6 +620,69 @@ Beyond enchanting mundane items with sigils, some items are inherently magical �
 **Ironheart Shield** (Permanent, Greater)
 - *Crafting:* DC 24, 40 Essence, 20 Salvage + 10 Tech, 20 days
 - *Effect:* +3 DV. When you use your reaction to block, reduce damage by 10. Once per long rest, project a 15-foot cone barrier that grants all allies inside resistance to all damage for 1 round.
+
+---
+
+### Magic Item Repair
+
+Some magic items are discovered in a **damaged state** — their basic properties function, but their full power is locked. These items are marked **[Broken When Found]** in their descriptions (see **Equipment** for the full magic item catalog). Repairing a broken magic item restores it to full functionality.
+
+Magic item repair follows the same general framework as mundane crafting, with higher requirements reflecting the complexity of magical systems.
+
+#### Repair Requirements
+
+To attempt a magic item repair, you need all of the following:
+
+1. **Appropriate skill proficiency:** Technology (for pre-war relics and magitech) or Arcana (for purely magical items). Some items accept either — check the item's repair entry.
+2. **The item's specific DC:** Listed in the item's **[Broken When Found]** entry. These DCs are higher than mundane repair because you're restoring magical function, not just physical structure.
+3. **Specific materials:** Each broken item lists required materials and their credit cost. These are not standard crafting components — they represent rare or specialized parts that must be sourced through trade, scavenging, or quests.
+4. **A workspace:** Mundane workbench (minimum). Items requiring Arcana checks need access to an Essence source or arcane focus. Items with quest requirements must be repaired at the specified location.
+5. **Time:** 1 day per tier of the item (Tier 4 = 4 days, Tier 5 = 5 days). This cannot be reduced below 1 day.
+
+#### Repair Procedure
+
+1. **Source materials.** Acquire the materials listed in the item's repair entry. Materials are consumed whether the repair succeeds or fails — you're working with them, not just holding them.
+2. **Make the crafting check.** Roll the appropriate skill check against the item's listed DC.
+3. **Determine the result:**
+
+| Result | Outcome |
+|--------|---------|
+| **Success** | The item is fully restored. All properties, charges, and abilities function as described. |
+| **Success by 5+** | Full restoration, and you gain insight into the item's construction. You learn the item's crafting formula (if one exists) and gain **+2 on future repair checks** for items of the same category. |
+| **Failure** | The item remains broken. Materials are consumed. You can attempt another repair after sourcing new materials. |
+| **Failure by 5+** | The item remains broken and suffers **additional damage** — the repair DC increases by **+2** permanently. Materials are consumed. A second critical failure renders the item irreparable without extraordinary measures (GM discretion — quest, legendary crafter, or Voidscar exposure). |
+
+#### Partial Repair
+
+If a broken item has multiple locked functions (such as The First Spark's form-shifting, bonus damage, and Purifying Shot), the GM may allow **partial repairs** — restoring one function per successful check at a reduced DC (-2 per function already restored). Each partial repair requires its own materials (proportional share of the total cost) and time (1 day per partial repair). This is optional and at GM discretion — most items are repaired in a single check.
+
+#### Technician Interaction
+
+The Technician's **Jury-Rig** (Level 1) can temporarily restore a broken magic item's basic properties for **1 hour** at the standard Jury-Rig DC (DC 12 Technology). This does not count as a permanent repair — when the hour expires, the item reverts to its broken state. A natural 20 on the Jury-Rig check does **not** permanently repair a magic item (unlike mundane items) — the magical components require proper materials and dedicated time.
+
+Characters with the **Engineering tree (Tier 2+)** gain **+2 on magic item repair checks** for pre-war relics (Technology-based repairs), reflecting their expertise with complex salvaged systems.
+
+#### Known Broken Items
+
+The following items are currently documented as **[Broken When Found]**. See **Equipment** for full item descriptions.
+
+| Item | Tier | Repair Skill | DC | Materials | Cost | Special |
+|------|------|-------------|-----|-----------|------|---------|
+| **Mindlink Circlet** | 4 | Technology | 18 | Pre-war micro-components | 500 cr | — |
+| **Flicker Boots** | 4 | Technology | 16 | Phase-conductive materials | 800 cr | — |
+| **The First Spark** | 5 | Arcana | 20 | Arcane components | 2,000 cr | Must be repaired at a Voidscar zone |
+
+#### Worked Example — Repairing Flicker Boots
+
+*The party's Operative finds Flicker Boots in a pre-war military bunker. Currently, the boots can only teleport 10 feet (instead of 30) and the Phase Sickness DC starts at 14 (instead of 10). She wants to repair them.*
+
+1. **Source materials:** The party needs phase-conductive materials worth 800 credits. The GM decides these are available from a Convergence tech dealer in the nearest settlement — but at a markup (1,000 credits) or through a favor (retrieve stolen cargo, reducing cost to 800).
+2. **Find a workspace:** The party's base has a mundane workbench. Sufficient for a Technology-based repair.
+3. **Time:** Tier 4 item = 4 days of dedicated work. The Operative spends 4 days of downtime.
+4. **Make the check:** The Operative has Technology proficiency (+3 proficiency, +3 INT = +6 total). She needs a 10 or higher on d20 to hit DC 16. She rolls a 14 + 6 = 20 — success by 4.
+5. **Result:** The Flicker Boots are fully restored. Teleport range increases to 30 feet, Phase Sickness DC drops to 10. The Operative now has one of the best mobility items in the game.
+
+*If she had rolled a 9 + 6 = 15 (failure by 1), the boots would remain broken and she'd need to source another 800 credits of phase-conductive materials before trying again. If she had rolled a 4 + 6 = 10 (failure by 6), the boots would remain broken AND the repair DC would increase to 18 — the failed repair destabilized something in the phase-shift mechanism.*
 
 ---
 
@@ -619,10 +745,12 @@ Quick-reference for crafting ammunition, consolidated from [Equipment](equipment
 | Hollow-Point | DC 12 | 10 cr / 1 Salvage | 20 rounds | +1d6 vs unarmored (DV 15 or lower), -2 vs armored |
 | Incendiary | DC 18 | 25 cr / 2 Salvage | 10 rounds | +1d4 fire, target Reflex DC 13 or catches fire |
 | Shock | DC 20 | 50 cr / 3 Salvage + 1 Tech | 10 rounds | Target END DC 15 or stunned 1 round |
-| Tranquilizer | DC 18 | 30 cr / 2 Salvage | 5 darts | Fortitude DC 15 or unconscious 1 minute |
+| Tranquilizer | DC **16** | 30 cr / 2 Salvage | **10** darts | Hit target makes **Fortitude save (DC 15)**. On failure: **Slowed** (half speed, -2 Reflex saves) for 1 round, then **unconscious** at end of their next turn unless they succeed on a second Fortitude save (DC 13). On success: **Slowed** for 1 round only. |
 | Explosive | DC 22 | 100 cr / 5 Salvage + 2 Tech | 5 rounds | 2d6 fire in 5-ft radius (Reflex DC 15 half) |
 | EMP | DC 20 | 50 cr / 3 Salvage + 1 Tech | 10 rounds | +2d6 vs synthetics/electronics, no bonus vs organic |
 | Tracer | DC 12 | 15 cr / 1 Salvage | 20 rounds | Advantage on next attack vs same target |
+
+> Costs in the table above are **pre-reduction**. Apply the consumable half-cost rule: the actual crafting cost is half the listed credit or capital cost.
 
 ### Magical Ammunition
 
@@ -635,7 +763,7 @@ Enchanted ammunition combines physical crafting with sigil work. Each round carr
 | Venom Shot | DC 17 (Arcana) | 1 Essence + 1 Salvage | 5 rounds | +1d4 poison, target Fortitude DC 14 or Poisoned 1 minute. |
 | Radiant Round | DC 16 (Arcana) | 1 Essence + 1 Salvage | 5 rounds | +2d6 radiant vs undead/aberrations. Normal damage vs others. |
 
-Magical ammunition is consumed on use (the sigil discharges on impact). Crafting requires both Technology proficiency (to craft the round) and Arcana proficiency (to inscribe the sigil). Characters without both skills need a partner.
+Magical ammunition is consumed on use (the sigil discharges on impact). Crafting requires both Technology proficiency (to craft the round) and Arcana proficiency (to inscribe the sigil). Characters without both skills need a partner. Costs listed are **pre-reduction**; apply the consumable half-cost rule to both the credit/Salvage cost and the Essence cost.
 
 ---
 
@@ -666,7 +794,198 @@ Serums are advanced pharmaceuticals that provide temporary combat bonuses. They 
 
 **Serum Tolerance:** A character can benefit from 1 serum at a time. Using a second serum while one is active ends the first and inflicts 1 Exhaustion.
 
-**Medic Bonus:** Medics with the Pharmacist specialization craft serums at DC -2 and gain one additional dose per crafting session.
+**Medic Bonus:** Characters with the **Pharmacology tree (Tier 2+)** craft serums at DC -2 and gain one additional dose per crafting session.
+
+### Specialty Stims
+
+Specialty stims require **Science** proficiency to craft. Medics with the Pharmacology skill tree treat specialty stims as one tier lower for crafting purposes (matching the standard stim crafting bonus).
+
+| Stim | DC | Cost | Time | Yield |
+|------|-----|------|------|-------|
+| Reflex Stim | DC 14 (Science) | 25 cr / 2 Salvage | 1 hour | 1 dose |
+| Ironhide Stim | DC 15 (Science) | 30 cr / 2 Salvage | 1 hour | 1 dose |
+| Stabilizer Stim | DC 14 (Science) | 25 cr / 2 Salvage | 1 hour | 1 dose |
+| Nighteye Stim | DC 13 (Science) | 20 cr / 1 Salvage | 1 hour | 1 dose |
+| Adrenaline Spike | DC 18 (Science) | 60 cr / 3 Salvage + 1 Tech | 2 hours | 1 dose |
+| Trauma Override | DC 17 (Science) | 50 cr / 3 Salvage + 1 Tech | 2 hours | 1 dose |
+| Neural Accelerant | DC 14 (Science) | 30 cr / 2 Salvage | 1 hour | 1 dose |
+| Marrow Stim | DC 16 (Science) | 40 cr / 2 Salvage + 1 Tech | 2 hours | 1 dose |
+
+### Tactical Consumables
+
+Tactical consumables require **Science** or **Technology** proficiency as noted.
+
+| Item | DC | Cost | Time | Yield |
+|------|-----|------|------|-------|
+| Chem Light Flare | DC 10 (Science) | 5 cr / 1 Salvage | 30 min | 2 flares |
+| Adhesive Bomb | DC 14 (Science) | 30 cr / 2 Salvage | 1 hour | 1 bomb |
+| Signal Scrambler | DC 16 (Technology) | 40 cr / 3 Salvage + 1 Tech | 2 hours | 1 device |
+| Shock Mine | DC 15 (Technology) | 35 cr / 2 Salvage + 1 Tech | 1 hour | 1 mine |
+
+---
+
+### Traps & Explosives
+
+The wasteland runs on ingenuity and salvage. A prepared character can turn a corridor into a kill zone, a door into a last line of defense, or a wall into an exit. The items below expand the Tactical Consumables section with craftable traps, explosives, and non-damaging tactical devices for characters who invest in controlling the battlefield before the shooting starts.
+
+**Skill Requirements:**
+- Traps and explosives require **Technology** or **Science** proficiency as noted.
+- Characters with the **Demolitions** advanced skill gain **+2 to all crafting checks** for items in this section and **+2 to all deployment checks** (see skill interactions under each item).
+
+**All items in this section are consumable** — single use. Apply the **half-cost crafting rule**: credit and capital costs listed below are the base costs; you pay half when crafting.
+
+**Deployment:** Unless otherwise noted, deploying any item costs **1 action** (out of your 3 actions per turn). Items may also be deployed during exploration at full speed.
+
+**Detection:** A successfully deployed trap or device can be detected by a creature that actively searches (Search action, Perception check). The **Detection DC equals the crafter's Technology or Demolitions check result at the time of crafting** — write this number on the item when you craft it. If you did not record the check result, the Detection DC is 12 by default.
+
+#### Quick Reference Table
+
+| Item | Tier | DC | Crafting Cost | Craft Time | Type |
+|------|------|----|---------------|------------|------|
+| Tripwire Alarm | T1 | DC 10 (Technology) | 8 cr / 1 Salvage | 30 min | Trap |
+| Smoke Canister | T1 | DC 11 (Science) | 10 cr / 1 Salvage | 30 min | Tactical Device |
+| Concussion Grenade | T2 | DC 13 (Science) | 25 cr / 2 Salvage | 1 hour | Explosive |
+| Fragmentation Mine | T2 | DC 14 (Technology) | 30 cr / 2 Salvage + 1 Tech | 1 hour | Trap |
+| Decoy Transmitter | T2 | DC 14 (Technology) | 30 cr / 2 Salvage | 1 hour | Tactical Device |
+| Shaped Charge | T2 | DC 15 (Science) | 35 cr / 2 Salvage + 1 Tech | 1 hour | Explosive |
+| Incendiary Trap | T3 | DC 16 (Science) | 80 cr / 4 Salvage + 1 Tech | 2 hours | Trap |
+| EMP Snare | T3 | DC 17 (Technology) | 90 cr / 4 Salvage + 2 Tech | 2 hours | Trap |
+
+*All costs above are base costs. Pay half when crafting (consumable rule).*
+
+#### Traps
+
+Traps are deployed in advance and trigger automatically when a condition is met (creature enters a space, crosses a wire, opens a door). The deploying character does not need to be present when the trap fires.
+
+**Disarming:** A creature that detects a trap can attempt to disarm it: **Technology check against the trap's Detection DC** as a 1-action check. Failure by 5 or more detonates or triggers the trap.
+
+**Self-Immunity:** A character who deploys a trap and knows its location is not subject to that trap's trigger condition. This applies to all traps in this section.
+
+---
+
+**Tripwire Alarm** (Tier 1)
+
+A spool of fine monofilament wire attached to a small percussion cap and a screeching piezo siren. Non-lethal. The best traps don't kill — they tell you something's coming.
+
+- **Crafting:** DC 10 (Technology). 8 cr / 1 Salvage. 30 minutes. Basic toolkit sufficient.
+- **Deployment:** 1 action. Stretches up to 30 feet between two fixed anchor points (walls, furniture, door frames, trees). The wire is taut and roughly ankle height.
+- **Trigger:** Any creature of Medium size or larger that moves through the wire's path without detecting it first.
+- **Effect:** The alarm sounds for 1 minute (audible 300 feet in open terrain, 100 feet indoors). All allied creatures who can hear it are **automatically alerted** — no Perception check required. The triggering creature is not damaged.
+- **Detection DC:** Crafter's Technology check result. On a successful Detection check, a creature may step over the wire without triggering it (no action required, must be adjacent).
+- **Demolitions Bonus:** +2 to crafting check. With Demolitions, you can also set the wire to trigger a secondary device (any trap or explosive in this section) instead of — or in addition to — the alarm, as long as both items are deployed within 5 feet of each other.
+
+---
+
+**Fragmentation Mine** (Tier 2)
+
+A pressure-plate triggered device packed with scrap metal shards. More damage than a Shock Mine, but no status effect — a straightforward lethality choice.
+
+- **Crafting:** DC 14 (Technology). 30 cr / 2 Salvage + 1 Tech. 1 hour. Basic toolkit sufficient.
+- **Deployment:** 1 action. Placed in any unoccupied square. The mine is flush with the ground and concealed under loose debris.
+- **Trigger:** Any creature that enters or begins their turn in the mine's square (crafter's choice at deployment).
+- **Effect:** **3d6 piercing damage**, 10-foot radius. Reflex save (DC 14) for half. Creatures in the mine's square have disadvantage on this save.
+- **Detection DC:** Crafter's Technology check result.
+- **Demolitions Bonus:** +2 to crafting check. When a creature fails its Reflex save against your Fragmentation Mine by 5 or more, they are also knocked **prone**.
+- **Comparison vs. Shock Mine:** Shock Mine deals 2d6 lightning and inflicts Stunned until end of next turn on a failed Fortitude save DC 14 (control focus). Fragmentation Mine deals 3d6 piercing with no status (damage focus). Choose Shock Mine against a single high-priority target; choose Fragmentation Mine for crowds or when the stun is irrelevant.
+
+---
+
+**Incendiary Trap** (Tier 3)
+
+A chemical incendiary triggered by a heat-sensitive wire or pressure plate. Designed not just to damage — but to deny a corridor for the rest of the fight.
+
+- **Crafting:** DC 16 (Science). 80 cr / 4 Salvage + 1 Tech. 2 hours. Chemistry set required.
+- **Deployment:** 1 action. Placed in any unoccupied square. The trap faces a direction chosen at deployment (the "mouth" of the cone faces that direction).
+- **Trigger:** Any creature that enters the trap's square or moves within 5 feet of it on the trigger side.
+- **Effect:** **2d6 fire damage** in a **15-foot cone** in the chosen direction. Fortitude save (DC 15) for half. Additionally, all squares within the cone become **burning terrain** for **3 rounds**: creatures that enter a burning square or start their turn in one take **1d6 fire damage** (no save), consistent with the fire hazard rules in **Combat**. The terrain produces thick black smoke — creatures in burning terrain are **lightly obscured** (disadvantage on Perception checks relying on sight). After 4 rounds in enclosed spaces, the area becomes **heavily obscured**.
+- **Detection DC:** Crafter's Science check result.
+- **Demolitions Bonus:** +2 to crafting check. The burning terrain duration extends to **5 rounds**.
+
+---
+
+**EMP Snare** (Tier 3)
+
+An electromagnetic pulse device disguised as discarded equipment. Devastates synthetic enemies and augmented characters. Useless against purely organic, unaugmented targets — and that's the point.
+
+- **Crafting:** DC 17 (Technology). 90 cr / 4 Salvage + 2 Tech. 2 hours. Basic toolkit sufficient; Laboratory halves crafting time.
+- **Deployment:** 1 action. Placed in any unoccupied square. Can also be mounted on a wall or ceiling (same effect, harder to detect: Detection DC +2).
+- **Trigger:** Any creature with electronics, cybernetic augmentations, or synthetic construction that enters or begins their turn within 5 feet of the snare.
+- **Effect:** **20-foot radius burst** of electromagnetic pulse. **No damage to organic creatures.** Affected targets:
+  - **Electronics and powered devices:** Disabled for **1d4 rounds** (no function; weapons with electronic components cannot fire, powered armor loses DV bonus from energy shielding).
+  - **Cybernetic augmentations:** Each augmentation the target has makes the creature **roll a d6** — on a 1-2, that augmentation is disabled for **1d4 rounds** (non-functional; roll separately for each augment).
+  - **Synthetic creatures (constructs, robots, drones):** Must make a **Fortitude save (DC 15)** or be **Stunned** for **1d4 rounds**. On a success, they are **Slowed** (half speed) for 1 round instead.
+- **Detection DC:** Crafter's Technology check result.
+- **Demolitions Bonus:** +2 to crafting check. The EMP also disrupts electronic communications — creatures affected cannot use radio, neural comms, or networked tactical systems for the duration.
+
+#### Explosives
+
+Explosives are detonated by the crafter — either by throwing them (ranged attack) or by placing them and triggering remotely or on a timer. Unlike traps, explosives do not trigger automatically and require deliberate action to detonate.
+
+Thrown explosives use a **ranged attack roll** (AGI modifier + proficiency, range 20/60 feet unless noted). On a miss, the explosive scatters: roll 1d8 for direction, 1d4 × 5 feet for distance. It detonates in the scatter location.
+
+Placed explosives can be set with a timer (up to 10 minutes) or a remote trigger (if the crafter has a detonator, crafted as part of the same project, no additional cost). Creating a remote trigger does not increase the crafting DC.
+
+---
+
+**Concussion Grenade** (Tier 2)
+
+A non-lethal blast device designed to stun and disorient rather than shred. The choice when you need enemies alive, incapacitated, or just unable to shoot back.
+
+- **Crafting:** DC 13 (Science). 25 cr / 2 Salvage. 1 hour. Chemistry set sufficient.
+- **Deployment:** 1 action (thrown as ranged attack, range 20/60 feet).
+- **Effect:** **15-foot radius burst** of concussive force.
+  - **1d6 thunder damage** (half on Reflex save DC 13).
+  - All creatures in the radius (regardless of damage save result) must make a **Fortitude save (DC 13)** or be **Deafened** for **1 round**.
+  - All creatures that fail the Fortitude save also have **disadvantage on their next attack roll** (the disorientation clears after one attack or the end of their next turn, whichever comes first).
+- **Non-Lethal Option:** The crafter may choose at crafting time to make this grenade fully non-lethal — the thunder damage becomes concussive bludgeoning and can only reduce a creature to 1 HP, never 0 HP.
+- **Demolitions Bonus:** +2 to crafting check. The Fortitude save DC increases to 15.
+
+---
+
+**Shaped Charge** (Tier 2)
+
+A directional breaching explosive that concentrates its blast in a single vector. The dual-purpose tool of the prepared character: use it as a weapon in a corridor, or use it to make a new door in a wall.
+
+- **Crafting:** DC 15 (Science). 35 cr / 2 Salvage + 1 Tech. 1 hour. Chemistry set required.
+- **Deployment:** 1 action (thrown or placed against a surface). If placed against a surface (wall, door, floor), the blast is automatically directional. If thrown, the crafter chooses the blast direction at the time of throwing.
+- **Effect:** **5 feet wide, 20 feet long line** of concentrated force.
+  - **4d6 force damage**. Reflex save (DC 14) for half.
+  - **Structural effect:** Any wall, door, or barrier in the blast line with Hardness 10 or lower is **automatically breached** (a 5-foot opening is created). Barriers with Hardness 11-20 have their Hardness reduced by 10 for the purpose of this blast only.
+  - Creatures that fail their Reflex save are pushed 10 feet away from the origin point (in the direction of the line).
+- **Demolitions Bonus:** +2 to crafting check. The line extends to 30 feet. On a failed save, creatures are pushed 15 feet instead of 10.
+
+#### Tactical Devices
+
+Tactical devices are non-damaging items that alter information, visibility, or enemy behavior. In a well-planned operation, these are often more valuable than explosives.
+
+---
+
+**Smoke Canister** (Tier 1)
+
+A compressed chemical canister that releases dense, opaque smoke. Cheap, reliable, and one of the most tactically versatile items in the game.
+
+- **Crafting:** DC 11 (Science). 10 cr / 1 Salvage. 30 minutes. Chemistry set sufficient.
+- **Deployment:** 1 action (thrown as ranged attack, range 20/60 feet, or placed in current square). Detonates immediately on impact; placed canisters can be set to deploy as a free action trigger or on a timer (up to 10 minutes).
+- **Effect:** Creates a **20-foot radius** area of **heavily obscured** smoke centered on the detonation point (see **Combat — Visibility**). The smoke persists for **1 minute** (10 rounds) in calm conditions; a strong wind (or area effect that moves air) disperses it in 2 rounds.
+  - Creatures inside the smoke are heavily obscured: vision is blocked as if **blinded**. Attack rolls targeting or originating from within the smoke have disadvantage unless the attacker has a sense that doesn't rely on sight (tremorsense, blindsight, etc.).
+  - Creatures cannot draw line of sight through the smoke for spells or abilities that require it.
+- **Demolitions Bonus:** +2 to crafting check. The radius extends to 30 feet.
+
+---
+
+**Decoy Transmitter** (Tier 2)
+
+A small electronic device that broadcasts false life signs, radio communications, and movement data on common security frequencies. Draws patrols. Confuses AI targeting. Buys time.
+
+- **Crafting:** DC 14 (Technology). 30 cr / 2 Salvage. 1 hour. Basic toolkit sufficient.
+- **Deployment:** 1 action (placed in any location). Activates immediately. Can be deactivated remotely if the crafter has a paired receiver (crafted as part of the same project, no additional cost).
+- **Effect:** For **10 minutes**, the transmitter broadcasts on all standard security and communications frequencies:
+  - Emits **false life signs** consistent with 1d4+1 humanoid creatures moving in the transmitter's general area.
+  - Broadcasts **recorded or procedurally generated radio chatter** (voice patterns that sound like a patrol or squad).
+  - AI targeting systems, patrol drones, and security constructs within 300 feet that rely on electronic detection must make a **Technology check (DC = crafter's Technology check result)** or treat the transmitter's location as a **high-priority target**, moving to investigate or redirecting targeting attention toward it.
+  - Organic creatures relying on radio intercepts or life-sign scanners are similarly misdirected (GM discretion on NPC behavior).
+- **Detection as Fake:** A creature that physically reaches the transmitter identifies it immediately. A creature examining life-sign or radio data remotely can make a **Technology check (DC = crafter's Technology check result)** to identify the signals as false; on success, they are no longer misdirected.
+- **Demolitions Bonus:** +2 to crafting check. The false life signs convincingly mimic 2d4+2 creatures instead of 1d4+1.
 
 ---
 
@@ -684,7 +1003,7 @@ Deconstruct an item to recover raw materials:
   - **Success:** Recover 50% of the item's material cost (in credits or capital equivalent)
   - **Success by 5+:** Recover 75%
   - **Failure:** Recover 25% (ham-fisted disassembly)
-- **Enchanted items:** On success, also recover 25% of the Essence used. On failure, Essence is lost.
+- **Enchanted items:** On success, also recover 25% of the Essence used (round down to the nearest whole number, minimum 1). On failure, Essence is lost.
 
 ### Battlefield Salvage
 
@@ -698,15 +1017,15 @@ This doesn't replace normal looting — it covers stripping wiring from walls, p
 
 ---
 
-## Class-Specific Crafting Features
+## Build-Specific Crafting Features
 
-Several classes have features that modify or enhance crafting. These are summarized here for reference; see individual class files for full details.
+Several builds have features that modify or enhance crafting. These are summarized here for reference; see individual build files for full details.
 
 ### Technician
 
 - **Jury-Rig (Level 1):** 1 action, DC 12 Technology. Temporarily repair broken device for 1 hour. Natural 20 = permanent repair.
 - **Masterwork (Level 5):** 10-minute crafting, 1/Long Rest. Craft a gadget replicating any 1st-2nd level spell effect (single use, 100 scrap).
-- **Workshop (Engineer, Level 6):** Craft 1 Tier 1-2 item at half cost during long rest.
+- **Workshop (Engineer, Level 6):** Craft 1 Tier 1-2 item at half cost during long rest. This craft does **not** count toward the 3-project weekly limit — it is a build feature bonus separate from standard downtime crafting.
 - **Max Craftable Tier:** +1 tier above normal for their level.
 - **Field Repairs:** Reduce jury-rig DC by 2.
 
@@ -729,7 +1048,7 @@ Several classes have features that modify or enhance crafting. These are summari
 
 - **Ritual Casting:** Half time for rituals in Arcane Sanctum.
 - **Enchanting Bonus:** Add WIS modifier to Arcana checks for enchanting.
-- **Shaman specialization:** Nature-themed enchantments (acid, cold, lightning, poison, thunder) gain +1 per damage die.
+- **Divine Channeling tree (Tier 2+):** Nature-themed enchantments (acid, cold, lightning, poison, thunder) gain +1 per damage die.
 
 ---
 
@@ -1061,7 +1380,7 @@ A caster can charge a maximum number of capacitors per long rest equal to their 
 
 To recharge an expended rechargeable capacitor, follow the same charging procedure (Arcana check, Essence or spell slot, time). The stored spell can be different from the previous charge — you're not locked into one spell per capacitor.
 
-**Recharge Degradation:** Each time a rechargeable capacitor is fully discharged and recharged, make a Technology DC 12 check. Failure means the capacitor loses 1 maximum charge permanently. Replace the crystal lattice (costs 25% of the original capital cost) to restore it.
+**Recharge Degradation:** Each time a rechargeable capacitor is fully discharged and recharged, make a Technology DC 12 check. The degradation check triggers regardless of whether the new charge uses the same spell or a different one — what matters is the cycle of full discharge followed by any recharge. Failure means the capacitor loses 1 maximum charge permanently. Replace the crystal lattice (costs 25% of the original capital cost) to restore it.
 
 **Synthetics and Capacitors:** Synthetics cannot charge capacitors (charging requires knowledge of a spell, which Synthetics cannot learn). However, Synthetics can activate pre-charged capacitors normally — the capacitor does the casting, not the user.
 

@@ -1,6 +1,4 @@
 ---
-// Worker URL — update after deploying to Cloudflare
-const workerUrl = 'https://ashfall-feedback.bytesnap-dev.workers.dev';
 ---
 
 <div id="feedback-modal" class="fb-overlay" aria-hidden="true">
@@ -277,8 +275,7 @@ const workerUrl = 'https://ashfall-feedback.bytesnap-dev.workers.dev';
   let html2canvasLoaded = false;
   let screenshotBase64 = null;
 
-  const WORKER_URL = document.querySelector('[data-worker-url]')?.getAttribute('data-worker-url')
-    || 'https://ashfall-feedback.joseph-a-conner.workers.dev';
+  const WORKER_URL = 'https://ashfall-feedback.joseph-a-conner.workers.dev';
 
   const modal = document.getElementById('feedback-modal');
   const backdrop = modal.querySelector('.fb-backdrop');

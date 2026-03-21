@@ -51,17 +51,17 @@ Grab one of these characters and start playing. You can customize them later or 
 - Scrap Shield (Tier 1) — DV bonus +1
 - Bedroll, waterskin, 50 ft rope, ration pack (3 days)
 
-### Class Features
+### Build Features
 
 - **Combat Stance (At-Will, 1 Action to switch):** Choose Aggressive (+2 damage, -1 DV), Defensive (+2 DV, -2 damage), or Balanced (+1 reaction per round). Only one stance active at a time.
 - **Second Wind (1/Short Rest, 1 Action):** Heal 2d10 + your Warrior level HP (currently 2d10+1). Gain temporary HP equal to your Warrior level (currently 1). Scales with Warrior levels only.
 - **Bodyguard (Reaction):** When an enemy attacks an ally within 30 ft, move up to 15 ft toward ally. If within 5 ft after moving, become the target instead.
 
-### AP Spent (15 of 20 AP)
+### CP Spent (15 of 20 CP)
 
-- Power Strike (5 AP) — +1d6 damage once per turn on a melee hit.
-- Armor Mastery (5 AP) — Reduce physical damage taken by 2.
-- Remaining: 5 AP saved.
+- Power Strike (5 CP) — +1d6 damage once per turn on a melee hit.
+- Armor Mastery (5 CP) — Reduce physical damage taken by 2.
+- Remaining: 5 CP saved.
 
 ### Personal Goal
 
@@ -115,17 +115,17 @@ Find the settlement that exiled them and learn what really happened the night th
 - Reinforced Leather (Tier 2 light armor) — DV bonus +2
 - Ammunition (40 rifle rounds, 30 pistol rounds), canteen, lighter, binoculars
 
-### Class Features
+### Build Features
 
 - **Steady Aim (1 Action):** Gain +2 to your next ranged attack this turn. Stacks with the base Aim action for +4 total, but you cannot move after aiming.
 - **Quick Draw (Passive):** +2 to initiative. Draw a weapon as a free action at the start of combat.
 - **Lethal Precision (Passive):** Add your AGI modifier (+3) to all ranged weapon damage rolls. This represents placing shots exactly where they do the most harm.
 
-### AP Spent (15 of 20 AP)
+### CP Spent (15 of 20 CP)
 
-- Long Shot (5 AP) — Double the range of any ranged weapon you wield.
-- Field Maintenance (5 AP) — Repair a damaged firearm in 10 minutes during a rest.
-- Remaining: 5 AP saved.
+- Long Shot (5 CP) — Double the range of any ranged weapon you wield.
+- Field Maintenance (5 CP) — Repair a damaged firearm in 10 minutes during a rest.
+- Remaining: 5 CP saved.
 
 ### Personal Goal
 
@@ -180,17 +180,17 @@ Pay off a 2,000-credit debt to a Kromath merchant before the interest turns into
 - Kevlar Armor (Tier 2 medium armor) — DV bonus +4
 - Stimpacks (x3), bandages, antiseptic, portable diagnostic scanner, ammunition (20 rounds)
 
-### Class Features
+### Build Features
 
 - **Field Medic (2 Actions):** Heal an adjacent ally for 2d8 + WIS modifier (+2) HP. Requires a first aid kit (consumes 1 use). Cannot be used on self. Cannot be used on Synthetics (use Technology check instead).
 - **Triage (Passive):** When you stabilize a dying creature, they regain 1 HP instead of simply stabilizing.
 - **Preventive Care (1 Action, 1/Short Rest):** Grant one ally within 30 ft temporary HP equal to 1d6 + your proficiency bonus.
 
-### AP Spent (15 of 20 AP)
+### CP Spent (15 of 20 CP)
 
-- Rapid Suture (5 AP) — Field Medic healing increases by +1d6.
-- Stimpack Crafter (5 AP) — Craft 2 stimpacks during a short rest using basic medical supplies.
-- Remaining: 5 AP saved.
+- Rapid Suture (5 CP) — Field Medic healing increases by +1d6.
+- Stimpack Crafter (5 CP) — Craft 2 stimpacks during a short rest using basic medical supplies.
+- Remaining: 5 CP saved.
 
 ### Personal Goal
 
@@ -251,16 +251,16 @@ Understand why they feel compassion when their programming says they should not.
 - Reinforced Leather (Tier 2 light armor) — DV bonus +2
 - Bolts (20), grappling hook, 50 ft silk rope, lockpicks, signal mirror, ration pack (3 days)
 
-### Class Features
+### Build Features
 
 - **Sneak Attack (1/Turn):** When hitting with advantage or while flanking, deal an extra +1d6 damage.
 - **Expertise (Passive):** Double proficiency bonus on two skills (Stealth, Investigation). Can change one during a long rest.
 
-### AP Spent (15 of 20 AP)
+### CP Spent (15 of 20 CP)
 
-- Silent Takedown (5 AP) — Kill an unaware target that is below an HP threshold with a single melee attack.
-- Locksmith (5 AP) — +5 to lockpicking checks.
-- Remaining: 5 AP saved.
+- Silent Takedown (5 CP) — Kill an unaware target that is below an HP threshold with a single melee attack.
+- Locksmith (5 CP) — +5 to lockpicking checks.
+- Remaining: 5 CP saved.
 
 ### Personal Goal
 

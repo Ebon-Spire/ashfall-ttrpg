@@ -31,6 +31,9 @@ advanced_skills:
   - {name: Robotics, attribute: INT, prerequisite: "Technology (Proficient)", category: Advanced}
   - {name: Tactics, attribute: "INT/WIS", prerequisite: "Perception or Survival (Proficient)", category: Advanced}
   - {name: Scavenging, attribute: WIS, prerequisite: "Survival (Proficient)", category: Advanced}
+  - {name: Statecraft, attribute: PRE, prerequisite: "Persuasion or Deception (Proficient)", category: Advanced}
+  - {name: Tracking, attribute: WIS, prerequisite: "Survival (Proficient)", category: Advanced}
+  - {name: Interrogation, attribute: "PRE/WIS", prerequisite: "Insight or Intimidation (Proficient)", category: Advanced}
 ---
 # Skills
 ![Wasteland survivors demonstrating diverse skills — tracking, engineering, diplomacy, and field medicine](/images/illustrations/skills-in-action.png)
@@ -39,7 +42,7 @@ advanced_skills:
 
 Skills represent training and expertise beyond raw attributes. Each skill has specific mechanical uses that make it valuable — proficient characters can do things untrained characters simply cannot.
 
-**Total Skills:** 21 base skills covering post-apocalyptic needs, plus 8 advanced skills (see *Advanced Skills*)
+**Total Skills:** 21 base skills covering post-apocalyptic needs, plus 11 advanced skills (see *Advanced Skills*)
 
 **Skill Check:** `d20 + Attribute Modifier + Proficiency Bonus (if proficient)`
 
@@ -102,7 +105,7 @@ Deft fingers for picking pockets, planting evidence, lockpicking, and disarming 
 
 **Skill Uses:**
 
-- **Pickpocket** — Contested Sleight of Hand vs target's Perception. On success, you lift one small item (palm-sized or smaller). Failure means the target notices the attempt. Cannot be attempted in combat without the Distracted condition on the target.
+- **Pickpocket** — Contested Sleight of Hand vs target's Perception. On success, you lift one small item (palm-sized or smaller). Failure means the target notices the attempt. Cannot be attempted in combat unless the target is **Stunned**, **Grappled**, or otherwise unable to notice you (GM discretion).
 - **Plant Item** — Reverse pickpocket — slip something into a target's belongings. Same contested check. Useful for planting evidence, tracking devices, or poison.
 - **Pick Lock** — Open a mechanical lock. DC 10 (simple padlock), DC 15 (standard lock), DC 18 (quality lock), DC 22 (masterwork lock). Requires thieves' tools. Failure by 5+ jams the lock (DC increases by 2 for future attempts).
 - **Disable Trap** — Disarm a mechanical trap. DC varies (typically 15-22). Requires thieves' tools. Failure by 5+ triggers the trap. You must first identify the trap (Perception or Investigation).
@@ -177,7 +180,7 @@ Understanding magical theory, identifying spells and enchantments, and conductin
 **Skill Uses:**
 
 - **Identify Spell** — Recognize a spell being cast or an ongoing magical effect. DC 10 + spell level. Using a reaction to identify a spell as it's cast allows you to call out what it is, potentially letting allies prepare countermeasures.
-- **Detect Magic** — Sense whether an object, location, or creature is magical. DC 12 (strong aura), DC 16 (moderate), DC 20 (faint or deliberately concealed). Requires 1 minute of focused concentration. Not as precise as the Detect Magic cantrip, but available to non-casters.
+- **Detect Magic** — Sense whether an object, location, or creature is magical. DC 12 (strong aura), DC 16 (moderate), DC 20 (faint or deliberately concealed). Requires 1 minute of focused concentration. Not as precise as the Sense Magic cantrip, but available to non-casters.
 - **Spell Research** — Create new spells or modify existing ones. DC = 15 + spell level. Time: 1 week per spell level. Requires access to arcane texts or a mentor. See the Magic chapter for the full spell creation system.
 - **Ritual Casting Check** — When casting a ritual spell, you must succeed on a skill check at the end of the casting. DC = 10 + (spell level x 2). Failure wastes the casting time and material components but does not trigger burnout.
 - **Read Magical Text** — Decipher arcane writing, magical scrolls, or enchanted inscriptions. DC 12 (standard arcane text), DC 16 (ancient or coded), DC 20 (deliberately obfuscated or trapped). Failure on a trapped text triggers the trap.
@@ -299,7 +302,7 @@ Honest influence — diplomacy, negotiation, motivation, and appeal to reason or
 - **Negotiate** — Reach a mutually beneficial agreement. DC 10 (willing participant), DC 15 (reluctant), DC 18 (hostile but rational), DC 22 (entrenched opposition). Negotiation requires something to offer — you can't persuade with nothing. The GM adjusts DC based on the quality of your offer.
 - **Request Aid** — Ask an NPC for help, information, or resources. DC varies by the NPC's disposition and the size of the request. Friendly: DC 10 (small favor), DC 15 (significant help). Indifferent: DC 15 (small), DC 20 (significant). Unfriendly: DC 20 (small), DC 25+ (significant). Persuasion cannot make enemies into friends — it just gets what you need in the moment.
 - **Calm Hostility** — De-escalate a tense situation before combat starts. DC 15 (angry civilian), DC 18 (armed standoff), DC 22 (bloodthirsty raider). Only works if the other side has something to lose. Success delays combat for at least 1 minute of dialogue.
-- **Rally** — Inspire a group to action. DC 12 (friendly crowd), DC 16 (uncertain crowd), DC 20 (demoralized or fearful group). Success shifts group attitude one step in your favor. In combat, the Diplomat class has specific rally abilities — this is the general-use version for narrative moments.
+- **Rally** — Inspire a group to action. DC 12 (friendly crowd), DC 16 (uncertain crowd), DC 20 (demoralized or fearful group). Success shifts group attitude one step in your favor. In combat, the Leadership & Social tree has specific rally abilities — this is the general-use version for narrative moments.
 - **Gather Information** — Spend time in a settlement asking questions. DC varies by how sensitive the information is. DC 10 (public knowledge), DC 15 (rumors), DC 20 (guarded secrets). Time: 1d4 hours. Requires a settlement or gathering.
 - **Interrogate** (cooperative) — Extract information from a willing or neutral prisoner through rapport-building. Contested Persuasion vs target's Insight. Less reliable than Intimidation but doesn't create enemies.
 
@@ -330,8 +333,8 @@ Coercing others through threats, physical presence, or sheer force of personalit
 
 **Skill Uses:**
 
-- **Threaten** — Force compliance through fear. Contested Intimidation vs target's Insight or Will save. On success, the target does what you demand as long as the threat feels credible. On failure, the target either calls your bluff or becomes hostile. Threatening someone who has nothing to lose always fails.
-- **Demoralize** (1 action in combat) — Shake an enemy's nerve. Contested Intimidation vs target's Will save DC. On success, the target is Frightened of you until the end of your next turn. A creature that succeeds on this save is immune to your Demoralize for 24 hours.
+- **Threaten** — Force compliance through fear. Contested Intimidation vs target's Insight. On success, the target does what you demand as long as the threat feels credible. On failure, the target either calls your bluff or becomes hostile. Threatening someone who has nothing to lose always fails.
+- **Demoralize** (1 action in combat) — Shake an enemy's nerve. The target makes a Will save (DC = 8 + your PRE or MIG modifier + proficiency bonus). On failure, the target is Frightened of you until the end of your next turn. A creature that succeeds on this save is immune to your Demoralize for 24 hours.
 - **Interrogate** (coercive) — Extract information through pain or fear. Contested Intimidation vs target's Endurance or Insight. Faster than Persuasion but the information may be unreliable (the target may say anything to make it stop). The GM secretly determines accuracy.
 - **Command Obedience** — Force a group of weaker creatures to follow orders. DC 12 (clearly outmatched), DC 16 (roughly equal), DC 20 (outnumbering you). Success only works while you maintain the threat — the moment you show weakness or leave, compliance ends.
 - **Display Dominance** — Make a show of strength to establish hierarchy. Destroying an object, defeating a champion, or performing a feat of power. DC set by the GM. Success shifts a group's attitude toward fearful respect.
@@ -424,7 +427,7 @@ Maintaining, repairing, and modifying vehicles, drones, and complex mechanical s
 - **Reroute Power** (bonus action) — Shift power between vehicle systems to boost one at the cost of another. Choose one: +10 ft speed (from weapons power), +1 weapon damage die (from engine power), or +1 DV (from engine power). Only one reroute active at a time. Lasts until you change it or combat ends.
 - **Emergency Repair** (3 actions) — Major field repair during a lull in combat or immediately after. DC 16. Restore 2d10 + INT modifier HP to the vehicle. Uses 2 repair supply units. Usable once per short rest per vehicle.
 - **Overclock Engine** (1 action, 1/short rest) — Push a vehicle's engine beyond safe limits. Double the vehicle's speed for 1 round. After the round ends, make a DC 14 Engineering check — failure means the engine takes 1 level of system damage (Stressed).
-- **Field Modification** — Install, remove, or swap a vehicle module outside of a workshop. DC 14 (utility module), DC 18 (weapon or armor module), DC 22 (engine or power plant). Time: 1 hour (half for Technician Engineers). Failure wastes the time but doesn't damage the module.
+- **Field Modification** — Install, remove, or swap a vehicle module outside of a workshop. DC 14 (utility module), DC 18 (weapon or armor module), DC 22 (engine or power plant). Time: 1 hour (half for characters with Engineering expertise). Failure wastes the time but doesn't damage the module.
 - **Assess Vehicle** — Determine the condition, capabilities, and weaknesses of a vehicle (allied or enemy). DC 10 (common vehicle, no concealment), DC 15 (military vehicle or deliberately obscured), DC 20 (alien or experimental design). Reveals HP estimate, armor type, weapon systems, and any system damage.
 
 **Proficiency Unlock:** You can perform Damage Control and Emergency Repair. You can attempt Field Modifications. Untrained characters can Assess Vehicles and Reroute Power but cannot perform repairs or modifications.
@@ -451,7 +454,7 @@ Skills have two tiers of investment: **Proficient** and **Expert**. Proficiency 
 
 At Level 1, a character gains proficiency in skills from three sources:
 
-1. **Archetype Proficiencies** — Your class grants 2 fixed skill proficiencies (e.g., Warriors gain Athletics and Intimidation). The Operative is the exception, gaining 2 fixed + 3 chosen (5 total).
+1. **Build Proficiencies** — Your chosen build grants 2 fixed skill proficiencies (e.g., Warriors gain Athletics and Intimidation). The Operative is the exception, gaining 2 fixed + 3 chosen (5 total).
 2. **Background Proficiency** — Your background grants 1 fixed skill proficiency.
 3. **Player Choice** — You choose **2 additional proficiencies** from any skill. These represent your character's personal history, hobbies, or self-taught abilities beyond their formal training.
 
@@ -463,31 +466,163 @@ This gives most characters **5 proficiencies at Level 1** (2 class + 1 backgroun
 
 As characters grow, they naturally broaden their skillset:
 
-**Free Proficiency Picks (no AP cost):**
+**Free Proficiency Picks (no CP cost):**
 - **Level 3:** +1 proficiency in any untrained skill
 - **Level 8:** +1 proficiency in any untrained skill
 - **Level 15:** +1 proficiency in any untrained skill
 
 The Operative gains **bonus proficiency picks** at Level 5 and Level 10 (in addition to the standard picks above), reflecting their unmatched versatility.
 
-**AP Spending (available at any level):**
-- **2 AP:** Gain proficiency in any untrained skill
-- **4 AP:** Upgrade a Proficient skill to Expert (requires proficiency first)
+**CP Spending (available at any level):**
+- **2 CP:** Gain proficiency in any untrained skill
+- **4 CP:** Upgrade a Proficient skill to Expert (requires proficiency first)
 
-The Operative pays **half price** for skill AP spending (1 AP for proficiency, 2 AP for expertise), representing their natural aptitude for picking up new skills.
+Specialist chassis characters pay **half price** for skill CP spending (1 CP for proficiency, 2 CP for expertise), representing their natural aptitude for picking up new skills.
 
 **Downtime Training:**
-- 8 weeks training + 200 credits instructor fee to gain proficiency in one untrained skill (no AP cost, but requires narrative downtime)
+- 8 weeks training + 200 credits instructor fee to gain proficiency in one untrained skill (no CP cost, but requires narrative downtime)
 
 ### Expertise
 
 Expertise doubles your proficiency bonus for a specific skill. At Level 1 with +2 proficiency, expertise gives +4. At Level 17 with +6 proficiency, expertise gives +12.
 
 **Gaining Expertise:**
-- Spend 4 AP (2 AP for Operatives) to upgrade any Proficient skill to Expert
-- Some class features grant free expertise (notably the Operative's Expertise feature)
+- Spend 4 CP (2 CP for Specialist chassis) to upgrade any Proficient skill to Expert
+- Some build features grant free expertise (notably the Operative's Expertise feature)
 
 **Operative Expertise Advantage:** The Operative is the only class that receives free Expertise at Level 1 (2 skills) and gains additional free Expertise at L6 and L12. Furthermore, the Operative can **swap one Expertise skill during a long rest**, while all other characters' Expertise choices are permanent once made.
+
+### Skill Focuses
+
+A character who is proficient in a skill can further narrow their expertise into a **skill focus** — a specific application of that skill honed through focused practice. Two characters proficient in Medicine might have very different capabilities: one focuses on Trauma Surgery while the other focuses on Pharmacological Knowledge.
+
+#### Mechanical Benefit
+
+When you make a skill check that falls within your skill focus's domain, you gain **+2 to the roll**. This bonus stacks with proficiency and expertise but is situational — it only applies when the specific focus is relevant.
+
+A few skill focuses (marked with ★) also grant a minor ability unlock in addition to the +2 bonus.
+
+#### Acquiring Skill Focuses
+
+| Source | When | Details |
+|--------|------|---------|
+| **Background** | Level 1 | Your background grants 1 starting skill focus in a skill you are proficient in (see backgrounds) |
+| **Advancement** | Level 5 | Choose 1 skill focus in any proficient skill |
+| **Advancement** | Level 10 | Choose 1 skill focus in any proficient skill |
+| **Advancement** | Level 15 | Choose 1 skill focus in any proficient skill |
+
+A character can have **multiple skill focuses in different skills** but cannot take two focuses in the same skill. You must be proficient in a skill to take a focus in it.
+
+#### Retraining
+
+During a long rest (1 week), you can replace one skill focus with a different one, provided you meet the prerequisites. This represents focused practice and shifting expertise — a common necessity in a world where survival demands adapt.
+
+---
+
+#### Physical Skill Focuses
+
+| Skill | Focus | Domain |
+|-------|---------------|--------|
+| **Athletics** | Brawler | Grapple, Shove, and unarmed combat checks |
+| | Climber | Climbing checks and reducing fall distance |
+| | Swimmer | Swimming and underwater action checks |
+| **Acrobatics** | Tumbler | Tumble Through and Escape Grapple checks |
+| | Freerunner | Balance and movement across unstable/narrow surfaces |
+| | Contortionist | Squeezing through tight spaces and escaping restraints |
+| **Stealth** | Urban Camouflage | Hiding and sneaking in settlements, ruins, and structures |
+| | Wilderness Stalking | Hiding and sneaking in natural terrain — forests, wastes, mountains |
+| | Ambush Specialist | Ambush Setup checks and maintaining Stealth after attacking from hiding |
+| **Sleight of Hand** | Locksmith | Pick Lock and Disable Trap checks |
+| | Pickpocket | Pickpocket, Plant Item, and Conceal Object checks |
+| | Trap Technician | Disable Trap checks; ★ you can identify a trap's trigger mechanism without a separate Perception check |
+| **Endurance** | Wasteland Hardened | Withstand Environment and Resist Toxin checks in irradiated or chemically contaminated areas |
+| | Pain Tolerance | Stay Conscious and Resist Pain checks |
+| | Marathon Runner | Forced March checks and long-distance travel endurance |
+
+> **Locksmith vs Trap Technician:** Both Sleight of Hand focuses cover Disable Trap checks. This is an intentional breadth-vs-depth choice. Locksmith gives +2 to *both* Pick Lock and Disable Trap (broader coverage). Trap Technician gives +2 only to Disable Trap but also grants free trap identification (★ ability). Choose Locksmith if you need general infiltration versatility; choose Trap Technician if traps are your primary concern.
+
+#### Mental Skill Focuses
+
+| Skill | Focus | Domain |
+|-------|---------------|--------|
+| **Science** | Chemist | Synthesize Compound and Analyze Substance checks for chemicals and pharmaceuticals |
+| | Radiation Specialist | Assess Radiation checks and identifying radioactive materials or contamination |
+| | Ballistics Expert | Craft Ammunition checks and identifying weapon-related evidence |
+| **Technology** | Field Mechanic | Repair and Jury-Rig checks on mechanical and vehicular systems |
+| | Systems Hacker | Hack Terminal and Disable Device checks on electronic systems |
+| | Salvage Analyst | Identify Tech checks; ★ when you succeed, you also learn the item's approximate salvage value |
+| **Arcana** | Sigil Scholar | Spell Research and Learning Spell Fragment checks |
+| | Warden's Eye | Detect Magic and Identify Spell checks |
+| | Occult Historian | Identify Magical Creature and Read Magical Text checks |
+| **Investigation** | Crime Scene Analyst | Reconstruct Events and Search Area checks at scenes of violence or sabotage |
+| | Counterintelligence | Detect Forgery and Expose Deception checks |
+| | Casing Specialist | Case a Location checks for infiltration planning |
+| **Medicine** | Trauma Surgeon | Emergency Field Medicine and Field Surgery checks |
+| | Disease Specialist | Treat Disease/Poison and Diagnose checks for illness, toxin, and radiation sickness |
+| | Combat Medic | Medicine checks made during combat (under fire, while threatened) |
+| **Perception** | Spotter | Spot and Survey Area checks at distances greater than 60 feet |
+| | Sentry | Detect Ambush (Passive Perception) and Listen checks while on watch |
+| | Tracker | Track by Senses checks within 60-foot range |
+| **Insight** | Interrogator | Detect Lie and Sense Motive checks during deliberate questioning |
+| | Behavioral Analyst | Predict Behavior and Assess Trustworthiness checks |
+| | Empathic Reader | Read Emotions checks; includes detecting magical mental influence |
+| **Survival** | Wilderness Tracker | Track checks over natural terrain |
+| | Forager | Forage and Predict Weather checks |
+| | Trapper | Set Snare and Build Shelter checks |
+
+#### Social Skill Focuses
+
+| Skill | Focus | Domain |
+|-------|---------------|--------|
+| **Persuasion** | Negotiator | Negotiate and Request Aid checks in transactional contexts |
+| | Orator | Rally and Calm Hostility checks addressing groups |
+| | Information Broker | Gather Information checks through direct questioning |
+| **Deception** | Con Artist | Lie and Create Diversion checks in social manipulation |
+| | Forger | Forge Document and Plant False Information checks |
+| | Master of Disguise | Disguise checks; ★ your disguise preparation time is halved |
+| **Intimidation** | Physical Menace | Intimidation checks using MIG — Threaten, Display Dominance via physicality |
+| | Psychological Terror | Intimidation checks using PRE — Demoralize, Interrogate through fear |
+| | Command Presence | Command Obedience checks and maintaining authority over groups |
+| **Streetwise** | Black Marketeer | Find Black Market and Navigate Underworld checks |
+| | Street Reader | Read the Room and Identify Criminal checks |
+| | Appraiser | Street Price checks; ★ you cannot be cheated on transactions within settlements you've spent 24+ hours in |
+
+#### Specialized Skill Focuses
+
+| Skill | Focus | Domain |
+|-------|---------------|--------|
+| **Piloting** | Ground Vehicles | Piloting checks for wheeled, tracked, and walker vehicles |
+| | Aircraft | Piloting checks for rotorcraft, fixed-wing, and VTOL vehicles |
+| | Mounts | Piloting checks for riding living creatures (mutant beasts, bio-engineered mounts) |
+| **Navigation** | Overland Pathfinder | Route-finding and travel time estimation across wilderness |
+| | Signal Specialist | Signal interception, communication equipment, and electronic navigation |
+| | Urban Navigator | Navigation checks within dense settlements, ruin complexes, and underground networks |
+| **Weapon Systems** | Gunnery | Vehicle-mounted weapon attack and targeting checks |
+| | Point Defense | Defensive fire, intercepting projectiles, and anti-personnel weapon checks |
+| | Artillery | Long-range indirect fire and bombardment targeting checks |
+| **Engineering** | Structural Engineer | Fortification, building, and demolishing structure checks |
+| | Electrical Systems | Power grid, wiring, and electrical system checks |
+| | Mechanical Systems | Engines, hydraulics, and moving-parts system checks |
+
+---
+
+#### Skill Focus and Other Bonuses
+
+Skill focuses stack with proficiency and expertise. They do **not** stack with other conditional +2 bonuses to the same check (e.g., an item bonus and a skill focus bonus — use the higher). This follows Ashfall's bounded accuracy: the maximum skill bonus cap of +18 still applies.
+
+**Example:** A Level 10 Operative with Medicine (Expert) and the Trauma Surgeon focus makes an Emergency Field Medicine check. Their bonus is: WIS modifier (+3) + Expertise (+8) + Skill Focus (+2) = **+13**. At the +18 cap, this leaves room for growth through attribute increases but is already elite-tier.
+
+---
+
+#### Example: Two Medics, Two Playstyles
+
+*Dr. Reva* has Medicine → **Trauma Surgeon** focus. She excels in the heat of battle — her Emergency Field Medicine and Field Surgery checks get +2, making her the person you want when someone is bleeding out in a firefight.
+
+*Kael* has Medicine → **Disease Specialist** focus. He's the one you call when a settlement is suffering from plague, when someone has been poisoned, or when radiation sickness is spreading. His Diagnose and Treat Disease checks get +2, giving him an edge in the slower, more investigative side of medicine.
+
+Both are proficient in Medicine. Both are valuable. But they solve different problems — and the party benefits from having both.
+
+---
 
 ### Skill Proficiency Summary by Level
 
@@ -501,7 +636,7 @@ Expertise doubles your proficiency bonus for a specific skill. At Level 1 with +
 | 10 | — | +1 bonus proficiency |
 | 12 | — | +1 free Expertise |
 | 15 | +1 free proficiency | +1 free proficiency |
-| **Total** | **8 proficiencies** (+ any from AP) | **13 proficiencies + 4 Expertise** (+ any from AP) |
+| **Total** | **8 proficiencies** (+ any from CP) | **13 proficiencies + 4 Expertise** (+ any from CP) |
 
 ---
 
@@ -514,7 +649,7 @@ Everyone rolls the same skill.
 
 ### Aid Action
 Help another character with their skill check.
-- **Requirement:** Must be proficient in the skill or DM allows situational help
+- **Requirement:** Must be proficient in the skill or GM allows situational help
 - **Benefit:** Target gains advantage on their check
 - **Multiple Helpers:** Only one helper grants advantage (doesn't stack)
 
@@ -522,19 +657,21 @@ Help another character with their skill check.
 
 ## Skill Challenges
 
-Complex situations requiring multiple checks over time.
+Skill challenges model extended non-combat obstacles that require multiple checks across multiple skills. The party accumulates successes before hitting a failure limit, with each failure introducing compounding complications.
 
-**Structure:**
-1. DM sets goal and required successes (usually 3-5 before 3 failures)
-2. Players describe actions and choose relevant skills
-3. Roll checks against appropriate DCs
-4. Track successes and failures
-5. Outcome based on final tally
+**Quick Reference:**
+1. GM sets complexity: Simple (3 successes / 2 failures), Standard (5/3), or Complex (7/4)
+2. Each round, the GM announces 3-5 applicable skills; each PC makes one check
+3. **Skill lockout:** Each skill can only be used by one PC per round
+4. Meet DC = 1 success; exceed DC by 5+ = 2 successes (critical); fail = 1 failure + complication
+5. Outcome depends on final tally — full success, partial success, partial failure, or total failure
 
 **Example: Escaping a Collapsing Ruin**
 - Required: 4 successes before 3 failures
 - Players might use: Athletics (dodge debris), Perception (find exit), Technology (override blast door), Acrobatics (leap gap)
 - Failure: Trapped or injured; Success: Escape with minor wounds
+
+> **Full Framework:** For complexity tiers, challenge templates (Infiltration, Research Montage, Survival Trek, Chase), feature integration, and a complete worked example, see **Game Mastering — Skill Challenge Framework**.
 
 ---
 
@@ -553,8 +690,11 @@ Beyond the 21 base skills, characters can acquire **advanced skills** — specia
 | Pharmacology | WIS/INT | Medicine (Proficient) | Drug crafting, poisons, stimulants |
 | Robotics | INT | Technology (Proficient) | Autonomous systems, AI, mechs |
 | Tactics | INT/WIS | Perception or Survival (Proficient) | Battle planning, force assessment |
+| Interrogation | PRE/WIS | Insight or Intimidation (Proficient) | Structured questioning, deception detection |
+| Statecraft | PRE | Persuasion or Deception (Proficient) | Political maneuvering, faction influence |
+| Tracking | WIS | Survival (Proficient) | Trail following, urban surveillance, counter-tracking |
 | Scavenging | WIS | Survival (Proficient) | Salvage, rare components |
 
-**Acquisition:** 3 AP (2 AP for Operatives), Level 3+, requires prerequisite at Proficient. Maximum 2 per character (3 for Operatives). No Expertise tier.
+**Acquisition:** 3 CP (2 CP for Specialist chassis), Level 3+, requires prerequisite at Proficient. Maximum 2 per character (3 for Specialist chassis). No Expertise tier.
 
 For full rules on each advanced skill, see *Advanced Skills*.

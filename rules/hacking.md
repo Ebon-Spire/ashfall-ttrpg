@@ -66,7 +66,7 @@ White ICE doesn't attack — it blocks, logs, and alerts.
 | ICE | Tier | Effect | Bypass DC |
 |---|---|---|---|
 | **Firewall** | 1+ | Blocks unauthorized access to a node. Must be bypassed to proceed. | DC 14 / DC 17 / DC 20 by tier |
-| **Watchdog** | 2+ | Monitors for intrusion. If the hacker fails a check by 5+, Watchdog triggers an alert to the Security Hub. | DC 16 (Stealth in network) |
+| **Watchdog** | 2+ | Monitors for intrusion. If the hacker fails a check by 5+, Watchdog triggers an alert to the Security Hub. | DC 16 Hacking (see **Stealth Traverse**, Phase 3) |
 | **Logger** | 1+ | Records all access. Even successful hacks leave evidence unless the logger is disabled. | DC 12 to disable |
 | **Lockout Protocol** | 3+ | After 3 failed breach attempts, locks the gateway for 1 hour. Physical reset required. | Cannot bypass — prevent by not failing |
 | **Honeypot** | 3+ | Fake node designed to look valuable. Accessing it triggers an alert and plants a tracker on the hacker's interface. | Investigation DC 18 to identify |
@@ -131,7 +131,7 @@ Gain initial access to the network through the Gateway node.
 
 | Method | Modifier | Notes |
 |---|---|---|
-| **Brute Force** | -2 to DC | Fast but loud. Automatically triggers Watchdog ICE if present. |
+| **Brute Force** | -2 to DC | Fast but loud. Automatically triggers Watchdog ICE if present (bypasses the normal fail-by-5+ threshold — Watchdog activates regardless of check outcome). |
 | **Exploit Vulnerability** | -4 to DC | Requires successful Recon that identified a vulnerability. |
 | **Social Engineering** | Use Deception instead of Hacking | Trick an authorized user into providing access. Only works if a user is present. |
 | **Physical Access** | -5 to DC | Direct hardwire connection to a node. Requires being physically at the terminal. |
@@ -195,7 +195,7 @@ What you can do at each node type. All actions require 1 action in combat or the
 | Action | DC | Time (Downtime) | Effect |
 |---|---|---|---|
 | **Open/Close Doors** | DC 12 | Instant | Toggle door locks. Blast doors: DC 16. Vault doors: DC 20. |
-| **Redirect Turret** | DC 18 | 1 min | Change turret's friend/foe designation. Lasts until reset. Redirected turrets remain under your control for 1 minute (10 rounds) or until you lose concentration (taking damage requires a DC 10 + damage taken Will save to maintain control). Each turret requires a separate Redirect check. |
+| **Redirect Turret** | DC 18 | 1 min | Change turret's friend/foe designation. Lasts until reset. Redirected turrets remain under your control for 1 minute (10 rounds) or until you lose concentration (taking damage requires a Will save — DC 10 or half the damage taken, whichever is higher — to maintain control). Each turret requires a separate Redirect check. |
 | **Environmental Override** | DC 16 | 5 min | Control lights, ventilation, temperature, gravity (if applicable). |
 | **Lockdown** | DC 18 | 1 min | Seal all doors in a section. Override DC 20 from inside. |
 | **Trigger Alarm** | DC 10 | Instant | Activate facility-wide alert. Useful as a distraction. |
@@ -225,7 +225,7 @@ What you can do at each node type. All actions require 1 action in combat or the
 
 | Action | DC | Time (Downtime) | Effect |
 |---|---|---|---|
-| **Query AI** | DC 14 | 5 min | Ask the AI a question. It answers truthfully if the query is within its parameters. Hostile AIs may lie (contested INT). |
+| **Query AI** | DC 14 | 5 min | Ask the AI a question. It answers truthfully if the query is within its parameters. Hostile AIs may lie — make a **contested Intelligence check** (your INT modifier + proficiency bonus vs. the AI's INT modifier + its Tier) to detect the deception. On a tie, you cannot determine whether the AI is lying. |
 | **Negotiate** | Persuasion or Deception vs. AI's Will DC | 10 min | Convince the AI to cooperate, stand down, or provide access. Sapient AIs have personalities and goals. |
 | **Override AI** | DC 22+ | 30 min | Force the AI to obey commands against its programming. Non-sapient AI only. Sapient AI cannot be overridden — only persuaded, deceived, or destroyed. |
 | **Extract AI** | DC 20 | 1 hour | Copy the AI to a portable storage medium. Requires sufficient storage (see Tech Systems Crafting in [Crafting](crafting.md)). |
@@ -241,6 +241,20 @@ What you can do at each node type. All actions require 1 action in combat or the
 
 ---
 
+### Processing Node
+
+Processing nodes contain the network's computational resources — servers running calculations, decryption queues, data analysis pipelines. Most hackers skip these, but a skilled operator can leverage raw processing power for significant tactical advantages.
+
+| Action | Check | Time | Effect |
+|--------|-------|------|--------|
+| **Run Decryption** | Technology DC by encryption tier (16/20/24/28) | 1 action (combat) / 10 min (downtime) | Decrypt one encrypted data file or communication. Decrypted data can be read, copied, or exfiltrated. |
+| **Analyze Dataset** | Investigation DC 15 (routine) / DC 20 (buried) | 1 action (combat) / 30 min (downtime) | Extract hidden patterns from raw data. GM reveals one useful fact: security patrol schedules, financial records showing a weakness, personnel files with blackmail material, etc. |
+| **Compile Program** | Technology DC 18 | 2 actions (combat) / 1 hour (downtime) | Create a temporary program from available source code. The program functions as a standard Tier 2 program (your choice) and lasts until the network reboots or you disconnect. Requires an available program slot. |
+| **Brute-Force Calculation** | None (automatic) | 1 action | Dedicate processing resources to one task. Your next Navigate or Execute check in this intrusion gains a **+2 bonus**. Usable once per intrusion — the node's resources are consumed. |
+| **Overclock** | Technology DC 16 | 1 action | Push the processor to maximum output. You gain **advantage** on your next Navigate or Execute check. On failure, the strain triggers a **Yellow alert** (or escalates Yellow to Red). Risk/reward: advantage on a key check, but failure is costly. |
+
+---
+
 ## Hacking in Combat
 
 When hacking during active combat (not leisurely downtime), the following modifications apply:
@@ -251,11 +265,19 @@ When hacking during active combat (not leisurely downtime), the following modifi
 - Bypassing ICE costs **1 action per ICE layer**
 - Node actions cost **1 action** unless specified
 - You can hack and take other actions on the same turn (3-action economy)
-- You must maintain **line of effect** to a connected device or be within Neural Interface range
+- You must maintain **line of effect** (an unbroken signal path — wireless range, wired connection, or network relay; not the same as line of sight) to a connected device or be within Neural Interface range
 
 ### Concentration
 
-Active hacking requires **concentration** (same rules as spell concentration). If you take damage while connected, make a **Will save** (DC 10 or half damage, whichever is higher). Failure disconnects you — you must re-breach next turn.
+Active hacking requires **concentration**, following the same core rules as spell concentration (see **Magic — Concentration**).
+
+**Will save DC:** When you take damage while connected to a network, make a **Will save**. The DC equals **10 or half the damage taken, whichever is higher**.
+
+**On failure:** You are **disconnected from the network entirely**. Your avatar is ejected, all active hacking effects end, and you must re-breach the network from scratch on a subsequent turn. This includes losing control of any redirected systems (turrets, doors, locks).
+
+**Single concentration slot:** You can maintain only **one concentration effect** at a time — whether that's an active hack, a redirected turret, a redirected security system, or a spell requiring concentration. If you redirect a turret (which requires concentration), you cannot simultaneously concentrate on a spell or maintain control of another system. Starting a new concentration effect ends the previous one.
+
+**Standing orders:** Systems you've already reprogrammed (permanently changing friend/foe designations, disabled alarms, unlocked doors) do **not** require concentration. Only active, ongoing control (turret targeting, system override, live monitoring) requires concentration.
 
 ### Combat Hacking Shortcuts
 
@@ -278,7 +300,7 @@ Characters with the Hacking advanced skill can hack in combat, but it's slow:
 - Navigate: 1 action per node
 - Execute: 1 action
 
-A typical hack during combat takes **4-6 actions** (1.5 to 2 full turns). This is intentional — the Hacking skill is designed for deliberate out-of-combat intrusion, not firefight hacking. The Technician class owns combat hacking.
+A typical hack during combat takes **4-6 actions** (1.5 to 2 full turns). This is intentional — the Hacking skill is designed for deliberate out-of-combat intrusion, not firefight hacking. The Technician build owns combat hacking.
 
 ---
 
@@ -306,19 +328,30 @@ ICE activates when triggered and acts on **initiative count 10** (or the network
 
 > **Note:** This table provides default DCs for generic ICE effects and GM-created ICE. The specific ICE types listed in the White/Gray/Black ICE tables above have their own fixed DCs that take precedence. For example, a Firewall explicitly scales by tier (DC 14/17/20), while Neural Spike always uses DC 19 regardless of network tier.
 
-### Hacker vs. Hacker
+### Digital Combat (Hacker vs. Hacker)
 
-When two hackers occupy the same network, they can target each other directly.
+When two hackers meet inside a network, combat resolves through a **3-round Digital Duel** — a structured battle of wits, exploits, and nerve. Each round represents seconds of furious code execution and counter-intrusion.
 
-**Digital Attack:** 1 action. Contested Hacking check. The loser takes the winner's effect:
+**Initiative:** Both hackers roll Initiative normally. The higher Initiative acts first in each round.
 
-| Margin of Victory | Effect |
-|---|---|
-| Win by 1-4 | Target is ejected from current node. Must spend 1 action to return. |
-| Win by 5-9 | Target is ejected from the network. Must re-breach. |
-| Win by 10+ | Target is ejected and takes 2d8 psychic damage (feedback through their interface). |
+**Round 1 — Probe:**
+Both hackers make **contested Technology checks**. The winner learns the opponent's **loaded programs, connection method** (neural interface, deck, terminal), and **current network access level**. The loser learns nothing. Tie: both learn connection method only.
 
-**Digital Duel:** When both hackers commit to a sustained contest, each round they make opposed Hacking checks. First to win 3 checks wins the duel. The loser is ejected from the network, their device is locked out for 1 hour, and they take 3d8 psychic damage.
+**Round 2 — Exploit:**
+Both hackers make **contested Technology checks**. The winner chooses one effect:
+- **Eject from Node (Safe):** Opponent is pushed out of the current node and must spend 1 action to return.
+- **Deploy ICE (Aggressive):** A program you have loaded activates against the opponent as if they triggered it. The opponent must resolve the ICE normally.
+- **Steal Program (Risky):** Attempt to copy one of the opponent's loaded programs. The opponent makes a **Will save (DC = your Technology DC)**. On failure, you copy the program into an empty slot. On success, you learn which program they protected but gain nothing.
+
+**Round 3 — Resolution:**
+Final **contested Technology check**. Results:
+- **Win by 5+:** Opponent is ejected from the network, takes **2d8 psychic damage**, and their connection point is **traced** (you learn their physical location).
+- **Win by 1-4:** Opponent is ejected from the current node only. No damage. No trace.
+- **Tie:** Both hackers are ejected from the node. Neither takes damage.
+
+**Disengage:** At the start of any round, either hacker can **Disengage** as a free action, exiting the duel. The disengaging hacker is ejected from the current node (not the network) and the network alert level increases by one step.
+
+**Action Economy:** Each round of a Digital Duel costs **1 action** per hacker. A 3-round duel consumes all 3 actions in a turn. If one hacker has actions remaining after the duel ends (e.g., the opponent Disengaged in Round 2), they can use remaining actions normally.
 
 ### Active Network Defense
 
@@ -339,15 +372,18 @@ A network administrator (an NPC or player character) can actively defend their n
 
 ## Network Alerts
 
-Networks have three alert levels that escalate as intrusion is detected.
+Networks have four alert levels that escalate as intrusion is detected.
 
-| Alert Level | Trigger | Effect |
-|---|---|---|
+| Alert Level | Triggers (any one) | Effect |
+|-------------|-------------------|--------|
 | **Green (Normal)** | Default state | No additional security. ICE operates normally. |
-| **Yellow (Suspicious)** | Failed check by 3+, Watchdog trigger, anomalous access | +2 to all ICE DCs. Active administrator may engage. Patrol frequency doubles in physical facility. |
-| **Red (Breach Confirmed)** | Failed check by 5+, alarm triggered, Black ICE activated | +4 to all ICE DCs. All dormant ICE activates. Physical security responds in 1d4 minutes. Network may initiate controlled shutdown. |
+| **Yellow (Suspicious)** | Failed hack check by **3+**; Watchdog ICE triggered; Logger records **3+ unauthorized access events** in 1 minute; ICE bypassed but not disabled | +2 to all ICE DCs. Active administrator may engage. Patrol frequency doubles in physical facility. |
+| **Red (Breach Confirmed)** | Failed hack check by **5+**; any ICE destroyed (not bypassed); alarm manually triggered by administrator or physical security; Black ICE activated; **3+ Yellow triggers** accumulated in single intrusion | +4 to all ICE DCs. All dormant ICE activates. Physical security responds in 1d4 minutes. Network may initiate controlled shutdown. |
+| **Lockdown** | **3+ Red triggers** accumulated in single intrusion; Trace ICE completes its countdown | Network locks **all Gateways** for 1 hour. Physical-only access or a Tier 5+ exploit (Technology DC 26) can re-enter. All active hackers are forcibly disconnected and take **2d8 psychic damage** (Will save for half, DC 18). |
 
-**De-escalation:** If no intrusion activity is detected for 10 minutes (downtime) or 5 rounds (combat), the alert level drops by one step. Reaching the Security Hub and disabling alarms drops the alert level to Green immediately.
+**De-escalation:** If no intrusion activity is detected for **10 minutes** (downtime) or **5 rounds** (combat), the alert level drops by one step. Reaching the Security Hub and disabling alarms drops the alert level to **Green** immediately. Lockdown cannot be de-escalated — it must expire (1 hour) or be bypassed.
+
+**Logger clarification:** A Logger ICE records each unauthorized access event (failed check, bypassed ICE, accessed restricted node). Three recorded events within 1 minute automatically triggers a Yellow alert. The Logger itself does not count as a "Yellow trigger" for Red escalation — only the resulting Yellow alert does.
 
 ---
 
@@ -396,6 +432,18 @@ A hacker can load a limited number of programs into their interface or device at
 
 Swapping programs requires 10 minutes and access to your program library (stored on a data chip or at a base terminal).
 
+### Using Programs in Combat
+
+Programs loaded into a hacking device (datapad, neural interface, custom deck) follow these rules during combat hacking:
+
+**Passive Programs** (Ghost Protocol, Neural Firewall, Signal Mask): Always active once loaded. No action required. Their effects apply automatically as long as you are connected to a network.
+
+**Active Programs** (Icebreaker, Skeleton Key, Virus Payload, Data Siphon): Activating an active program costs **1 action** (or replaces one Navigate/Execute action during a hack). You can activate a maximum of **1 active program per turn** — even if you have actions remaining. Programs that target ICE or nodes resolve immediately.
+
+**Reactive Programs** (Counter-Intrusion, Tripwire): Activate automatically when their trigger condition is met. Do not cost an action. You can have multiple reactive programs loaded, and each triggers independently.
+
+**Program Slots:** Your device's program slot limit (datapad 2-4, neural interface 4-6, custom deck 6-10) determines how many programs you can have loaded simultaneously. Swapping a loaded program for a different one requires **10 minutes** outside of combat or is not possible during combat.
+
 ---
 
 ## Secure Tunnels
@@ -440,6 +488,21 @@ Tunnels require periodic maintenance or they degrade:
 
 Physical damage to either endpoint immediately severs the tunnel.
 
+### Tunnel Operations
+
+**Who can create a tunnel?** Any character with **Hacking or Technology proficiency** and access to a compatible endpoint device (comm relay, server, terminal, or neural interface). The initiating endpoint must be a device you physically control or are currently hacked into.
+
+**Endpoint initiation:** Once a tunnel is established, **either endpoint** can initiate communication. The receiving endpoint does not need an operator — data can be sent to an unmanned terminal for later retrieval.
+
+**Can tunnels be traced?** Standard ICE and network monitoring **cannot** detect an active secure tunnel. Detecting a tunnel requires one of:
+- An **Adaptive AI or higher** (cognitive level 4+) actively scanning: **Investigation DC 22**
+- A dedicated **counter-intrusion scan** by a skilled hacker: **Technology DC 20**, requires **10 minutes** of active scanning
+- **Physical inspection** of the endpoint hardware: **Investigation DC 18**, requires physical access to the device
+
+**Tunnel destruction:** Destroying or powering down **either endpoint** immediately closes the tunnel. Data in transit at the moment of closure is lost. The remaining endpoint receives a "connection terminated" alert but no information about why.
+
+**Tunnel limits:** A single device can maintain a maximum of **3 simultaneous tunnels**. Each additional tunnel beyond 3 requires a Technology DC 20 check to establish (the device's bandwidth is strained).
+
 ---
 
 ## Building and Defending Your Own Network
@@ -482,6 +545,35 @@ You can install ICE on your network's nodes to defend against intrusion.
 | Neural Spike (Black) | DC 24 | 1,000 cr / 20 Salvage + 8 Tech | 5 days |
 
 **ICE Maintenance:** Each piece of ICE requires a Technology DC 12 check per month to maintain. Unmaintained ICE has a 25% chance of failing when triggered. ICE destroyed by intruders must be reinstalled from scratch.
+
+---
+
+## Build Feature Synergies
+
+The Hacking advanced skill is available to any character, but certain build features change how characters interact with networks. The **Technician** remains the undisputed master of digital systems — the features below provide alternative approaches, not replacements.
+
+For Technician-specific hacking features, see **Combat Hacking Shortcuts** above.
+
+### Scavenger
+
+- **Salvage Data (L1):** When a hack fails or you are ejected from a network, spend 1 Salvage Die to salvage data fragments. You recover partial information from the last node you accessed — enough for one useful detail (a name, a location, a partial schematic, a security rotation schedule) at the GM's discretion. This doesn't require a check but can only be used once per network per day.
+- **Jury-Rig Access (L6 Tinkerer):** You can bypass a Gateway node on Tier 1-2 networks using Engineering instead of Hacking. This takes 2 actions (instead of the normal Breach phase) and requires physical access to the network's hardware. On success, you enter the network at Alert Level Yellow (the bypass is noisy). This does not work on Tier 3+ networks.
+
+### Infiltrator
+
+- **Intel Dice — Reconnaissance (L1):** When performing Phase 1: Reconnaissance on a network, spend 1 Intel Die to gain advantage on the Hacking check. On success, you also learn the network's topology type (Linear, Star, Mesh, Tree, or Airgapped) in addition to the normal reconnaissance results.
+- **Contingency — Digital (L2):** You may prepare one of the following digital contingencies: **Dead Man's Switch** (if you are forcibly disconnected, one pre-selected data file is automatically copied to your terminal), **False Trail** (when detected, the Trace ICE targets a spoofed location — you gain 1 extra round before your physical location is identified), or **Backdoor** (if you successfully exfiltrate, you leave a hidden access point; your next Breach check on this network within 24 hours has advantage).
+- **Cascade Failure (L6 Saboteur):** When you successfully compromise a Control node, you may trigger a cascade failure. The network's Alert Level increases by 2 (affecting all other hackers present) and one connected node of your choice goes offline for 1d4 rounds. This is loud, aggressive, and distinctly not how a Technician would do it.
+
+### Psion
+
+- **Psionic Interface (L1, requires Telepathy discipline):** You can interface with an AI Core node using Psionic Power (WIS) instead of Hacking (INT). This bypasses the Gateway entirely — you connect directly to the AI's consciousness. However: this only works on networks that have an AI Core node, you can only access the AI Core (not other nodes), and the AI gets a Will save (DC = your Psionic Power DC) to reject the connection. On a failed save, you can communicate with the AI, attempt to persuade or deceive it, or extract information it has access to. Sapient and Transcendent AIs are immune to compulsion through this method but can still be communicated with. Each round of psionic interface adds +1 Focus.
+- **Psionic Breach (L5):** Spend 2 Focus to force a connection to a Tier 1-3 network's Gateway without equipment. Make a Psionic Power check against the network's Base Breach DC. On success, you enter the network in a limited psionic state: you can traverse nodes and access Data Stores, but you cannot use programs or hacking tools. You take 1d4 psychic damage each round you remain connected. On failure, you take 2d6 psychic damage and the network goes to full alert. This does not work on Tier 4-5 networks.
+
+### Mutant
+
+- **Biological Interface (L1, requires Heightened Senses or Prehensile Limbs mutation):** You can interface with biotech networks (Kethara Collective systems, alien-grown networks, organic computing nodes) without a terminal. Your biological tissue forms a direct connection. You use Survival or Nature instead of Hacking for checks on biotech networks. This provides no benefit on standard electronic networks. Biotech networks are uncommon — the GM determines when this applies.
+- **Adaptive Response — Digital (L2):** The first time you take neural feedback damage from ICE in an encounter, you gain resistance to neural feedback damage for the remainder of that hack. Your mutant physiology rapidly adapts to the attack pattern. This does not protect against Black ICE effects other than direct damage (Puppet, Cortex Bomb, and Mindburn still apply normally).
 
 ---
 
@@ -564,7 +656,7 @@ APIs are attack vectors. Every API you create is a potential pathway for hackers
 | Breach fortress network | DC 24 |
 | Break quantum encryption | DC 28 |
 
-### Hacking Skill vs. Technician Class
+### Hacking Skill vs. Technician Build
 
 | Capability | Hacking Skill | Technician (Hacker) |
 |---|---|---|

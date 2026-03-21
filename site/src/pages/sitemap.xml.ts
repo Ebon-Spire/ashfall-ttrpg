@@ -1,22 +1,21 @@
 import type { APIRoute } from 'astro';
-import { rulesNav } from '../data/rules-nav';
+import { discoverRulePages } from '../lib/loadMarkdown';
 
 const SITE = 'https://ashfallrpg.com';
 
 const staticPages = [
   '',
   'getting-started/',
-  'dm-guide/',
+  'gm-guide/',
   'community/',
   'character-builder/',
+  'downloads/',
   'feedback/',
   'rules/',
 ];
 
 export const GET: APIRoute = () => {
-  const rulesSlugs = rulesNav.flatMap(section =>
-    section.links.map(link => `rules/${link.slug}/`)
-  );
+  const rulesSlugs = discoverRulePages().map(page => `rules/${page.slug}/`);
 
   const allPages = [...staticPages, ...rulesSlugs];
 

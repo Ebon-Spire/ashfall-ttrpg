@@ -69,7 +69,7 @@ Five Iron Wolf scouts arrived at Kappa-7 about an hour before the party. Their s
 - **Fight them.** A straight combat encounter. The lookout on the roof joins combat on Round 2 if not dealt with first. See enemy stats below.
 - **Negotiate.** Persuasion DC 14 to convince Harsk to share whatever is inside, or Deception DC 15 to bluff the party into the building on a false pretense. If the party can open the server room door, Harsk may agree to split the findings rather than risk a fight.
 - **Sneak past them.** Stealth DC 13 (group check) to slip through the ground floor while the scouts are distracted by their argument. Failure means one scout spots the party and raises an alarm.
-- **Create a distraction.** The party can lure the scouts away from the building (a noise outside, a fake radio signal, a fire) and reach the server room while they investigate. Requires a plan and at least one successful skill check (DM's call on the DC based on the plan's quality, DC 12-15).
+- **Create a distraction.** The party can lure the scouts away from the building (a noise outside, a fake radio signal, a fire) and reach the server room while they investigate. Requires a plan and at least one successful skill check (GM's call on the DC based on the plan's quality, DC 12-15).
 
 ---
 

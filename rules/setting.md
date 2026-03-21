@@ -249,6 +249,140 @@ Every faction on Kael Morra exists in tension with every other. The Compact and 
 
 No faction is right. No faction is wholly wrong. The wasteland does not reward purity -- it rewards those willing to make deals with people they despise, and to break those deals when the cost of keeping them grows too high. This is the world the players inherit. What they do with it is their own.
 
+### Faction Standing
+
+Every character has a **standing** with each of Kael Morra's six major factions, tracked as a single number from -3 to +3. Standing determines how a faction treats you — whether its members shoot on sight, trade at fair prices, or open their armories and safe houses.
+
+By default, all characters begin at **Neutral (0)** with every faction unless modified by their background (see **Starting Standing** below).
+
+#### Standing Track
+
+| Standing | Level | Effect |
+|----------|-------|--------|
+| **-3** | Kill on Sight | The faction attacks you without dialogue. Bounty hunters or kill squads may be dispatched. No trade, no negotiation. Entering faction territory is a death sentence. |
+| **-2** | Hostile | The faction refuses all service and trade. -4 penalty to social checks with faction members. Members may attack if provoked or if you're caught alone. |
+| **-1** | Unfriendly | -2 penalty to social checks with faction members. No access to faction services, restricted gear, or faction territory beyond public areas. |
+| **0** | Neutral | Default. Normal interactions. Basic trade available. No bonuses or penalties. |
+| **+1** | Friendly | +2 bonus to social checks with faction members. Access to Tier 2 faction gear at standard price. Safe passage through faction territory. Minor requests granted without checks. |
+| **+2** | Allied | Access to Tier 3 faction-exclusive gear. Can request faction support once per adventure (a squad, a vehicle, intelligence, or supplies — GM determines scope). Faction missions offered proactively. |
+| **+3** | Trusted | Access to Tier 4 faction prototypes and unique named items (see **Equipment — Named & Legendary Items**). Faction safe houses, medical facilities, and restricted resources available. Audience with faction leadership upon request. The faction treats you as one of its own. |
+
+> **Character Sheet:** Track standing as six numbers — one per faction. A new character's sheet reads: HC 0 / IW 0 / Conv 0 / AV 0 / Dyn 0 / Keth 0 (unless modified by background).
+> *(Abbreviations: HC = Hearthstone Compact, IW = Iron Wolves, Conv = Convergence, AV = Ashen Veil, Dyn = Dynaxis Solutions, Keth = Kethara Collective)*
+
+#### Gaining Standing
+
+Standing increases when you demonstrably serve a faction's interests. Each action below grants **+1 standing** unless noted otherwise.
+
+- **Complete a Faction Service downtime activity** (see **Downtime — Faction Service**). Results of 20+ on the service check grant an additional +1.
+- **Complete a faction mission** during an adventure (escort a convoy, clear a ruin, recover a relic, eliminate a rival operative).
+- **Save faction members' lives** during an encounter — visible, meaningful intervention, not incidental crossfire.
+- **Deliver valuable intelligence or resources** — a data core, a pre-war schematic, a rival's operational plan.
+- **Exceptional service:** Any action where you beat the relevant check DC by 10+ grants **+2** instead of +1.
+
+**Maximum standing gain:** A character can gain at most **+2 standing** with any single faction per adventure (not counting downtime). Factions are cautious — trust is earned over time. Diplomat-generated standing changes (see **Integration with Other Systems**) count against this cap.
+
+#### Losing Standing
+
+Standing decreases when you act against a faction's interests. Each action below costs **-1 standing** unless noted otherwise.
+
+- **Attack or kill faction members** (even in self-defense, unless the faction acknowledges provocation).
+- **Sabotage faction operations** — destroy supply lines, compromise security, disrupt missions.
+- **Steal from the faction** — loot faction property, raid faction caches, embezzle faction resources.
+- **Aid a hostile faction** — performing visible service for a faction's enemy costs -1 with the opposed faction (see **Cross-Faction Consequences**).
+- **Betray faction secrets:** -2. Selling operational intelligence, exposing undercover agents, or revealing safe house locations.
+- **Destroy faction property or kill faction leadership:** -3. Assassinating a named faction officer or demolishing a faction installation.
+
+**Minimum standing:** Standing cannot drop below **-3**. At -3, the faction has already committed maximum hostility — further offenses may escalate the response (larger bounties, allied factions warned) but don't change the number.
+
+#### Cross-Faction Consequences
+
+The factions of Kael Morra exist in a web of alliances and rivalries. Helping one faction may anger another.
+
+**The rule:** When you gain **+1 or more standing** with a faction, you lose **-1 standing** with every faction that is **Hostile** toward them (see the relationship matrix below). This penalty applies once per standing gain, regardless of how much standing you gained.
+
+When you gain standing with a faction whose relationships are **Neutral or better** with another faction, no cross-faction penalty applies.
+
+> **Example:** You complete a mission for the Convergence (+1 Convergence). The Ashen Veil and Iron Wolves are both Hostile to the Convergence. You lose -1 standing with the Ashen Veil and -1 with the Iron Wolves. The Kethara Collective is also Hostile to the Convergence — you lose -1 with them too.
+
+#### Faction Inter-Relationship Matrix
+
+This matrix reflects each faction's institutional stance toward the others, derived from decades of cooperation, conflict, and competing interests. The matrix is symmetrical — each faction pair shares the same institutional stance in both directions. Individual NPCs may deviate — a rogue Iron Wolf deserter may be Friendly to the Compact — but the faction as a whole maintains these positions.
+
+| | Hearthstone | Iron Wolves | Convergence | Ashen Veil | Dynaxis | Kethara |
+|---|---|---|---|---|---|---|
+| **Hearthstone Compact** | — | Hostile | Unfriendly | Neutral | Unfriendly | Neutral |
+| **Iron Wolves** | Hostile | — | Hostile | Neutral | Hostile | Unfriendly |
+| **Convergence** | Unfriendly | Hostile | — | Hostile | Neutral | Hostile |
+| **Ashen Veil** | Neutral | Neutral | Hostile | — | Unfriendly | Friendly |
+| **Dynaxis Solutions** | Unfriendly | Hostile | Neutral | Unfriendly | — | Unfriendly |
+| **Kethara Collective** | Neutral | Unfriendly | Hostile | Friendly | Unfriendly | — |
+
+**Matrix rationale (for GMs):**
+- **Hearthstone–Iron Wolves:** Hostile. Constant border raiding, opposing governance philosophies, tribute demands on trade convoys.
+- **Hearthstone–Convergence:** Unfriendly. The Convergence extorts the Compact on technology prices and refuses meaningful cooperation.
+- **Hearthstone–Ashen Veil:** Neutral. The Compact tolerates magic users but denies the Veil institutional representation — strained cooperation, not friendship.
+- **Hearthstone–Dynaxis:** Unfriendly. Opposing economic models — cooperative versus monopoly. Active trade competition.
+- **Hearthstone–Kethara:** Neutral. Almost-allies held back by Compact xenophobia. Cooperation stalls at formal integration.
+- **Iron Wolves–Convergence:** Hostile. War over Rustfield territory. Wolves view Convergence tech-hoarding as an existential threat.
+- **Iron Wolves–Dynaxis:** Hostile. Grinding war of attrition over Rustfield manufacturing capacity.
+- **Iron Wolves–Kethara:** Unfriendly. Wolves have raided Collective supply ships in the Ashwater Strait.
+- **Convergence–Ashen Veil:** Hostile. Ideological war — technology versus magic. Convergence has raided Veil research sites.
+- **Convergence–Kethara:** Hostile. The Convergence views alien technology as heretical and refuses all contact.
+- **Ashen Veil–Dynaxis:** Unfriendly. Dynaxis secretly funds raids against the Veil to prevent unregulated magic from disrupting markets.
+- **Ashen Veil–Kethara:** Friendly. The Veil finds alien magical traditions fascinating; the Collective welcomes magic users.
+- **Dynaxis–Kethara:** Unfriendly. Dynaxis treats the Collective as a resource to exploit through corporate espionage and attempted technology theft.
+
+#### Starting Standing
+
+Most characters begin at **Neutral (0)** with all six factions. The following backgrounds and species modify starting standing:
+
+| Source | Modification |
+|--------|-------------|
+| **Faction Operative** background | +1 with your affiliated faction |
+| **Military Survivor** background | +1 Iron Wolves or Hearthstone Compact (player's choice — which military did you serve?) |
+| **Corporate Remnant** background | +1 Dynaxis Solutions |
+| **Outcast** background | -1 with one faction of your choice (the faction that cast you out) |
+| **Xylar species** | +1 Kethara Collective |
+| **Kromath species** | +1 Kethara Collective |
+| **Neo-Bestial species** | +1 Kethara Collective |
+
+> **GM Note:** These starting adjustments represent pre-existing relationships, not current loyalties. A Faction Operative who has turned against their former faction may still start at +1 — the faction doesn't know about the betrayal yet.
+
+#### Faction Gear Access
+
+Standing determines access to faction-exclusive equipment. This formalizes the "faction standing required" notes in **Equipment**.
+
+| Standing Required | Available Gear |
+|-------------------|---------------|
+| **Neutral (0)** | Basic trade goods, common supplies, Tier 1 equipment. Standard market access. |
+| **Friendly (+1)** | Tier 2 faction-specific weapons, armor, and augmentations at standard price. Faction consumables (see **Equipment — Augmentations** for faction-specific augments like Community Link and Corporate Override Chip). |
+| **Allied (+2)** | Tier 3 faction-exclusive gear. Specialty consumables and ammunition. Faction-specific crafting blueprints (reduce crafting DC by 2 for faction-associated items). |
+| **Trusted (+3)** | Tier 4 prototypes and unique named items (see **Equipment — Named & Legendary Items**). Faction augmentations otherwise unavailable. Commissioning custom equipment from faction artisans. |
+
+#### Integration with Other Systems
+
+**Downtime — Faction Service:** The Faction Service downtime activity (see **Downtime**) is the primary peacetime method for improving standing. The disposition shifts described in that activity correspond directly to standing changes: "disposition improves by 1 step" = "+1 standing."
+
+**Social Encounter Framework:** When engaging a faction representative in a social encounter (see **Game Mastering — Social Encounter Framework**), the NPC's starting disposition is influenced by your faction standing. Use the NPC's personal disposition as the baseline, shifted by your standing:
+- Standing +1 or higher: NPC starts one disposition step higher (minimum Neutral)
+- Standing -1 or lower: NPC starts one disposition step lower (minimum Hostile)
+- Standing +3 or -3: NPC starts two steps higher/lower
+
+**Statecraft Advanced Skill:** Characters with the Statecraft advanced skill can substitute a Statecraft check for any Faction Service type. On a result of 20+, they can improve standing with **two allied factions** simultaneously (both must be non-Hostile to each other). See **Advanced Skills — Statecraft**.
+
+**Diplomat Build:** When a Diplomat uses a feature that shifts an NPC's disposition (such as Silver Tongue or Commanding Presence), and the NPC is a faction representative acting in an official capacity, the disposition shift also applies as a standing change with that faction. This represents the Diplomat's ability to reshape institutional relationships through personal influence. These standing changes count against the per-adventure cap of +2.
+
+#### Recovering from Hostile Standing
+
+Climbing back from negative standing is intentionally difficult — factions have long memories.
+
+- From **-1 to 0:** Standard standing gain methods work normally. Complete 1-2 faction missions or services.
+- From **-2 to -1:** Requires a specific **act of contrition** — returning stolen property, freeing captured faction members, providing critical intelligence. The GM determines what the faction requires. Standard methods gain standing at half rate (round down; minimum +1 per 2 qualifying actions).
+- From **-3 to -2:** Requires a **major quest** on behalf of the faction — a campaign-arc-level undertaking that demonstrably proves your loyalty. The faction sets the terms, and they are not generous. No standing gain from standard methods until at least -2.
+
+> **Example:** A party that raided a Convergence installation (-3 standing) can't just run a few errands to get back in good graces. The Convergence demands the recovery of a specific AI core from a deep ruin — a multi-session quest — before they'll even consider lowering the bounty.
+
 ## Settlements & Civilization
 
 The world didn't end all at once, and it didn't start over all at once either. Civilization claws its way back in stages -- from a handful of survivors huddled around a fire to sprawling underground nations that never see the sun. Every settlement tells the story of what its founders valued most: safety, freedom, trade, knowledge, or raw power. The size of a community dictates nearly everything about how its people live, what they eat, how they fight, and whether they sleep with one eye open.
@@ -282,7 +416,7 @@ The first cases surfaced within a decade of the cascading catastrophes. A child 
 > *"My grandmother saw the first caster in our settlement. She said the woman held out her hand and frost crawled across the ground like something alive. Everyone thought she was cursed. They drove her out. Grandmother said she could still hear the woman screaming in the snow that night. We don't drive them out anymore. Now we put them on the wall and point them at whatever's coming."*
 > -- Fen Alder, militia captain
 
-The earliest practitioners had no framework, no terminology, no teachers. They were pioneers stumbling through a wilderness that existed inside their own bodies. Most discovered their abilities through trauma or desperation -- a pattern that persists today. The first consistent techniques emerged roughly thirty years after the Fall, when scattered casters began finding each other, comparing experiences, and developing shared language. They identified eight fundamental **Cantrips**: **Pyros** for heat and flame, **Cryo** for cold and frost, **Volta** for electricity, **Vitae** for healing and growth, **Mortis** for decay and entropy, **Kinesis** for force and motion, **Mentis** for thought and perception, **Materia** for physical transformation. These became the building blocks. Everything else -- every spell, every technique, every breakthrough -- is assembled from modular combinations of these foundations.
+The earliest practitioners had no framework, no terminology, no teachers. They were pioneers stumbling through a wilderness that existed inside their own bodies. Most discovered their abilities through trauma or desperation -- a pattern that persists today. The first consistent techniques emerged roughly fifty years after the Fall, when scattered casters began finding each other, comparing experiences, and developing shared language. They identified eight fundamental **Cantrips**: **Pyros** for heat and flame, **Cryo** for cold and frost, **Volta** for electricity, **Vitae** for healing and growth, **Mortis** for decay and entropy, **Kinesis** for force and motion, **Mentis** for thought and perception, **Materia** for physical transformation. These became the building blocks. Everything else -- every spell, every technique, every breakthrough -- is assembled from modular combinations of these foundations.
 
 There are no ancient grimoires. No lost tomes of eldritch wisdom. Every spell in existence was developed within living memory, often by people who are still alive. The magical tradition of the wasteland is less than a century old, and it shows. Techniques are rough, inconsistent, and deeply personal. What works for one caster may fail catastrophically for another. The entire discipline is in its infancy, which means every practitioner is both student and researcher, mapping territory that has never been mapped before.
 
@@ -377,6 +511,36 @@ The question that haunts every Synthetic is deceptively simple: *what am I for?*
 
 Other species view Synthetics with a volatile mix of awe and terror. The **AI Schism** -- when networked intelligences turned on their creators during the Fall -- poisons every interaction. Synthetics are not the rogue AIs that murdered billions, but the distinction is lost on most survivors. In some settlements they are citizens. In others they are tools. In a few, they are hunted on sight. Synthetics repaired by technology rather than magic carry an implicit trustworthiness in tech-oriented communities, while those touched by strange energies during reactivation face the same suspicion as any other magic-adjacent being.
 
+### Alien Hybrids
+
+> *"My mother's compound eyes could read light spectra I'll never see. My father's hands could build a camp shelter in twenty minutes flat. I got neither. What I got was the ability to sit in a room with both species and understand why they're afraid of each other --- and why they shouldn't be. That's not nothing."*
+> --- Mira Thrix-Okafor, Chiraxa liaison to the Hearthstone Compact
+
+The first Alien Hybrids were born during the middle decades of the Rebuilding, when the newly arrived alien refugees and human survivors began living in close proximity. They are not accidents --- the genetic gulf between Terran and alien biology is too wide for casual reproduction. Hybrids exist because someone, somewhere, deliberately bridged that gap.
+
+**Xylar-Human Hybrids** were the first and remain the most common. Xylar bioengineers in Chiraxa developed genetic grafting techniques that allow traits to cross species boundaries --- not true reproduction, but a form of biological adoption. The process is voluntary on both sides, takes months, and produces offspring that are genuinely neither species. They lack the Xylar hive-resonance but can sense its absence --- a phantom connection to a community they can hear but never join.
+
+**Kromath-Human Hybrids** are rarer and more controversial. Kromath reproductive biology is significantly different from human, requiring extensive genetic modification that the Kromath themselves view with cultural unease. Those who exist tend to be the result of specific Kromath-human partnerships where both parents committed to the process --- and to the child growing up between two very different ideas of family, obligation, and time.
+
+**Neo-Bestial Hybrids** are the most ambiguous category. Since Neo-Bestials were already genetically engineered from Terran species, some share enough biological overlap with humans that hybridization occurs naturally --- though "naturally" is a loaded word for a species that began in a laboratory. Neo-Bestial-Human hybrids often look the most human of any hybrid variety, which makes their social position both easier (passing is possible) and harder (the discovery of hidden heritage can feel like betrayal to both communities).
+
+**Social Reality:** Alien Hybrids are caught between worlds. Humans --- especially those aligned with conservative factions --- see them as evidence that alien contact has gone too far. "Not really human" is a slur they learn early. Alien communities are more varied in response: Xylar generally accept hybrids as kin (the Collective's founding philosophy is inclusion), Kromath view them with cautious respect if they honor Kromath debt-obligations, and Neo-Bestials are the most welcoming (they understand what it means to be a species that didn't choose its own creation).
+
+Chiraxa is the closest thing Hybrids have to a homeland. The Kethara Collective explicitly includes Hybrids in its charter, and Chiraxa's biotech infrastructure was partly designed to support their unique medical needs. Outside Xylos Reach, Hybrids are scattered --- a few in Bridgegate's cosmopolitan markets, a handful in Greenspire's research community, almost none in Iron Wolf territory.
+
+There is no unified Hybrid culture yet. They are too few, too scattered, and too varied in heritage. But the first generation is reaching adulthood now, and a quiet conversation is happening in Chiraxa's commons and Bridgegate's lower quarter: *what are we, exactly, and what do we owe each other?*
+
+**Faction Attitudes:**
+
+- **Kethara Collective:** Welcoming. Hybrids are living proof that the Collective's vision works. Ambassador Thrix-Kaloss has publicly called Hybrid integration "the most important experiment in Chiraxa's history."
+- **Hearthstone Compact:** Cautiously tolerant. The Compact's democratic principles extend to all sapients, including Hybrids --- in theory. In practice, Hybrid candidates for settlement councils face whisper campaigns.
+- **Convergence of the Lit Path:** Hostile. The Convergence views alien genetics as corruption of the human baseline. Archon Tanaka has issued no formal directive, but Convergence settlements routinely deny services to visibly alien Hybrids.
+- **Iron Wolves:** Indifferent to hostile. The Wolves judge fighters by capability, not species --- a Hybrid who can fight earns a place. But Wolf territory is human-dominated, and prejudice runs deep in the ranks.
+- **Dynaxis Solutions:** Commercially pragmatic. Dynaxis employs Hybrids when their unique biology provides a business advantage (Xylar-Human hybrids with enhanced pattern recognition, Kromath-Human hybrids suited for long-term project management). Dynaxis doesn't care what you are --- only what you produce.
+- **Ashen Veil:** Fascinated. Hybrids who manifest magical abilities are of intense interest to the Veil --- alien genetics interact with post-Fall magic in unpredictable ways. The Veil wants to study them. Some Hybrids appreciate the attention; others find it dehumanizing.
+
+**Mechanical Reference:** See **Character Creation: Alien Hybrid** for species traits. Alien Hybrids gain +2 to one attribute of their choice and select one trait from the Alien Hybrid trait list, reflecting the specific genetic heritage of their hybrid origin.
+
 ---
 
 ## Life in the Wasteland
@@ -456,6 +620,204 @@ Worship is visceral. Followers gather at **Cinderpits** -- shallow trenches fill
 The **Kromath** practice the **Ledger of Days** -- a philosophical framework so deeply embedded in Kromath culture that separating it from commerce, law, or daily life is impossible. The core belief: the universe is a transaction. Every action incurs a debt or creates a credit. Death is the **Settling** -- the moment when the Ledger closes and the sum of a life's transactions is calculated. Kromath record their obligations in personal **Day-Ledgers** maintained from adolescence until death. Communal gatherings occur at **Balance Houses** where disputes are arbitrated during ceremonies called **Accountings**. The most sacred event is the **Year-Settling**, where every Kromath opens their Day-Ledger for inspection by elders.
 
 And then there are those who believe in nothing at all. **Kael Morra has no shortage of atheists**, and the wasteland provides them with ample evidence. Skeptics gather in no churches and observe no rituals. They simply survive, one day grinding into the next, and if you ask them what gives their life meaning, most will shrug and say something about stubbornness. In a world this thoroughly broken, the refusal to assign meaning to suffering is its own kind of honesty -- and perhaps its own quiet faith.
+
+### Faith & Devotion
+
+Religion in Kael Morra is personal, messy, and sometimes dangerous. A character who genuinely devotes themselves to a faith — not just lip service, but active practice — gains a **devotion benefit**: a minor supernatural edge that reflects the faith's thematic core. These benefits are real. Whether they come from divine intervention, psychological conviction, or something stranger is a question the setting deliberately leaves unanswered.
+
+#### Gaining Devotion
+
+A character can adopt a faith at **character creation** or **during play**. Gaining devotion requires:
+
+- **Declaration:** The character declares their faith to their party or community
+- **Practice Period:** 7 days of active observance (praying, maintaining rituals, following the taboo). During a long rest is the natural time for this, but the practice period can overlap with travel or downtime
+- **GM Confirmation:** The GM confirms the character has meaningfully engaged with the faith's practices (not just checked a box)
+
+A character may only hold **one devotion** at a time. Adopting a new faith requires abandoning the old one — the practice period for the new faith cannot begin until the old devotion is formally renounced.
+
+#### Losing Devotion
+
+Each faith has a **taboo** — a behavioral restriction that reflects its core values. Violating the taboo causes the character to **lose their devotion benefit immediately**. The benefit can be regained by performing the faith's **atonement ritual** and then observing another 7-day practice period.
+
+Losing devotion is not a punishment — it's a narrative beat. The GM should frame it as a moment of character growth, doubt, or redefinition. Some of the best character arcs begin with a broken taboo.
+
+#### The Five Devotions
+
+##### Ember Covenant — The Desperate Flame
+
+> *"The fire does not ask permission to burn."*
+
+**Devotion Benefit — Crucible's Resolve:** You have advantage on saving throws against the **Frightened** condition. Additionally, once per long rest, when you are reduced to half your maximum HP or below for the first time in an encounter, you can emit a burst of searing heat: each creature within 5 feet of you takes 1d6 fire damage (no save). This damage increases to 2d6 at level 11.
+
+**Taboo — Never Flee From Fire:** If you willingly retreat from a fire-based hazard, fire damage source, or enemy that primarily deals fire damage (e.g., using the Retreat action or fleeing the area), you lose your devotion benefit.
+
+**Atonement — Walk the Coals:** Walk barefoot across a cinderpit or equivalent fire hazard, taking at least 1 point of fire damage willingly and without resistance.
+
+**System Interactions:** Frightened condition (see **Conditions**), fire damage and environmental hazards (see **Combat — Environmental Effects**).
+
+**Build Synergies:**
+
+- **Warrior — Ember-Forged Fury:** While you are at or below half your maximum HP, your melee weapon attacks deal +2 damage. The fire of survival burns hottest in those who refuse to fall.
+- **Channeler — Wrath Recalled:** Spells you cast that deal fire damage ignore fire resistance on any creature that has dealt damage to you during the current combat encounter. The Covenant remembers who burned you first.
+- **Operative — Defiance of Surprise:** Once per short rest, when you are ambushed or surprised, you gain advantage on your initiative roll. The Ember Covenant teaches that the desperate are never truly caught off guard.
+
+---
+
+##### Convergence of the Lit Path — The Sacred Circuit
+
+> *"It compiles."*
+
+**Devotion Benefit — Parser's Blessing:** You gain advantage on **Technology** checks made to repair, interface with, or analyze pre-war technology and Synthetic systems. Additionally, once per long rest, when you succeed on a Technology check to repair a device, the device functions at enhanced capacity for 24 hours: weapons deal +1 damage, armor grants +1 DV, tools grant +1 to relevant skill checks.
+
+**Taboo — Never Destroy Functional Technology:** If you willingly destroy, permanently disable, or allow the destruction of a functional piece of pre-war technology when you could reasonably prevent it, you lose your devotion benefit. Jury-rigging, disassembling for parts (with intent to rebuild), and destroying corrupted/hostile systems do not violate this taboo.
+
+**Atonement — Rite of Compilation:** Successfully restore a non-functional piece of technology to working order (Technology check, DC 15 or higher). The congregation — or at minimum, one witness — must be present to declare "It compiles."
+
+**System Interactions:** Technology skill (see **Skills**), equipment repair (see **Crafting**), Synthetic species (see **Character Creation**).
+
+**Build Synergies:**
+
+- **Technician — Blessed Circuitry:** Your drone or companion construct gains +1 to all checks while it is within 30 feet of a powered piece of technology (active terminal, running generator, charged vehicle, etc.). The Lit Path strengthens what is near its source.
+- **Mystic — Compiled Channels:** Once per long rest, when you would gain Burnout from casting a spell through a technological focus or augmentation, reduce the Burnout gained by 1 (minimum 0). The Lit Path illuminates safe channels through dangerous currents — especially where magic and technology intersect.
+- **Medic — Faith in the Tools:** You gain +2 to Medicine checks when using electronic medical equipment (medscanner, auto-injector, diagnostic suite, or equivalent). The Convergence teaches that trust in the tools is the first step toward mastery.
+
+---
+
+##### The Resonance — Communion With the Weave
+
+> *"Magic is not a tool. You do not use fire — you are warmed by it, or you are burned."*
+
+**Devotion Benefit — Resonant Attunement:** When you take **Burnout** damage, reduce the damage by 1 (minimum 1). For non-casters: once per long rest, when you are the target of a beneficial spell cast by an ally, that spell's duration is extended by 1 round (or 1 minute if the duration is measured in minutes).
+
+**Taboo — Never Suppress Another's Magic:** If you willingly cast Counterspell, Dispel Magic, or use any ability that suppresses, negates, or cancels another creature's spell or magical ability, you lose your devotion benefit. Saving throws against hostile spells do not violate this taboo — resistance is not suppression.
+
+**Atonement — Communion of Sparks:** Witness a channeler, mystic, or other spellcaster perform an act of significant magic (3rd level or higher spell, or equivalent ritual) and meditate in the presence of its aftereffects for 1 hour.
+
+**System Interactions:** Burnout (see **Magic — Burnout**), spell duration (see **Magic — Casting**), Counterspell/Dispel Magic (see **Magic — Spell Interactions**).
+
+**Build Synergies:**
+
+- **Mystic — The Weave Absorbs:** Once per long rest, when you would gain Burnout, reduce the Burnout gained by 1 (minimum 0). The Resonance absorbs the excess energy that would otherwise scar you. *(Note: this stacks with the base Resonant Attunement benefit — a Mystic devotee of the Resonance reduces Burnout damage by 1 AND can reduce Burnout gained by 1 once per LR. These are separate triggers: one reduces damage taken from Burnout, the other reduces Burnout accumulated.)*
+- **Diplomat — Harmonic Presence:** The range of your Commanding Presence feature increases by 10 feet (to 40 feet). When you grant an ally your Commanding Presence die, they also gain +1 to Will saves until the end of their next turn. The Resonance amplifies what you project.
+- **Channeler — Echoed Restoration:** When you heal an ally with a spell, you gain temporary HP equal to the spell's level (minimum 1). The Resonance echoes healing magic back toward its source. These temporary HP do not stack with themselves — each new trigger replaces the previous amount.
+
+---
+
+##### Ancestor Remembrance — The Speaking of Names
+
+> *"They are not gone. They are listening."*
+
+**Devotion Benefit — The Ancestors' Vigil:** You have advantage on **death saving throws**. Additionally, once per long rest, when an ally within 30 feet drops to 0 HP, you can use your **reaction** to speak a name of the dead: the ally automatically succeeds on their first death saving throw.
+
+**Taboo — Never Leave the Dead Unnamed:** If you encounter a corpse (humanoid or sentient creature) and leave the area without speaking a name for them — either their real name if known, or a name you choose — you lose your devotion benefit. This applies only to corpses you are aware of; you are not expected to search for hidden dead.
+
+**Atonement — Speaking of Names:** Participate in or lead a Speaking of Names ceremony — reading aloud the names of at least 10 dead, either from a name-shrine or from memory. This takes at least 1 hour.
+
+**System Interactions:** Death saving throws (see **Combat — Death & Dying**), reaction economy (see **Combat — Reactions**).
+
+**Build Synergies:**
+
+- **Medic — The Ancestors Refuse Them:** When you stabilize a dying creature (via Medicine check or stabilization ability), that creature regains consciousness at 1 HP instead of remaining unconscious. The ancestors weighed that soul and sent it back.
+- **Mystic (Necromancer specialization) — The Dead Draw Near:** Your Soul Harvest ability (or equivalent death-triggered resource-gathering feature) has its trigger range increased from 30 feet to 40 feet. The ancestors carry the echoes of the newly dead closer to those who listen.
+- **Warrior — Ancestral Vigil:** When an ally within 30 feet is reduced to 0 HP, you gain advantage on your next attack roll before the end of your next turn. The ancestors demand you avenge the fallen. This triggers once per round.
+
+---
+
+##### The Ledger of Days — The Eternal Transaction
+
+> *"The universe remembers what you owe."*
+
+**Devotion Benefit — Weight of the Ledger:** When you make a formal deal, bargain, or oath with another creature (both parties must verbally agree to terms), the other party has **disadvantage** on Deception checks to break or circumvent the terms for 1 week. Additionally, once per long rest, when a creature breaks a promise, contract, or deal made with you, you gain **+2 to all attack rolls and ability checks** against that creature for 1 hour.
+
+**Taboo — Never Break Your Word:** If you break a deal, promise, or oath you have made — even one made under duress — you lose your devotion benefit. Renegotiating terms before a deadline is not breaking your word; failing to act is.
+
+**Atonement — Pay the Debt:** Make restitution of double the value of what was promised to the party you wronged. If the wronged party is dead or unreachable, pay the debt to their faction, settlement, or closest associate. An elder or Kromath Ledger-keeper must witness the payment.
+
+**System Interactions:** Deception skill and social encounters (see **Skills**, **Game Mastering — Social Encounter Framework**), faction standing (see **Setting — Faction Reputation**).
+
+**Build Synergies:**
+
+- **Diplomat — The Ledger Rewards:** After you win a social encounter (as determined by the GM using the Social Encounter Framework), you gain 1 Influence capital. The Ledger rewards honest dealing and successful negotiation. This can trigger at most once per long rest.
+- **Gunslinger — Balancing the Ledger:** The first time per encounter that you deal damage to a creature that has damaged one of your allies during the current combat, you deal an additional +1d6 damage. Debts must be paid.
+- **Operative — The Ledger Remembers:** When you fulfill a contract, mission objective, or formally complete a task you were hired or oath-bound to perform (GM confirmation required), you gain advantage on your next downtime activity check. The Ledger closes satisfied accounts with interest.
+
+---
+
+#### Devotion Summary Table
+
+| Faith | Devotion Benefit | Taboo | Best For |
+|-------|-----------------|-------|----------|
+| Ember Covenant | Frightened resistance + fire burst at half HP | Never flee from fire | Frontline fighters, Channelers |
+| Convergence | Advantage on pre-war tech repair + enhanced device | Never destroy functional pre-war tech | Technicians, Scavengers, Operatives |
+| The Resonance | -1 Burnout damage (casters) / extended buff duration (non-casters) | Never suppress another's magic | Mystics, Channelers, buffed allies |
+| Ancestor Remembrance | Advantage on death saves + reaction ally death save | Never leave dead unnamed | Anyone in dangerous campaigns, Medics |
+| Ledger of Days | Disadvantage on betrayal + bonus vs oath-breakers | Never break your word | Diplomats, faction-focused characters |
+
+#### Devotion Build Synergy Summary
+
+| Faith | Build | Synergy | Trigger |
+|-------|-------|---------|---------|
+| Ember Covenant | Warrior | +2 melee damage at or below half HP | Passive |
+| Ember Covenant | Channeler | Fire damage spells ignore resistance vs. creatures that damaged you | Passive (combat) |
+| Ember Covenant | Operative | Advantage on initiative when ambushed | 1/SR, reactive |
+| Convergence | Technician | Drone/companion +1 to checks near powered tech | Passive (proximity) |
+| Convergence | Mystic | Reduce Burnout gained by 1 (tech focus/augmentation only) | 1/LR, reactive |
+| Convergence | Medic | +2 Medicine with electronic equipment | Passive (conditional) |
+| The Resonance | Mystic | Reduce Burnout gained by 1 | 1/LR, reactive |
+| The Resonance | Diplomat | Commanding Presence +10 ft range, allies +1 Will save | Passive |
+| The Resonance | Channeler | Gain temp HP = spell level when healing allies | Passive (on heal) |
+| Ancestor Remembrance | Medic | Stabilized creatures regain consciousness at 1 HP | Reactive |
+| Ancestor Remembrance | Mystic (Necromancer) | Soul Harvest range 30 ft → 40 ft | Passive |
+| Ancestor Remembrance | Warrior | Advantage on next attack when ally drops to 0 HP | 1/round, reactive |
+| Ledger of Days | Diplomat | Gain 1 Influence capital on social encounter win | 1/LR, reactive |
+| Ledger of Days | Gunslinger | +1d6 damage vs. creature that hurt an ally (1st hit) | 1/encounter, reactive |
+| Ledger of Days | Operative | Advantage on next downtime check after completing contract | Reactive |
+
+#### Conversion
+
+A character who abandons one faith and adopts another undergoes **conversion**. This is a significant narrative event:
+
+1. **Renounce** the old faith publicly or privately (GM's discretion based on setting)
+2. The old devotion benefit is lost immediately
+3. Begin the 7-day practice period for the new faith
+4. The character cannot benefit from any devotion during the transition
+
+Conversion is neither shameful nor heroic — it is simply change. Some faiths view converts with suspicion (the Ember Covenant asks what you were running from), others with welcome (Ancestor Remembrance asks only that you speak the names).
+
+#### Devotion and Other Systems
+
+- **Faction Standing:** Devotion is independent of faction standing. A character can follow the Ember Covenant while allied with any faction. However, some factions have cultural affinities — the Iron Wolves respect the Ember Covenant, Dynaxis favors the Convergence — and GMs may grant +1 to faction reputation checks when faith and faction align.
+- **Backgrounds:** Devotion stacks with background features. A Faction Operative with Ledger of Days devotion has both their faction benefit and their devotion benefit.
+- **Augmentations:** Devotion has no interaction with Humanity Cost. The faiths of Kael Morra are not concerned with cyberware (except the Convergence, which considers it sacred).
+- **Cross-Training/CP Spending:** Devotion benefits are not build features and cannot be acquired through cross-training or CP spending. They are available to any character who meets the roleplay requirements.
+- **Build Synergies:** Some devotions grant additional benefits to characters of specific builds. These synergies are extensions of the devotion benefit, not build features — they are gained and lost alongside the base devotion benefit. Breaking the faith's taboo disables both the base benefit and all build synergies. Completing the atonement ritual and practice period restores both. Build synergies cannot be cross-trained and do not transfer between builds — only your primary build's synergy applies. If your primary build has no listed synergy for your devotion, you receive only the base devotion benefit.
+
+<!--
+```
+game_data:
+  devotions:
+    - name: Ember Covenant
+      benefit: "Advantage on saves vs Frightened. 1/LR fire burst (1d6, 2d6 at L11) when reduced to ≤ half HP."
+      taboo: "Never flee from fire-based threats."
+      atonement: "Walk barefoot across a cinderpit, taking fire damage willingly."
+    - name: Convergence of the Lit Path
+      benefit: "Advantage on Technology checks for pre-war tech. 1/LR enhanced repair (+1 damage/DV/skill for 24h)."
+      taboo: "Never destroy functional pre-war technology."
+      atonement: "Restore non-functional technology (DC 15+) with a witness."
+    - name: The Resonance
+      benefit: "Casters: -1 Burnout damage (min 1). Non-casters: 1/LR extend ally spell duration by 1 round."
+      taboo: "Never use Counterspell, Dispel Magic, or suppress another's magic."
+      atonement: "Witness a significant magical act (3rd+ level) and meditate 1 hour."
+    - name: Ancestor Remembrance
+      benefit: "Advantage on death saves. 1/LR reaction: ally at 0 HP auto-succeeds first death save."
+      taboo: "Never leave a corpse unnamed."
+      atonement: "Lead or join a Speaking of Names (10+ names, 1 hour)."
+    - name: The Ledger of Days
+      benefit: "Deals impose disadvantage on Deception to break terms. 1/LR +2 vs oath-breakers for 1 hour."
+      taboo: "Never break your word."
+      atonement: "Pay double restitution to the wronged party, witnessed by an elder."
+```
+-->
 
 ### Superstitions, Taboos & Common Sayings
 

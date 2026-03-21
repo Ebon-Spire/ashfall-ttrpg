@@ -2,9 +2,9 @@
 
 ## Level Progression
 
-| Level | Prof Bonus | AP Earned | Total AP | Tier | XP Required | Features |
+| Level | Prof Bonus | CP Earned | Total CP | Tier | XP Required | Features |
 |-------|------------|-----------|----------|------|-------------|----------|
-| 1 | +2 | 15 | 15 | 1 | 0 | Archetype, species, background |
+| 1 | +2 | 15 | 15 | 1 | 0 | Chassis, species, background |
 | 2 | +2 | 10 | 25 | 1 | 300 | |
 | 3 | +2 | 10 | 35 | 1 | 900 | |
 | 4 | +2 | 10 | 45 | 1 | 2,700 | |
@@ -267,7 +267,7 @@
 
 **Attack/Defense Bonuses:**
 - Typical core cap: +14 (attribute +5, proficiency +6, gear +3)
-- Absolute ceiling: +18 with situational bonuses (class features, buffs, magic items)
+- Mythic ceiling: +18 (requires mythic tier play, L29-30 proficiency +9, and a Mythic Boon; typical mythic cap is +17)
 - Bounded accuracy keeps threats relevant at every level
 
 **Encounter CR:**
@@ -283,7 +283,7 @@
 
 ## Humanity/Essence Impact Table
 
-| Humanity | Spell Slots (Mage x 1.5) | Augment Level | Magic Capacity | Tech Capacity |
+| Humanity | Spell Slots (Mystic x 1.5) | Augment Level | Magic Capacity | Tech Capacity |
 |----------|--------------------------|---------------|----------------|---------------|
 | 10 | 15 | None | Maximum | Standard |
 | 9 | 13 | Light (1-2) | High | Enhanced |
@@ -347,8 +347,8 @@
 | Term | Definition |
 |------|-----------|
 | Action | One of three things you can do on your turn in combat |
-| Advancement Points (AP) | Currency for buying abilities, skills, and upgrades |
-| Archetype | Your character's foundation (like a class, but more flexible) |
+| Character Points (CP) | Currency for buying abilities, skill tree nodes, and upgrades |
+| Archetype | A recommended build — curated starting point for a character concept, not a rules-enforced restriction. See *Character Creation*. |
 | Augmentation | Cybernetic or biotech enhancement installed in your body |
 | Burnout | Accumulated magical fatigue from overcasting or using too much magic |
 | Challenge Budget (CB) | Total party level, used to build encounters |
@@ -360,7 +360,7 @@
 | Proficiency Bonus | Level-based bonus added to trained skills/attacks |
 | Reaction | Special action taken outside your turn in response to trigger |
 | Ritual Casting | Casting spells slowly to avoid spending spell slots |
-| Skill Tree | Branching path of related abilities you can purchase with AP |
+| Skill Tree | Branching path of related abilities you can purchase with CP |
 | Threat Level (TL) | Monster's power rating, determines encounter budget cost |
 | Tier Token | Currency for purchasing equipment, replaces gold/credits |
 | Twilight Event | Dangerous magical phenomenon from critical overcast failure |
