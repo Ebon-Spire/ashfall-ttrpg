@@ -16,6 +16,8 @@ concurrency:
 
 jobs:
   build:
+    # Only deploy on the public repo — the private repo uses deploy-dev.yml
+    if: github.repository == 'Ebon-Spire/ashfall-ttrpg'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
